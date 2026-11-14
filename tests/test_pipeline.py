@@ -94,8 +94,6 @@ def test_regions():
         assert np.nanmean(z[-1, 32:39, 0]) > np.nanmean(z[-1, 32:39, 1])   # anomaly is in the north
 
 
-if __name__ == "__main__":
-    test_end_to_end(); test_dissonance_bounds(); test_regions(); test_missing_year_is_masked(); print("all tests passed")
 
 
 def test_missing_year_is_masked():
@@ -112,3 +110,7 @@ def test_missing_year_is_masked():
         assert abs(np.nanmean(zc[list(years).index(2019), 32:39])) < 1.0   # normal year stays normal
         score = build_score(2026, years, grid, counts, frp, P.anomaly(counts, last_week), last_week, zc)
         assert 2020 not in score["meta"]["baseline_years"] and 2023 not in score["meta"]["baseline_years"]
+
+
+if __name__ == "__main__":
+    test_end_to_end(); test_dissonance_bounds(); test_regions(); test_missing_year_is_masked(); print("all tests passed")
