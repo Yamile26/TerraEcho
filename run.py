@@ -8,6 +8,8 @@ import argparse
 import json
 import os
 
+import numpy as np
+
 from terraecho import pipeline as P
 from terraecho.render import render
 from terraecho.sonify import build_score
@@ -52,6 +54,21 @@ def main():
             json.dump(score, f, separators=(",", ":"))
         peak = max(score["weeks"], key=lambda w: w["country"]["z"])
         print(f"{year}: {jpath}  peak anomaly z={peak['country']['z']} in week of {peak['start_date']}")
+        # weekly country table: the evidence behind the sound, for checking and for slides
+        yi = list(years).index(year)
+        others = [i for i, lw in enumerate(last_week) if i != yi and lw >= 0]
+        ctot = counts.sum(axis=2)
+        cpath = os.path.join(a.out, f"terraecho_{year}_weekly.csv")
+        with open(cpath, "w", encoding="utf-8") as f:
+            f.write("week,start_date,hotspots,baseline_median,baseline_min,baseline_max,z,level\n")
+            for w in score["weeks"]:
+                k = w["week"]
+                base = ctot[others, k]
+                f.write(f"{k},{w['start_date']},{w['country']['count']},{np.median(base):.0f},"
+                        f"{base.min():.0f},{base.max():.0f},{w['country']['z']},{w['country']['level']}\n")
+        top = sorted(score["weeks"], key=lambda w: w["country"]["count"], reverse=True)[0]
+        print(f"       {cpath}  busiest week {top['start_date']}: "
+              f"{top['country']['count']} hotspots, z={top['country']['z']}")
         if a.wav:
             wpath = os.path.join(a.out, f"terraecho_{year}.wav")
             print(f"       {wpath}  {render(score, wpath, a.seconds_per_week):.1f} s")
