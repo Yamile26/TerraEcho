@@ -43,7 +43,7 @@ def main():
                    "z": P.anomaly(rc, last_week)}
 
     for year in a.years:
-        if year not in years:
+        if year not in years or last_week[list(years).index(year)] < 0:
             print(f"skip {year}: no data")
             continue
         score = build_score(year, years, grid, counts, frp, z_cell, last_week, z_country, regions)

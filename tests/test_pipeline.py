@@ -95,4 +95,20 @@ def test_regions():
 
 
 if __name__ == "__main__":
-    test_end_to_end(); test_dissonance_bounds(); test_regions(); print("all tests passed")
+    test_end_to_end(); test_dissonance_bounds(); test_regions(); test_missing_year_is_masked(); print("all tests passed")
+
+
+def test_missing_year_is_masked():
+    """A missing yearly file must not count as a year with zero fires."""
+    with tempfile.TemporaryDirectory() as tmp:
+        make(tmp)
+        os.remove(os.path.join(tmp, "synthetic_2020.csv"))
+        os.remove(os.path.join(tmp, "synthetic_2023.csv"))
+        grid = P.Grid(*P.PERU_BBOX, res=0.5)
+        years, counts, frp, last_week = P.aggregate(P.load_firms(tmp), grid)
+        assert last_week[list(years).index(2020)] == -1
+        zc = P.anomaly(counts.sum(axis=2, keepdims=True), last_week)[:, :, 0]
+        assert np.isnan(zc[list(years).index(2020)]).all()
+        assert abs(np.nanmean(zc[list(years).index(2019), 32:39])) < 1.0   # normal year stays normal
+        score = build_score(2026, years, grid, counts, frp, P.anomaly(counts, last_week), last_week, zc)
+        assert 2020 not in score["meta"]["baseline_years"] and 2023 not in score["meta"]["baseline_years"]

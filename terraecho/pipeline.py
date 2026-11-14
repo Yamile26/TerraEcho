@@ -120,6 +120,12 @@ def aggregate(df: pd.DataFrame, grid: Grid):
     last_week = np.full(len(years), N_WEEKS - 1)
     last_date = df.acq_date.max()
     last_week[-1] = min((last_date.dayofyear - 1) // 7, N_WEEKS - 1)
+    # a year with no rows at all is a missing file, not a year without fire:
+    # mask it so it never enters a baseline as zeros
+    empty = counts.sum(axis=(1, 2)) == 0
+    last_week[empty] = -1
+    for yr in years[empty]:
+        print(f"WARNING: no data for {yr}; excluded from every baseline (missing file?)")
     return years, counts, frp, last_week
 
 
