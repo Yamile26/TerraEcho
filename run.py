@@ -22,7 +22,8 @@ def main():
     ap.add_argument("--out", default="out")
     ap.add_argument("--res", type=float, default=0.5, help="grid cell size in degrees")
     ap.add_argument("--satellite", default="N", help='FIRMS satellite code to keep, or "all"')
-    ap.add_argument("--regions", help="optional GeoJSON of regions (e.g. Peru departments)")
+    ap.add_argument("--regions", default="data/peru_departments.geojson",
+                    help='GeoJSON of regions (default: Peru departments). Use "none" to skip')
     ap.add_argument("--wav", action="store_true", help="also render a WAV per year")
     ap.add_argument("--seconds-per-week", type=float, default=0.5)
     a = ap.parse_args()
@@ -37,7 +38,7 @@ def main():
     z_country = P.anomaly(counts.sum(axis=2, keepdims=True), last_week)[:, :, 0]
 
     regions = None
-    if a.regions:
+    if a.regions and a.regions != "none" and os.path.exists(a.regions):
         names, region = P.load_regions(a.regions, grid)
         rc = P.sum_by_region(counts, region, len(names))
         regions = {"names": names, "region_of_cell": region, "counts": rc,
@@ -69,6 +70,16 @@ def main():
         top = sorted(score["weeks"], key=lambda w: w["country"]["count"], reverse=True)[0]
         print(f"       {cpath}  busiest week {top['start_date']}: "
               f"{top['country']['count']} hotspots, z={top['country']['z']}")
+        if regions is not None:
+            apath = os.path.join(a.out, f"terraecho_{year}_alerts.csv")
+            rows = [(r["z"], w["start_date"], r["name"], r["count"])
+                    for w in score["weeks"] for r in w["regions"] if r["alert"]]
+            with open(apath, "w", encoding="utf-8") as f:
+                f.write("start_date,department,hotspots,z\n")
+                for z, d, n, c in sorted(rows, key=lambda t: (t[1], -t[0])):
+                    f.write(f"{d},{n},{c},{z}\n")
+            worst = ", ".join(f"{n} ({d}, z={z})" for z, d, n, c in sorted(rows, reverse=True)[:3])
+            print(f"       {apath}  {len(rows)} department alerts. Strongest: {worst or 'none'}")
         if a.wav:
             wpath = os.path.join(a.out, f"terraecho_{year}.wav")
             print(f"       {wpath}  {render(score, wpath, a.seconds_per_week):.1f} s")

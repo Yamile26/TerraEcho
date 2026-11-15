@@ -89,7 +89,7 @@ def test_regions():
             json.dump(gj, f)
         names, region = P.load_regions(p, grid)
         rc = P.sum_by_region(counts, region, len(names))
-        assert names == ["North", "South"] and rc.sum() == counts.sum()
+        assert names == ["north", "south"] and rc.sum() == counts.sum()
         z = P.anomaly(rc, last_week)
         assert np.nanmean(z[-1, 32:39, 0]) > np.nanmean(z[-1, 32:39, 1])   # anomaly is in the north
 

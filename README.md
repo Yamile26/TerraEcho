@@ -24,8 +24,7 @@ python scripts/download_firms.py --api-year 2026 --map-key YOUR_FIRMS_MAP_KEY
 # 2. Build the score for the web app, plus a WAV to listen to
 python run.py --raw data/raw --years 2026 --out out --wav
 
-# 3. Optional: per-department values (needs a GeoJSON of Peru's departments)
-python run.py --raw data/raw --years 2026 --regions data/peru_departments.geojson
+# Per-department values are included automatically (data/peru_departments.geojson)
 ```
 
 Run the tests with `python tests/test_pipeline.py`. They use synthetic data from `tests/make_synthetic.py`, which is random and must never be shown as a result.
@@ -86,3 +85,4 @@ Dissonance changes three things: the note is detuned (up to 45 cents), a second 
 
 - NASA FIRMS, Fire Information for Resource Management System: https://firms.modaps.eosdis.nasa.gov/
 - VIIRS 375 m active fire product (Suomi NPP)
+- Department boundaries: geoBoundaries, Peru ADM1 (simplified), https://www.geoboundaries.org/
