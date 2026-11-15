@@ -2,10 +2,12 @@
 
   python scripts/listening_test.py --raw data/raw --out data/listening_test
 
-Picks the year with the most hotspots, a typical year and the quietest year,
-renders each one, and names the clips A, B, C in random order. The answer is
-written to key.txt. Do not share key.txt with listeners.
-Question to ask: "Which clip sounds like the worst fire year?"
+TerraEcho sonifies how abnormal a year is, not how many fires it had. So the
+test picks the most abnormal year, a typical year and the calmest year
+(ranked by the mean country dissonance over the year), renders each one, and
+names the clips A, B, C in random order. The answer is written to key.txt.
+Do not share key.txt with listeners.
+Question to ask: "Which clip sounds most alarming?"
 """
 import argparse
 import os
@@ -16,7 +18,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from terraecho import pipeline as P          # noqa: E402
 from terraecho.render import render          # noqa: E402
-from terraecho.sonify import build_score     # noqa: E402
+from terraecho.sonify import build_score, dissonance     # noqa: E402
 
 
 def main():
@@ -35,18 +37,20 @@ def main():
     z_cell = P.anomaly(counts, last_week)
     z_country = P.anomaly(counts.sum(axis=2, keepdims=True), last_week)[:, :, 0]
 
-    # only complete years, ranked by total hotspots
-    full = [(counts[i].sum(), int(y)) for i, y in enumerate(years) if last_week[i] == P.N_WEEKS - 1]
+    # only complete years, ranked by how abnormal they were
+    full = [(float(dissonance(z_country[i]).mean()), int(y), counts[i].sum())
+            for i, y in enumerate(years) if last_week[i] == P.N_WEEKS - 1]
     full.sort()
-    picks = {"quietest": full[0], "typical": full[len(full) // 2], "worst": full[-1]}
+    print("abnormality index by year:", ", ".join(f"{y}: {d:.3f}" for d, y, _ in sorted(full, key=lambda t: t[1])))
+    picks = {"calmest": full[0], "typical": full[len(full) // 2], "most abnormal": full[-1]}
 
     order = list(picks.items())
     random.Random(a.seed).shuffle(order)
     lines = []
-    for label, (kind, (total, year)) in zip("ABC", order):
+    for label, (kind, (index, year, total)) in zip("ABC", order):
         score = build_score(year, years, grid, counts, frp, z_cell, last_week, z_country)
         secs = render(score, os.path.join(a.out, f"clip_{label}.wav"), a.seconds_per_week)
-        lines.append(f"clip_{label}.wav = {year} ({kind}, {int(total):,} hotspots, {secs:.0f} s)")
+        lines.append(f"clip_{label}.wav = {year} ({kind}, abnormality {index:.3f}, {int(total):,} hotspots, {secs:.0f} s)")
     with open(os.path.join(a.out, "key.txt"), "w", encoding="utf-8") as f:
         f.write("ANSWER KEY - do not share with listeners\n" + "\n".join(lines) + "\n")
     print("\n".join(lines))

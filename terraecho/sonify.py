@@ -94,9 +94,9 @@ def build_score(year: int, years, grid: Grid, counts, frp, z_cell, last_week,
     yi = int(np.where(years == year)[0][0])
     lat, lon = grid.centers()
     nz = counts[counts > 0]
-    count_ref = float(np.percentile(nz, 99)) if nz.size else 1.0
+    count_ref = float(np.percentile(nz, 99.9)) if nz.size else 1.0
     fz = frp[frp > 0]
-    frp_ref = float(np.percentile(fz, 99)) if fz.size else 1.0
+    frp_ref = float(np.percentile(fz, 99.9)) if fz.size else 1.0
 
     c_country = counts.sum(axis=2)
     f_country = frp.sum(axis=2)

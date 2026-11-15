@@ -11,6 +11,7 @@ import wave
 import numpy as np
 
 SR = 22050
+ROUGH_HZ = 30.0                     # tremolo rate that the ear hears as roughness
 
 
 def midi_to_hz(m, cents=0.0):
@@ -44,25 +45,34 @@ def render(score: dict, path: str, seconds_per_week: float = 0.5, max_voices: in
     right = np.zeros(n * len(weeks))
     fade = np.minimum(1.0, np.minimum(np.arange(n), np.arange(n)[::-1]) / (0.02 * SR))
 
+    t = np.arange(n) / SR
     for i, wk in enumerate(weeks):
         a, b = i * n, (i + 1) * n
-        # country drone: one chord for the whole country
-        drone = sum(_tone(midi_to_hz(m), n, harmonics=(1.0, 0.2)) for m in wk["country"]["chord"])
-        drone *= 0.06 * fade
+        dc = wk["country"]["dissonance"]
+        # country layer: a quiet consonant chord when the week is normal; it grows
+        # louder and rough (fast tremolo) as the country departs from normal
+        rough = 1.0 - 0.7 * dc * (0.5 + 0.5 * np.sin(2 * np.pi * ROUGH_HZ * t))
+        drone = sum(_tone(midi_to_hz(m), n, harmonics=(1.0, 0.3 + 0.5 * dc, 0.4 * dc))
+                    for m in wk["country"]["chord"])
+        drone *= (0.05 + 0.22 * dc) * rough * fade
         left[a:b] += drone
         right[a:b] += drone
 
-        voices = sorted(wk["cells"], key=lambda v: v["gain"], reverse=True)[:max_voices]
+        # abnormal cells are heard first, then the strongest fires
+        voices = sorted(wk["cells"], key=lambda v: v["gain"] * (0.4 + v["dissonance"]),
+                        reverse=True)[:max_voices]
         for v in voices:
+            d = v["dissonance"]
             f = midi_to_hz(v["midi"], v["detune_cents"])
             sig = _tone(f, n)
             sig += v["partner_gain"] * _tone(midi_to_hz(v["midi"] + v["interval"], -v["detune_cents"]), n)
-            sig *= _pulses(n, v["density"]) * fade * (0.05 + 0.25 * v["gain"])
+            sig *= 1.0 - 0.6 * d * (0.5 + 0.5 * np.sin(2 * np.pi * ROUGH_HZ * t))
+            sig *= _pulses(n, v["density"]) * fade * (0.04 + 0.14 * v["gain"]) * (0.6 + 0.8 * d)
             ang = (v["pan"] + 1) * np.pi / 4                   # equal-power pan
             left[a:b] += np.cos(ang) * sig
             right[a:b] += np.sin(ang) * sig
 
-    stereo = np.tanh(np.stack([left, right], axis=1) * 1.2)     # soft limiter
+    stereo = np.tanh(np.stack([left, right], axis=1) * 1.1)     # soft limiter
     pcm = (stereo * 32767 * 0.9).astype("<i2")
     with wave.open(path, "wb") as w:
         w.setnchannels(2)
