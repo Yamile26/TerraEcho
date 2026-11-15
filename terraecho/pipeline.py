@@ -17,6 +17,7 @@ import pandas as pd
 # Peru bounding box (west, south, east, north)
 PERU_BBOX = (-81.5, -18.5, -68.5, 0.0)
 N_WEEKS = 52
+STATIC_RES = 0.02          # degrees (~2 km): neighbourhood of a known non-fire heat source
 
 
 @dataclass
@@ -77,10 +78,28 @@ def load_firms(raw_dir: str, bbox=PERU_BBOX, satellite: str | None = "N",
     w, s, e, n = bbox
     df = df[(df.longitude >= w) & (df.longitude < e) & (df.latitude >= s) & (df.latitude < n)]
 
-    # type exists only in archive files: 0 = presumed vegetation fire
+    # Near real-time (NRT) rows are provisional. Where science-quality (SP) rows
+    # exist for the same dates, keep SP only, so no day is counted twice.
+    if "version" in df.columns:
+        nrt = df["version"].astype(str).str.upper().str.contains("NRT")
+        if nrt.any() and (~nrt).any():
+            last_sp = df.loc[~nrt, "acq_date"].max()
+            overlap = nrt & (df["acq_date"] <= last_sp)
+            if overlap.any():
+                print(f"note: dropped {int(overlap.sum()):,} NRT rows up to {last_sp.date()} (SP data covers those dates)")
+            df = df[~overlap]
+
+    # type exists only in SP files: 0 = vegetation fire, 1 = volcano, 2 = other
+    # static land source, 3 = offshore. NRT rows have no type, so we also drop
+    # any detection sitting on a spot that SP has flagged as a non-fire source.
     if "type" in df.columns:
         t = pd.to_numeric(df["type"], errors="coerce")
-        df = df[t.isna() | (t == 0)]
+        key = (df.latitude / STATIC_RES).round().astype(int) * 100000 + (df.longitude / STATIC_RES).round().astype(int)
+        static_spots = set(key[t.isin([1, 2, 3])])
+        on_static = key.isin(static_spots) & t.isna()
+        if on_static.any():
+            print(f"note: dropped {int(on_static.sum()):,} untyped detections on known non-fire heat sources (volcanoes, industry)")
+        df = df[(t.isna() | (t == 0)) & ~on_static]
 
     if satellite is not None and "satellite" in df.columns:
         df = df[df["satellite"].str.strip() == satellite]

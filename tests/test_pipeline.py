@@ -133,5 +133,28 @@ def test_frames_colour_layers():
         assert F.render(s, os.path.join(tmp, "f.wav")) > 0
 
 
+def test_nrt_overlap_and_static_sources():
+    """NRT rows must not double count SP dates, and NRT hits on a known volcano are dropped."""
+    import pandas as pd
+    with tempfile.TemporaryDirectory() as tmp:
+        base = dict(bright_ti4=330, acq_time="1800", satellite="N", instrument="VIIRS",
+                    confidence="n", frp=5.0, daynight="D")
+        sp = pd.DataFrame([
+            dict(latitude=-8.0, longitude=-74.0, acq_date="2026-03-01", version="2", type=0, **base),
+            dict(latitude=-15.787, longitude=-71.857, acq_date="2026-03-01", version="2", type=1, **base),  # volcano
+        ])
+        nrt = pd.DataFrame([
+            dict(latitude=-8.001, longitude=-74.001, acq_date="2026-03-01", version="2.0NRT", **base),  # same day as SP
+            dict(latitude=-8.0, longitude=-74.0, acq_date="2026-09-01", version="2.0NRT", **base),      # new fire
+            dict(latitude=-15.79, longitude=-71.86, acq_date="2026-09-01", version="2.0NRT", **base),   # volcano again
+        ])
+        sp.to_csv(os.path.join(tmp, "sp.csv"), index=False)
+        nrt.to_csv(os.path.join(tmp, "nrt.csv"), index=False)
+        df = P.load_firms(tmp)
+        assert len(df) == 2, df
+        assert sorted(df.acq_date.dt.strftime("%Y-%m-%d")) == ["2026-03-01", "2026-09-01"]
+        assert (df.latitude > -9).all()                      # nothing left at the volcano
+
+
 if __name__ == "__main__":
-    test_end_to_end(); test_dissonance_bounds(); test_regions(); test_missing_year_is_masked(); test_frames_colour_layers(); print("all tests passed")
+    test_end_to_end(); test_dissonance_bounds(); test_regions(); test_missing_year_is_masked(); test_frames_colour_layers(); test_nrt_overlap_and_static_sources(); print("all tests passed")
