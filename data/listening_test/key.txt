@@ -1,4 +1,0 @@
-ANSWER KEY - do not share with listeners
-clip_A.wav = 2020 (most abnormal, abnormality 0.207, 90,952 hotspots, 16 s)
-clip_B.wav = 2015 (calmest, abnormality 0.013, 64,708 hotspots, 16 s)
-clip_C.wav = 2018 (typical, abnormality 0.060, 58,153 hotspots, 16 s)

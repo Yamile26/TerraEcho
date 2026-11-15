@@ -3,3 +3,4 @@ __pycache__/
 data/raw/*.csv
 out/
 .venv/
+data/listening_test/key.txt

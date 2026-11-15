@@ -9,6 +9,7 @@ import json
 import os
 
 import numpy as np
+import pandas as pd
 
 from terraecho import pipeline as P
 from terraecho.render import render
@@ -70,6 +71,13 @@ def main():
         top = sorted(score["weeks"], key=lambda w: w["country"]["count"], reverse=True)[0]
         print(f"       {cpath}  busiest week {top['start_date']}: "
               f"{top['country']['count']} hotspots, z={top['country']['z']}")
+        # days with no detection at all usually mean a hole in the download, not a day without fire
+        d = df.loc[df.acq_date.dt.year == year, "acq_date"]
+        missing = sorted(set(pd.date_range(d.min(), d.max())) - set(d.dt.normalize()))
+        if missing:
+            shown = ", ".join(m.strftime("%m-%d") for m in missing[:20])
+            print(f"       CHECK: {len(missing)} day(s) with no detections between {d.min().date()} and "
+                  f"{d.max().date()}: {shown}{' ...' if len(missing) > 20 else ''}")
         if regions is not None:
             apath = os.path.join(a.out, f"terraecho_{year}_alerts.csv")
             rows = [(r["z"], w["start_date"], r["name"], r["count"])
