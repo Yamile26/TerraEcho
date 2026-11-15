@@ -17,6 +17,7 @@ import pandas as pd
 # Peru bounding box (west, south, east, north)
 PERU_BBOX = (-81.5, -18.5, -68.5, 0.0)
 N_WEEKS = 52
+MAX_EMPTY_DAYS = 2          # a week with more empty days than this is treated as a data gap
 STATIC_RES = 0.02          # degrees (~2 km): neighbourhood of a known non-fire heat source
 
 
@@ -135,6 +136,18 @@ def aggregate(df: pd.DataFrame, grid: Grid):
     np.add.at(counts, (y, wk, cell), 1.0)
     np.add.at(frp, (y, wk, cell), df.frp.to_numpy())
 
+    # days with at least one detection, per (year, week): a week with several
+    # empty days is a hole in the record (satellite outage or failed download)
+    days = df.assign(y=y, wk=wk).drop_duplicates(subset=["y", "wk", "acq_date"])
+    observed = np.zeros((len(years), N_WEEKS))
+    np.add.at(observed, (days.y.to_numpy(), days.wk.to_numpy()), 1.0)
+    week_len = np.full(N_WEEKS, 7.0)
+    week_len[-1] = 8.0
+    # only where that week of the year is normally observed almost every day;
+    # in the wet season, empty days are ordinary and are not treated as gaps
+    usually_full = np.median(observed, axis=0) >= week_len - 1
+    gap = (observed < (week_len[None, :] - MAX_EMPTY_DAYS)) & usually_full[None, :]
+
     # last week that has data in each year (the current year is incomplete)
     last_week = np.full(len(years), N_WEEKS - 1)
     last_date = df.acq_date.max()
@@ -145,7 +158,7 @@ def aggregate(df: pd.DataFrame, grid: Grid):
     last_week[empty] = -1
     for yr in years[empty]:
         print(f"WARNING: no data for {yr}; excluded from every baseline (missing file?)")
-    return years, counts, frp, last_week
+    return years, counts, frp, last_week, gap
 
 
 def _smooth_weeks(x: np.ndarray, half: int = 1) -> np.ndarray:
@@ -156,13 +169,14 @@ def _smooth_weeks(x: np.ndarray, half: int = 1) -> np.ndarray:
     return out / (2 * half + 1)
 
 
-def anomaly(counts: np.ndarray, last_week: np.ndarray, min_scale: float = 0.35) -> np.ndarray:
+def anomaly(counts: np.ndarray, last_week: np.ndarray, gap: np.ndarray | None = None,
+            min_scale: float = 0.35) -> np.ndarray:
     """Robust z-score of every (year, week, unit) against the other years.
 
     Works on log1p(count). For each target year the baseline is every other
     year (leave-one-out), using the median and the MAD of the same week of
     year, lightly smoothed over neighbouring weeks. Weeks after the last
-    observation of a year are NaN.
+    observation of a year, and weeks flagged as data gaps, are NaN.
 
     counts: [year, week, unit] where unit is a cell, a region or the country.
     """
@@ -170,6 +184,8 @@ def anomaly(counts: np.ndarray, last_week: np.ndarray, min_scale: float = 0.35) 
     xs = _smooth_weeks(x)
     n_years = x.shape[0]
     valid = np.arange(N_WEEKS)[None, :] <= last_week[:, None]      # [year, week]
+    if gap is not None:
+        valid &= ~gap
     xs_masked = np.where(valid[:, :, None], xs, np.nan)
 
     z = np.full_like(x, np.nan)

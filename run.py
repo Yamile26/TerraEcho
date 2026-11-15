@@ -32,11 +32,11 @@ def main():
     os.makedirs(a.out, exist_ok=True)
     grid = P.Grid(*P.PERU_BBOX, res=a.res)
     df = P.load_firms(a.raw, satellite=None if a.satellite == "all" else a.satellite)
-    years, counts, frp, last_week = P.aggregate(df, grid)
+    years, counts, frp, last_week, gap = P.aggregate(df, grid)
     print(f"{len(df):,} hotspots, {years[0]}-{years[-1]}, {grid.n_cells} cells")
 
-    z_cell = P.anomaly(counts, last_week)
-    z_country = P.anomaly(counts.sum(axis=2, keepdims=True), last_week)[:, :, 0]
+    z_cell = P.anomaly(counts, last_week, gap)
+    z_country = P.anomaly(counts.sum(axis=2, keepdims=True), last_week, gap)[:, :, 0]
 
     regions = None
     if a.regions and a.regions != "none" and os.path.exists(a.regions):
@@ -44,7 +44,7 @@ def main():
         rc = P.sum_by_region(counts, region, len(names))
         regions = {"names": names, "region_of_cell": region, "counts": rc,
                    "frp": P.sum_by_region(frp, region, len(names)),
-                   "z": P.anomaly(rc, last_week)}
+                   "z": P.anomaly(rc, last_week, gap)}
 
     for year in a.years:
         if year not in years or last_week[list(years).index(year)] < 0:
@@ -54,7 +54,10 @@ def main():
         jpath = os.path.join(a.out, f"terraecho_{year}.json")
         with open(jpath, "w", encoding="utf-8") as f:
             json.dump(score, f, separators=(",", ":"))
-        peak = max(score["weeks"], key=lambda w: w["country"]["z"])
+        peak = max(score["weeks"], key=lambda w: w["country"]["z"] if w["country"]["z"] is not None else -99)
+        gaps = [w["start_date"] for w in score["weeks"] if w["data_gap"]]
+        if gaps:
+            print(f"{year}: {len(gaps)} week(s) flagged as data gaps and left silent: {', '.join(gaps)}")
         print(f"{year}: {jpath}  peak anomaly z={peak['country']['z']} in week of {peak['start_date']}")
         # weekly country table: the evidence behind the sound, for checking and for slides
         yi = list(years).index(year)
@@ -67,7 +70,8 @@ def main():
                 k = w["week"]
                 base = ctot[others, k]
                 f.write(f"{k},{w['start_date']},{w['country']['count']},{np.median(base):.0f},"
-                        f"{base.min():.0f},{base.max():.0f},{w['country']['z']},{w['country']['level']}\n")
+                        f"{base.min():.0f},{base.max():.0f},"
+                        f"{'' if w['country']['z'] is None else w['country']['z']},{w['country']['level']}\n")
         top = sorted(score["weeks"], key=lambda w: w["country"]["count"], reverse=True)[0]
         print(f"       {cpath}  busiest week {top['start_date']}: "
               f"{top['country']['count']} hotspots, z={top['country']['z']}")

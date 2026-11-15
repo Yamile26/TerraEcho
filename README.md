@@ -75,6 +75,7 @@ Dissonance changes three things: the note is detuned (up to 45 cents), a second 
 ```
 
 - `cells` lists only the cells that had fire that week. Silence means no fire.
+- A week with `"data_gap": true` has a hole in the satellite record. Its `z` is `null`, its `level` is `no_data` and it plays no sound. Show it as "no data", not as a calm week.
 - `midi` plus `detune_cents` gives the main note. The second voice is `midi + interval`, at `partner_gain`.
 - `level` is `normal`, `elevated` (z ≥ 1) or `critical` (z ≥ 2.5).
 - The numbers in this example come from synthetic test data.

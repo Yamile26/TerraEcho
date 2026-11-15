@@ -48,6 +48,8 @@ def render(score: dict, path: str, seconds_per_week: float = 0.5, max_voices: in
     t = np.arange(n) / SR
     for i, wk in enumerate(weeks):
         a, b = i * n, (i + 1) * n
+        if wk.get("data_gap"):
+            continue                                            # no data: silence
         dc = wk["country"]["dissonance"]
         # country layer: a quiet consonant chord when the week is normal; it grows
         # louder and rough (fast tremolo) as the country departs from normal

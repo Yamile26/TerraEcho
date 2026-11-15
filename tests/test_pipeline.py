@@ -21,15 +21,15 @@ def _run(tmp):
     make(tmp)
     grid = P.Grid(*P.PERU_BBOX, res=0.5)
     df = P.load_firms(tmp)
-    years, counts, frp, last_week = P.aggregate(df, grid)
-    z_cell = P.anomaly(counts, last_week)
-    z_country = P.anomaly(counts.sum(axis=2, keepdims=True), last_week)[:, :, 0]
-    return grid, df, years, counts, frp, last_week, z_cell, z_country
+    years, counts, frp, last_week, gap = P.aggregate(df, grid)
+    z_cell = P.anomaly(counts, last_week, gap)
+    z_country = P.anomaly(counts.sum(axis=2, keepdims=True), last_week, gap)[:, :, 0]
+    return grid, df, years, counts, frp, last_week, gap, z_cell, z_country
 
 
 def test_end_to_end():
     with tempfile.TemporaryDirectory() as tmp:
-        grid, df, years, counts, frp, last_week, z_cell, z_country = _run(tmp)
+        grid, df, years, counts, frp, last_week, gap, z_cell, z_country = _run(tmp)
 
         assert (df.confidence != "l").all()                       # low confidence dropped
         assert counts.sum() == len(df)                            # nothing lost in gridding
@@ -78,7 +78,7 @@ def test_regions():
     except ImportError:
         return
     with tempfile.TemporaryDirectory() as tmp:
-        grid, df, years, counts, frp, last_week, *_ = _run(tmp)
+        grid, df, years, counts, frp, last_week, gap, *_ = _run(tmp)
         gj = {"type": "FeatureCollection", "features": [
             {"type": "Feature", "properties": {"name": "north"}, "geometry": {
                 "type": "Polygon", "coordinates": [[[-81.5, -10], [-68.5, -10], [-68.5, 0], [-81.5, 0], [-81.5, -10]]]}},
@@ -90,7 +90,7 @@ def test_regions():
         names, region = P.load_regions(p, grid)
         rc = P.sum_by_region(counts, region, len(names))
         assert names == ["north", "south"] and rc.sum() == counts.sum()
-        z = P.anomaly(rc, last_week)
+        z = P.anomaly(rc, last_week, gap)
         assert np.nanmean(z[-1, 32:39, 0]) > np.nanmean(z[-1, 32:39, 1])   # anomaly is in the north
 
 
@@ -103,12 +103,12 @@ def test_missing_year_is_masked():
         os.remove(os.path.join(tmp, "synthetic_2020.csv"))
         os.remove(os.path.join(tmp, "synthetic_2023.csv"))
         grid = P.Grid(*P.PERU_BBOX, res=0.5)
-        years, counts, frp, last_week = P.aggregate(P.load_firms(tmp), grid)
+        years, counts, frp, last_week, gap = P.aggregate(P.load_firms(tmp), grid)
         assert last_week[list(years).index(2020)] == -1
-        zc = P.anomaly(counts.sum(axis=2, keepdims=True), last_week)[:, :, 0]
+        zc = P.anomaly(counts.sum(axis=2, keepdims=True), last_week, gap)[:, :, 0]
         assert np.isnan(zc[list(years).index(2020)]).all()
         assert abs(np.nanmean(zc[list(years).index(2019), 32:39])) < 1.0   # normal year stays normal
-        score = build_score(2026, years, grid, counts, frp, P.anomaly(counts, last_week), last_week, zc)
+        score = build_score(2026, years, grid, counts, frp, P.anomaly(counts, last_week, gap), last_week, zc)
         assert 2020 not in score["meta"]["baseline_years"] and 2023 not in score["meta"]["baseline_years"]
 
 
@@ -156,5 +156,25 @@ def test_nrt_overlap_and_static_sources():
         assert (df.latitude > -9).all()                      # nothing left at the volcano
 
 
+def test_data_gap_weeks_are_silent():
+    """A week that lost most of its days must be flagged, not scored as a calm week."""
+    import pandas as pd
+    with tempfile.TemporaryDirectory() as tmp:
+        make(tmp)
+        f = os.path.join(tmp, "synthetic_2026.csv")
+        d = pd.read_csv(f)
+        doy = pd.to_datetime(d.acq_date).dt.dayofyear
+        d[~doy.between(246, 251)].to_csv(f, index=False)          # six days lost in peak season
+        grid = P.Grid(*P.PERU_BBOX, res=0.5)
+        years, counts, frp, last_week, gap = P.aggregate(P.load_firms(tmp), grid)
+        assert gap[-1, 35] and gap[:-1].sum() == 0
+        zc = P.anomaly(counts.sum(axis=2, keepdims=True), last_week, gap)[:, :, 0]
+        score = build_score(2026, years, grid, counts, frp, P.anomaly(counts, last_week, gap), last_week, zc)
+        wk = score["weeks"][35]
+        assert wk["data_gap"] and wk["country"]["level"] == "no_data" and wk["cells"] == []
+        json.dumps(score)
+        render(score, os.path.join(tmp, "g.wav"))
+
+
 if __name__ == "__main__":
-    test_end_to_end(); test_dissonance_bounds(); test_regions(); test_missing_year_is_masked(); test_frames_colour_layers(); test_nrt_overlap_and_static_sources(); print("all tests passed")
+    test_end_to_end(); test_dissonance_bounds(); test_regions(); test_missing_year_is_masked(); test_frames_colour_layers(); test_nrt_overlap_and_static_sources(); test_data_gap_weeks_are_silent(); print("all tests passed")

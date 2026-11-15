@@ -33,9 +33,9 @@ def main():
     os.makedirs(a.out, exist_ok=True)
     grid = P.Grid(*P.PERU_BBOX, res=0.5)
     df = P.load_firms(a.raw, satellite=None if a.satellite == "all" else a.satellite)
-    years, counts, frp, last_week = P.aggregate(df, grid)
-    z_cell = P.anomaly(counts, last_week)
-    z_country = P.anomaly(counts.sum(axis=2, keepdims=True), last_week)[:, :, 0]
+    years, counts, frp, last_week, gap = P.aggregate(df, grid)
+    z_cell = P.anomaly(counts, last_week, gap)
+    z_country = P.anomaly(counts.sum(axis=2, keepdims=True), last_week, gap)[:, :, 0]
 
     # only complete years, ranked by how abnormal they were
     full = [(float(dissonance(z_country[i]).mean()), int(y), counts[i].sum())

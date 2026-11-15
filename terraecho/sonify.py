@@ -31,6 +31,7 @@ MAPPING_DOC = {
     "gain": "loudness 0..1 from summed fire radiative power (log scale)",
     "density": "pulses per week, 1..4, from hotspot count (log scale)",
     "pan": "-1 west .. +1 east",
+    "data_gap": "true when the satellite record has a hole that week: no sound, level is no_data",
     "alert": f"true when z >= {Z_ALERT} and count >= {MIN_ALERT_COUNT}",
 }
 
@@ -103,6 +104,13 @@ def build_score(year: int, years, grid: Grid, counts, frp, z_cell, last_week,
 
     weeks = []
     for wk in range(int(last_week[yi]) + 1):
+        if np.isnan(z_country[yi, wk]):            # data gap: say so, play nothing
+            weeks.append({"week": wk, "data_gap": True,
+                          "start_date": (dt.date(year, 1, 1) + dt.timedelta(days=7 * wk)).isoformat(),
+                          "country": {"count": int(c_country[yi, wk]), "frp": round(float(f_country[yi, wk]), 1),
+                                      "z": None, "level": "no_data", "dissonance": 0.0, "chord": []},
+                          "cells": [], **({"regions": []} if regions is not None else {})})
+            continue
         zc = float(z_country[yi, wk])
         dc = float(dissonance(zc))
         cells = []
@@ -110,7 +118,7 @@ def build_score(year: int, years, grid: Grid, counts, frp, z_cell, last_week,
             cells.append(_voice(counts[yi, wk, c], frp[yi, wk, c], z_cell[yi, wk, c],
                                 lat[c], lon[c], grid, count_ref, frp_ref, flip=bool(c % 2)))
         entry = {
-            "week": wk,
+            "week": wk, "data_gap": False,
             "start_date": (dt.date(year, 1, 1) + dt.timedelta(days=7 * wk)).isoformat(),
             "country": {
                 "count": int(c_country[yi, wk]), "frp": round(float(f_country[yi, wk]), 1),
