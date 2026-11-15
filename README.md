@@ -81,8 +81,28 @@ Dissonance changes three things: the note is detuned (up to 45 cents), a second 
 
 `out/terraecho_<year>.wav` is a reference render at 0.5 s per week, so a full year lasts 26 seconds.
 
+## EIC frame track
+
+`run_eic.py` sonifies an Earth Information Center frame, the GEOS Aerosols still. A scan line sweeps the image from west to east. Each aerosol colour is one instrument, the amount of colour under the line sets the loudness, and height in the frame sets the pitch. The method follows NASA's "Data Sonification: Caldwell 73".
+
+```bash
+python run_eic.py            # writes data/scores/eic_aerosols.json and WAV files
+```
+
+The colours are read from the visualization's colour bar. They describe the picture, not measured aerosol amounts.
+
+## Listening test
+
+```bash
+python scripts/listening_test.py --raw data/raw
+```
+
+Writes three unlabeled clips (worst, typical and quietest year) and an answer key.
+
 ## References
 
 - NASA FIRMS, Fire Information for Resource Management System: https://firms.modaps.eosdis.nasa.gov/
 - VIIRS 375 m active fire product (Suomi NPP)
+- NASA Scientific Visualization Studio, GEOS Aerosols: https://svs.gsfc.nasa.gov/5669/
+- NASA Scientific Visualization Studio, Data Sonification: Caldwell 73 (SYSTEM Sounds: M. Russo, A. Santaguida): https://svs.gsfc.nasa.gov/13786/
 - Department boundaries: geoBoundaries, Peru ADM1 (simplified), https://www.geoboundaries.org/

@@ -1,0 +1,149 @@
+"""Turn an EIC visual frame into sound, layer by layer.
+
+Follows the idea of NASA's "Data Sonification: Caldwell 73" (SVS 13786): a
+scan line sweeps the image, colour picks the instrument, and position picks
+the pitch. Here the frame is the GEOS Aerosols still (SVS 5669), whose four
+colours are four aerosol types.
+
+  colour (aerosol type) -> instrument
+  amount of that colour under the scan line -> loudness
+  vertical position (north = up) -> pitch
+  horizontal position of the scan line -> time and stereo pan
+
+The colour windows below are read from the visualization's own colour bar.
+They classify what the picture shows; they are not a measurement of aerosol
+concentration.
+"""
+from __future__ import annotations
+
+import colorsys
+import wave
+
+import numpy as np
+
+from .render import SR, midi_to_hz
+
+# hue windows in degrees, from the GEOS Aerosols colour bar
+LAYERS = {
+    "black_carbon": {"label": "Black carbon (fire smoke)", "hue": [(345, 360), (0, 45)],
+                     "base_midi": 48, "harmonics": (1.0, 0.35, 0.15)},        # same voice as the fire track
+    "dust":         {"label": "Dust", "hue": [(245, 300)],
+                     "base_midi": 36, "harmonics": (1.0, 0.6, 0.4, 0.25)},    # low and rough
+    "sea_salt":     {"label": "Sea salt", "hue": [(160, 230)],
+                     "base_midi": 72, "harmonics": (1.0,)},                    # high and pure
+    "sulfate":      {"label": "Sulfate", "hue": [(80, 150)],
+                     "base_midi": 60, "harmonics": (1.0, 0.0, 0.3, 0.0, 0.15)},  # hollow, bell-like
+}
+PENTATONIC = [0, 2, 4, 7, 9]
+MIN_SAT, MIN_VAL = 0.15, 0.20
+
+
+def _rgb_to_hsv(rgb: np.ndarray):
+    """Vectorised RGB (0..1) -> hue in degrees, saturation, value."""
+    r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+    mx, mn = rgb.max(axis=-1), rgb.min(axis=-1)
+    d = mx - mn
+    safe = np.where(d == 0, 1, d)
+    h = np.where(mx == r, ((g - b) / safe) % 6, np.where(mx == g, (b - r) / safe + 2, (r - g) / safe + 4))
+    h = np.where(d == 0, 0, h) * 60
+    s = np.where(mx == 0, 0, d / np.where(mx == 0, 1, mx))
+    return h, s, mx
+
+
+def layer_masks(rgb: np.ndarray) -> dict:
+    """Per-layer weight image (0..1): how strongly each pixel shows that aerosol colour."""
+    h, s, v = _rgb_to_hsv(rgb)
+    strong = (s >= MIN_SAT) & (v >= MIN_VAL)
+    out = {}
+    for name, spec in LAYERS.items():
+        in_hue = np.zeros(h.shape, dtype=bool)
+        for lo, hi in spec["hue"]:
+            in_hue |= (h >= lo) & (h < hi)
+        out[name] = np.where(in_hue & strong, s * v, 0.0)
+    return out
+
+
+def scan(image_path: str, n_steps: int = 104, crop=None) -> dict:
+    """Sweep the frame left to right and return the score.
+
+    crop: optional (x0, y0, x1, y1) as fractions of the image, e.g. a box
+    around South America.
+    """
+    from PIL import Image
+
+    rgb = np.asarray(Image.open(image_path).convert("RGB"), dtype=float) / 255.0
+    H, W, _ = rgb.shape
+    x0, y0, x1, y1 = crop or (0.0, 0.0, 1.0, 1.0)
+    rgb = rgb[int(y0 * H):int(y1 * H), int(x0 * W):int(x1 * W)]
+    h, w, _ = rgb.shape
+    masks = layer_masks(rgb)
+    edges = np.linspace(0, w, n_steps + 1).astype(int)
+    rows = np.arange(h)[:, None]
+
+    raw = {}
+    for name, m in masks.items():
+        amount, height = [], []
+        for i in range(n_steps):
+            band = m[:, edges[i]:edges[i + 1]]
+            tot = band.sum()
+            amount.append(tot / band.size)
+            # 1 = top of the frame, 0 = bottom
+            height.append(1 - (band * rows).sum() / tot / (h - 1) if tot > 0 else 0.5)
+        raw[name] = (np.array(amount), np.array(height))
+
+    steps = []
+    for i in range(n_steps):
+        layers = {}
+        for name, (amount, height) in raw.items():
+            ref = max(np.percentile(amount, 98), 1e-9)
+            k = int(np.clip(height[i] * 10, 0, 9))                       # two pentatonic octaves
+            midi = LAYERS[name]["base_midi"] + 12 * (k // 5) + PENTATONIC[k % 5]
+            layers[name] = {"gain": round(float(np.clip(amount[i] / ref, 0, 1)), 3),
+                            "midi": int(midi), "height": round(float(height[i]), 3)}
+        steps.append({"step": i, "x": round((i + 0.5) / n_steps, 4),
+                      "pan": round(2 * (i + 0.5) / n_steps - 1, 3), "layers": layers})
+
+    return {
+        "meta": {
+            "project": "TerraEcho",
+            "source": "NASA SVS, GEOS Aerosols (EIC), https://svs.gsfc.nasa.gov/5669/",
+            "method": "scan line left to right; colour -> instrument, amount -> gain, height -> pitch "
+                      "(after NASA SVS 13786, Data Sonification: Caldwell 73)",
+            "image": image_path.replace("\\", "/"), "crop": list(crop) if crop else None,
+            "n_steps": n_steps,
+            "layers": {k: {"label": v["label"], "hue_windows_deg": v["hue"],
+                           "harmonics": list(v["harmonics"])} for k, v in LAYERS.items()},
+            "coverage": {k: round(float((m > 0).mean()), 4) for k, m in masks.items()},
+        },
+        "steps": steps,
+    }
+
+
+def render(score: dict, path: str, seconds_per_step: float = 0.25, only=None) -> float:
+    """Reference WAV render. only: optional list of layer names to solo."""
+    n = int(SR * seconds_per_step)
+    steps = score["steps"]
+    left = np.zeros(n * len(steps))
+    right = np.zeros(n * len(steps))
+    t = np.arange(n) / SR
+    fade = np.minimum(1.0, np.minimum(np.arange(n), np.arange(n)[::-1]) / (0.03 * SR))
+    for i, st in enumerate(steps):
+        sig = np.zeros(n)
+        for name, v in st["layers"].items():
+            if (only and name not in only) or v["gain"] <= 0.02:
+                continue
+            f = midi_to_hz(v["midi"])
+            tone = sum(a * np.sin(2 * np.pi * f * k * t)
+                       for k, a in enumerate(LAYERS[name]["harmonics"], start=1) if a and f * k < SR / 2)
+            sig += 0.22 * v["gain"] * tone
+        sig *= fade
+        ang = (st["pan"] + 1) * np.pi / 4
+        left[i * n:(i + 1) * n] = np.cos(ang) * sig
+        right[i * n:(i + 1) * n] = np.sin(ang) * sig
+    pcm = (np.tanh(np.stack([left, right], axis=1)) * 32767 * 0.9).astype("<i2")
+    with wave.open(path, "wb") as w:
+        w.setnchannels(2)
+        w.setsampwidth(2)
+        w.setframerate(SR)
+        w.writeframes(pcm.tobytes())
+    return len(left) / SR

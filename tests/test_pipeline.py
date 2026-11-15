@@ -112,5 +112,26 @@ def test_missing_year_is_masked():
         assert 2020 not in score["meta"]["baseline_years"] and 2023 not in score["meta"]["baseline_years"]
 
 
+def test_frames_colour_layers():
+    """Each aerosol colour must land in its own layer, and position must map to pitch and time."""
+    from PIL import Image
+    from terraecho import frames as F
+    img = np.zeros((100, 200, 3), dtype=np.uint8)
+    img[5:25, 10:40] = (210, 94, 69)       # black carbon, top left
+    img[70:95, 150:190] = (83, 220, 52)    # sulfate, bottom right
+    img[40:60, 90:110] = (193, 154, 220)   # dust, centre
+    with tempfile.TemporaryDirectory() as tmp:
+        p = os.path.join(tmp, "f.png")
+        Image.fromarray(img).save(p)
+        s = F.scan(p, n_steps=20)
+        g = lambda layer: np.array([st["layers"][layer]["gain"] for st in s["steps"]])
+        assert g("black_carbon").argmax() < 5 and g("sulfate").argmax() > 14 and 8 <= g("dust").argmax() <= 11
+        assert g("sea_salt").max() == 0
+        bc = s["steps"][int(g("black_carbon").argmax())]["layers"]["black_carbon"]
+        su = s["steps"][int(g("sulfate").argmax())]["layers"]["sulfate"]
+        assert bc["height"] > 0.7 and su["height"] < 0.3          # top of frame = high
+        assert F.render(s, os.path.join(tmp, "f.wav")) > 0
+
+
 if __name__ == "__main__":
-    test_end_to_end(); test_dissonance_bounds(); test_regions(); test_missing_year_is_masked(); print("all tests passed")
+    test_end_to_end(); test_dissonance_bounds(); test_regions(); test_missing_year_is_masked(); test_frames_colour_layers(); print("all tests passed")
