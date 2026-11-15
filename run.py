@@ -68,7 +68,9 @@ def main():
             f.write("week,start_date,hotspots,baseline_median,baseline_min,baseline_max,z,level\n")
             for w in score["weeks"]:
                 k = w["week"]
-                base = ctot[others, k]
+                # only years that really observed this week (not unfinished or gap weeks)
+                ok = [i for i in others if k <= last_week[i] and not gap[i, k]]
+                base = ctot[ok, k] if ok else np.array([0.0])
                 f.write(f"{k},{w['start_date']},{w['country']['count']},{np.median(base):.0f},"
                         f"{base.min():.0f},{base.max():.0f},"
                         f"{'' if w['country']['z'] is None else w['country']['z']},{w['country']['level']}\n")

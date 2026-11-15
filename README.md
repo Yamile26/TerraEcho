@@ -100,6 +100,29 @@ python scripts/listening_test.py --raw data/raw
 
 Writes three unlabeled clips (worst, typical and quietest year) and an answer key.
 
+## Validation
+
+We ran TerraEcho on 2025 and 2026 without giving it any information about known events, then compared its alerts with reports from Peruvian agencies and press.
+
+| What TerraEcho flagged | What was reported |
+|---|---|
+| **December 2025.** Four critical weeks in a row. The week of 3 December had 2,121 hotspots; the previous record for that week was 1,787. Strongest department alerts: Áncash, Lima, Ayacucho, La Libertad, Ica. | SENAMHI recorded 216 wildfires from 4 to 31 December 2025, under conditions that favoured fire on the western slopes of the central and southern sierra. Press reported a jump in wildfire emergencies in Áncash. |
+| **Late June 2026, Arequipa.** The strongest department alert of the year (z = 7.9), concentrated in one grid cell north-west of Arequipa city. | A wildfire in Yura affected about 1,000 hectares of the Salinas y Aguada Blanca National Reserve (reported 28 June 2026). |
+| **Mid-September to mid-October 2026.** Five weeks above normal. The week of 1 October had 9,058 hotspots; a normal week has about 2,660 and the previous record was 5,182. Activity returned to normal in the week of 22 October. | Serfor counted 77 simultaneous wildfires on 10 October 2026. Indeci reported 12 deaths by 19 October. Zero active wildfires were announced on 23 October. |
+
+The busiest week of each year (late August) was not flagged as critical, because late August always burns. TerraEcho reacts to what is abnormal, not to what is large.
+
+Sources: [SENAMHI, December 2025](https://www.senamhi.gob.pe/load/file/02259SENA-39.pdf), [La República](https://larepublica.pe/tag/incendios-forestales), [El Búho, 28 June 2026](https://elbuho.pe/?p=427829), [Actualidad Ambiental, 10 October 2026](https://actualidadambiental.pe/peru-registra-77-incendios-forestales-en-simultaneo-y-la-respuesta-no-es-suficiente), [Actualidad Ambiental, 20 October 2026](https://www.actualidadambiental.pe/se-eleva-a-12-el-numero-de-fallecidos-por-los-incendios-forestales-en-el-pais/), [El Peruano, 23 October 2026](https://elperuano.pe/noticia/307491-peru-registra-cero-incendios-forestales-activos-tras-semanas-de-emergencia).
+
+## Limitations
+
+- **2026 is provisional.** Recent months use near real-time data, which NASA later replaces with science-quality data. Counts may change slightly.
+- **Hotspots are not fires.** A hotspot is a thermal anomaly seen by the satellite. One large fire produces many hotspots, and clouds can hide fires.
+- **The satellite record has holes.** Seventeen days of 2026 have no detections, including 11 to 16 July. Weeks that lose three or more days are marked as data gaps and play no sound.
+- **Non-fire heat sources.** Volcanoes and industrial sites flagged in the archive are removed, but an unflagged source could still appear as an alert.
+- **Small numbers.** In departments with few fires, a handful of hotspots can trigger an alert. Alerts need at least 5 hotspots, and the ones based on fewer than about 20 should be read with care.
+- **The matches above are consistency checks**, not a formal accuracy measurement.
+
 ## References
 
 - NASA FIRMS, Fire Information for Resource Management System: https://firms.modaps.eosdis.nasa.gov/
