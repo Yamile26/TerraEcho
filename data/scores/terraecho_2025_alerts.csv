@@ -1,8 +1,10 @@
 start_date,department,hotspots,z
-2025-01-08,Tacna,6,3.72
-2025-01-08,Junín,8,3.7
-2025-01-08,Ayacucho,7,2.7
-2025-01-08,Arequipa,6,2.59
+2025-01-08,Junín,8,3.64
+2025-01-08,Arequipa,6,3.19
+2025-01-08,Tacna,6,2.91
+2025-01-08,Ayacucho,7,2.86
+2025-01-08,Loreto,49,2.6
+2025-01-15,Loreto,163,2.56
 2025-01-22,Lambayeque,36,4.28
 2025-01-22,Ica,9,3.08
 2025-01-22,Junín,12,2.89
@@ -18,13 +20,12 @@ start_date,department,hotspots,z
 2025-04-09,Ica,11,2.78
 2025-04-16,Cusco,8,3.2
 2025-05-14,Huánuco,56,2.86
-2025-05-28,Tumbes,9,3.43
-2025-07-09,Pasco,126,2.71
-2025-07-09,Cusco,108,2.56
+2025-05-28,Tumbes,9,3.77
+2025-07-09,Pasco,126,2.98
 2025-10-01,San Martín,563,2.75
 2025-10-01,Arequipa,46,2.6
-2025-10-29,Lima,75,3.26
-2025-10-29,Moquegua,17,2.63
+2025-10-29,Lima,75,3.13
+2025-10-29,Moquegua,17,3.03
 2025-11-05,Madre de Dios,128,4.5
 2025-11-05,San Martín,180,4.14
 2025-11-05,Municipalidad Metropolitana de Lima,5,3.8
