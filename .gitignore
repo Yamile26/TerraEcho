@@ -4,3 +4,17 @@ data/raw/*.csv
 out/
 .venv/
 data/listening_test/key.txt
+
+# Web workspace and local credentials
+node_modules/
+web/.next/
+web/next-env.d.ts
+web/out/
+web/public/data/
+web/public/eic/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+!.env.*.example
+.sites-local/

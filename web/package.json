@@ -1,0 +1,30 @@
+{
+  "name": "@terraecho/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "prepare:data": "node scripts/prepare-data.mjs",
+    "predev": "npm run prepare:data",
+    "dev": "next dev --hostname 0.0.0.0",
+    "prebuild": "npm run prepare:data",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0",
+    "typecheck": "next typegen && tsc --noEmit",
+    "pretest": "npm run prepare:data",
+    "test": "node --import tsx --test src/lib/*.test.ts"
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.183.0",
+    "typescript": "^5.9.0",
+    "tsx": "^4.20.0"
+  }
+}

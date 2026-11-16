@@ -1,0 +1,17 @@
+{
+  "name": "terraecho",
+  "private": true,
+  "workspaces": [
+    "web"
+  ],
+  "scripts": {
+    "dev": "node web/scripts/dev.mjs",
+    "build": "npm --workspace web run build",
+    "start": "npm --workspace web run start",
+    "typecheck": "npm --workspace web run typecheck",
+    "test:web": "npm --workspace web test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
