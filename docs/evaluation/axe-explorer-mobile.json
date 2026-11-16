@@ -1,0 +1,12 @@
+{
+  "version": "4.14.0",
+  "violations": [],
+  "passes": 27,
+  "incomplete": [
+    "color-contrast",
+    "target-size"
+  ],
+  "viewportCSS": 390,
+  "theme": "Figma green",
+  "loadedScore": true
+}

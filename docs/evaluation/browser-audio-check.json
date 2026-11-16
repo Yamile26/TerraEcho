@@ -1,0 +1,12 @@
+{
+  "channels": 2,
+  "sample_rate": 22050,
+  "seconds": 25.997641723356008,
+  "peak_pcm": 16339,
+  "clipped_samples": 0,
+  "embedded_source_metadata": true,
+  "actual_browser_export": true,
+  "piece": "aerosols-south-america",
+  "sha256": "0de986f71ca57eaa98ad59bd14e4e76cef8ecc7134c2aab2c76908b656901869",
+  "matches_cli_reference_bytes": true
+}

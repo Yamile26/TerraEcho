@@ -1,0 +1,12 @@
+{
+  "version": "4.14.0",
+  "violations": [],
+  "passes": 30,
+  "incomplete": [
+    "aria-prohibited-attr",
+    "color-contrast"
+  ],
+  "viewportCSS": 390,
+  "theme": "Figma green",
+  "loadedScore": true
+}

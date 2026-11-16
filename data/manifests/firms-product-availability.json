@@ -1,0 +1,1502 @@
+{
+  "schema_version": 1,
+  "snapshot_written_at_utc": "2026-11-16T01:25:43.723692+00:00",
+  "authentication": "None. Public metadata only; no MAP_KEY, token, email or Earthdata session used.",
+  "sources": [
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/api/missing_data/?action=fetch_data",
+      "requested_at_utc": "2026-11-16T01:25:17.102639+00:00",
+      "retrieved_at_utc": "2026-11-16T01:25:32.823593+00:00",
+      "http_status": 200,
+      "content_type": "application/json",
+      "byte_count": 24401,
+      "sha256": "60ab8a4d35394d116378ba11747f6a4286d7303c9a8a77b8ec7ac01757f1b3e1",
+      "last_modified": null
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/yearly_summary_files.txt",
+      "requested_at_utc": "2026-11-16T01:25:32.826877+00:00",
+      "retrieved_at_utc": "2026-11-16T01:25:38.715160+00:00",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "byte_count": 554849,
+      "sha256": "a85c319c545f0004ffaa659e5063ed0547cc59c409e16d2a54fdcf37e7a33f8c",
+      "last_modified": "Sat, 10 Oct 2026 13:31:52 GMT"
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt",
+      "requested_at_utc": "2026-11-16T01:25:38.725620+00:00",
+      "retrieved_at_utc": "2026-11-16T01:25:43.722055+00:00",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "byte_count": 3178,
+      "sha256": "803256e72246bb045952eda540aa704c5eb318ce3b7a9b8a178ea6425d127735",
+      "last_modified": "Tue, 24 Jun 2025 20:22:05 GMT"
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/download/",
+      "requested_at_utc": "2026-11-16T01:26:06.586873+00:00",
+      "retrieved_at_utc": "2026-11-16T01:26:11.795485+00:00",
+      "http_status": 200,
+      "byte_count": 14233,
+      "sha256": "7bf5ca9a0698072bffd792a3b7375a3e9bd9461d5fd4602785f8358ec780458c",
+      "content_type": "text/html; charset=UTF-8",
+      "temporal_coverage_excerpt": "VIIRS S-NPP 375m: Temporal Coverage: 20 January 2012 - 2 November 2026"
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+      "requested_at_utc": "2026-11-16T01:26:06.587553+00:00",
+      "retrieved_at_utc": "2026-11-16T01:26:12.266898+00:00",
+      "http_status": 200,
+      "byte_count": 10430,
+      "sha256": "b7c304c5c03cbcb2be9c6a73eaa123db75469db3098dc276f9c28274c1ca0e9c",
+      "content_type": "text/html",
+      "temporal_coverage_excerpt": "VIIRS S-NPP Temporal Coverage: 20 January 2012 - 2 November 2026"
+    }
+  ],
+  "documentation_ranges": [
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/download/",
+      "product": "VIIRS S-NPP 375m",
+      "temporal_coverage_start": "2012-01-20",
+      "temporal_coverage_end": "2026-11-02",
+      "coverage_kind": "documented overall product temporal range; not an SP/NRT interval or continuous coverage certification"
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+      "product": "VIIRS S-NPP 375m",
+      "temporal_coverage_start": "2012-01-20",
+      "temporal_coverage_end": "2026-11-02",
+      "coverage_kind": "documented overall product temporal range; not an SP/NRT interval or continuous coverage certification"
+    }
+  ],
+  "snpp_data_delivery_notice": {
+    "url": "https://forum.earthdata.nasa.gov/viewtopic.php?p=26519",
+    "announced_delivery_cessation_utc": "2026-11-01T13:00:00Z",
+    "qualification": "NASA notice published August 2026; date explicitly subject to change. Current FIRMS product descriptions instead list temporal coverage through 2 November 2026. Do not infer an exact final SP/NRT processing cutoff from the earlier schedule."
+  },
+  "exact_processing_intervals": {
+    "VIIRS_SNPP_SP": {
+      "start": null,
+      "end": null,
+      "status": "not_verified_without_MAP_KEY"
+    },
+    "VIIRS_SNPP_NRT": {
+      "start": null,
+      "end": null,
+      "status": "not_verified_without_MAP_KEY"
+    },
+    "authoritative_endpoint_documentation": "https://firms.modaps.eosdis.nasa.gov/api/data_availability/",
+    "reason": "The documented data_availability CSV endpoint requires MAP_KEY. It was not called with a credential. Detection min/max dates and missing-date table do not identify a complete valid SP interval."
+  },
+  "country_archive": {
+    "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/yearly_summary_files.txt",
+    "peru_snpp_files": [
+      {
+        "filename": "viirs-snpp_2012_Peru.csv",
+        "size": "6410998",
+        "updated": "2025-06-20 10:22:31"
+      },
+      {
+        "filename": "viirs-snpp_2013_Peru.csv",
+        "size": "5130605",
+        "updated": "2025-06-20 09:46:56"
+      },
+      {
+        "filename": "viirs-snpp_2014_Peru.csv",
+        "size": "4594579",
+        "updated": "2025-06-20 09:06:05"
+      },
+      {
+        "filename": "viirs-snpp_2015_Peru.csv",
+        "size": "5578959",
+        "updated": "2025-06-20 08:35:51"
+      },
+      {
+        "filename": "viirs-snpp_2016_Peru.csv",
+        "size": "7281547",
+        "updated": "2025-06-20 08:05:50"
+      },
+      {
+        "filename": "viirs-snpp_2017_Peru.csv",
+        "size": "4558559",
+        "updated": "2025-06-19 19:43:49"
+      },
+      {
+        "filename": "viirs-snpp_2018_Peru.csv",
+        "size": "5035858",
+        "updated": "2025-06-19 18:52:52"
+      },
+      {
+        "filename": "viirs-snpp_2019_Peru.csv",
+        "size": "5936720",
+        "updated": "2025-06-19 17:54:55"
+      },
+      {
+        "filename": "viirs-snpp_2020_Peru.csv",
+        "size": "7853597",
+        "updated": "2025-06-19 15:28:39"
+      },
+      {
+        "filename": "viirs-snpp_2021_Peru.csv",
+        "size": "5371354",
+        "updated": "2025-06-19 14:57:48"
+      },
+      {
+        "filename": "viirs-snpp_2022_Peru.csv",
+        "size": "7142122",
+        "updated": "2025-06-19 14:25:57"
+      },
+      {
+        "filename": "viirs-snpp_2023_Peru.csv",
+        "size": "6342229",
+        "updated": "2025-06-19 14:01:44"
+      },
+      {
+        "filename": "viirs-snpp_2024_Peru.csv",
+        "size": "7963113",
+        "updated": "2025-06-19 13:27:57"
+      },
+      {
+        "filename": "viirs-snpp_2025_Peru.csv",
+        "size": "4270586",
+        "updated": "2026-10-10 08:57:09"
+      }
+    ],
+    "listed_years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "year_2026_listed": false,
+    "index_timestamp_timezone": "not specified by source; retained as text"
+  },
+  "missing_data_table": {
+    "source_url": "https://firms.modaps.eosdis.nasa.gov/api/missing_data/?action=fetch_data",
+    "success": true,
+    "source_row_count": 169,
+    "parsed_table_row_count": 169,
+    "all_parsed_entries": [
+      {
+        "date": "2026-07-16",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-03-06",
+        "satellite_sensor": "NOAA-21 (VIIRS)",
+        "processing": "NRT"
+      },
+      {
+        "date": "2026-07-15",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-03-05",
+        "satellite_sensor": "NOAA-21 (VIIRS)",
+        "processing": "NRT"
+      },
+      {
+        "date": "2026-07-14",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-03-04",
+        "satellite_sensor": "NOAA-21 (VIIRS)",
+        "processing": "NRT"
+      },
+      {
+        "date": "2026-07-13",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-03-03",
+        "satellite_sensor": "NOAA-21 (VIIRS)",
+        "processing": "NRT"
+      },
+      {
+        "date": "2026-07-12",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-03-02",
+        "satellite_sensor": "NOAA-21 (VIIRS)",
+        "processing": "NRT"
+      },
+      {
+        "date": "2026-07-11",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-03-01",
+        "satellite_sensor": "NOAA-21 (VIIRS)",
+        "processing": "NRT"
+      },
+      {
+        "date": "2026-06-02",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-02-29",
+        "satellite_sensor": "NOAA-21 (VIIRS)",
+        "processing": "NRT"
+      },
+      {
+        "date": "2026-06-01",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-02-28",
+        "satellite_sensor": "NOAA-21 (VIIRS)",
+        "processing": "NRT"
+      },
+      {
+        "date": "2026-05-31",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-02-27",
+        "satellite_sensor": "NOAA-21 (VIIRS)",
+        "processing": "NRT"
+      },
+      {
+        "date": "2026-05-30",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-29",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-28",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-27",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-26",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-25",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-24",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-23",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-22",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-21",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-20",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-19",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-18",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-17",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-16",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-15",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-14",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-13",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-12",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-11",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-10",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-09",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-08",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-07",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-06",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-05",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-04",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-03",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-02",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-01",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-04-30",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-04-29",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-04-28",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-03-12",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-03-11",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-03-10",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-01-12",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-11-05",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-11-04",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-11-03",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-09-26",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-28",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-27",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-26",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-25",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-15",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-14",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-13",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-12",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-11",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-10",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-06-03",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-06-02",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-06-01",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-05-31",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-05-30",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-02-04",
+        "satellite_sensor": "NOAA-20 (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2023-09-30",
+        "satellite_sensor": "NOAA-20 (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2023-07-22",
+        "satellite_sensor": "NOAA-20 (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2023-07-21",
+        "satellite_sensor": "NOAA-20 (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2023-07-20",
+        "satellite_sensor": "NOAA-20 (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2023-07-19",
+        "satellite_sensor": "NOAA-20 (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-10-22",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-10-21",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-10-20",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-10-19",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-10-18",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-10-17",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-10-16",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-10-15",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-10-14",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-10-13",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-10-12",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-10-11",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-10",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-09",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-08",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-07",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-06",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-05",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-04",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-03",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-02",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-01",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-07-31",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-07-30",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-07-29",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-07-28",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-07-27",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-16",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-15",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-14",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-13",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-12",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-11",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-10",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-09",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-08",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-07",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-06",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-05",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-04",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-03",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-02",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-04-01",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2016-02-27",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2016-02-26",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2016-02-25",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2016-02-24",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2016-02-23",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2016-02-22",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2016-02-21",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2016-02-20",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2016-02-19",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2012-03-25",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2008-12-22",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2008-12-21",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2003-12-23",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2003-12-22",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2003-12-21",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2003-12-20",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2003-12-19",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2003-12-18",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2003-12-17",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-09-13",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-08-07",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-08-06",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-08-05",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-08-04",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-08-03",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-08-02",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-08-01",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-07-31",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-07-30",
+        "satellite_sensor": "Aqua (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-04-15",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-03-27",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-03-26",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-03-25",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-03-24",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-03-23",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-03-22",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-03-21",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2002-03-20",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-07-02",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-07-01",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-30",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-29",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-28",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-27",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-26",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-25",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-24",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-23",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-22",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-21",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-20",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-19",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-18",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-17",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2001-06-16",
+        "satellite_sensor": "Terra (MODIS)",
+        "processing": "SP"
+      }
+    ],
+    "suomi_npp_entries": [
+      {
+        "date": "2026-07-16",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-07-15",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-07-14",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-07-13",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-07-12",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-07-11",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-06-02",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-06-01",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-31",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-30",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-29",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-28",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-27",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-26",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-25",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-24",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-23",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-22",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-21",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-20",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-19",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-18",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-17",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-16",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-15",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-14",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-13",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-12",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-11",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-10",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-09",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-08",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-07",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-06",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-05",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-04",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-03",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-02",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-05-01",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-04-30",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-04-29",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-04-28",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-03-12",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-03-11",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2026-03-10",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-11-05",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-11-04",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-11-03",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-09-26",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-28",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-27",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-26",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-25",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-15",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-14",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-13",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-12",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-11",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-07-10",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-06-03",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-06-02",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-06-01",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-05-31",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2024-05-30",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-10",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-09",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-08",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-07",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-06",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-05",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-04",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-03",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-02",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-08-01",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-07-31",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-07-30",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-07-29",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-07-28",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2022-07-27",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      },
+      {
+        "date": "2012-03-25",
+        "satellite_sensor": "Suomi NPP (VIIRS)",
+        "processing": "SP"
+      }
+    ],
+    "source_interpretation_url": "https://firms.modaps.eosdis.nasa.gov/api/missing_data/",
+    "limitations": [
+      "Each date is a day on which FIRMS reports missing database data for that processing class and satellite; the table does not supply within-day outage duration, Peru spatial coverage or cloud screening.",
+      "NRT missing dates are displayed only after the latest available standard-data date, according to NASA.",
+      "Absence from this table does not independently certify complete country coverage or a valid zero-detection day.",
+      "This snapshot does not replace granule-level observation/quality coverage metadata."
+    ]
+  },
+  "country_archive_attributes_readme": {
+    "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt",
+    "text": "==================================================================================\nREADME: Information on Attributes for NASA FIRMS MODIS or VIIRS Fire/Hotspot Data\n==================================================================================\n\nFor a list of attribute fields for the MODIS data: \n  https://www.earthdata.nasa.gov/data/tools/firms/active-fire-data-attributes-modis-viirs#toc-attribute-fields-for-nrt-modis-active-fire-data\n\nFor a list of attribute fields for the VIIRS data: \n  https://www.earthdata.nasa.gov/data/tools/firms/active-fire-data-attributes-modis-viirs#toc-attribute-fields-for-nrt-viirs-375m-active-fire-data\n\nFor the key differences between the NRT and standard products visit:   \n  https://www.earthdata.nasa.gov/data/tools/firms/faq#heading-accordion-124369-3\n\nUse the Collection / Version field to distinguish between NRT and standard data.\n\nVisit the NASA FIRMS project website at http://earthdata.nasa.gov/firms and see https://firms.modaps.eosdis.nasa.gov/resources/\n\n========================\nPROJECTION INFORMATION\n========================\nThe MODIS and VIIRS fire/hotspot data supplied to you are in the WGS84 Geographic \nprojection (the \"latitude/longitude projection\"). \n\n==========\nIMPORTANT\n==========\nFor further information, please refer to the latest version of the MODIS Fire Users\nGuide which can be found via the FIRMS FAQ section (https://www.earthdata.nasa.gov/data/tools/firms/faq).\n\n==============================\nDATA CITATION AND DISCLAIMER\n==============================\nNASA promotes the full and open sharing of all data with the research and applications\ncommunities, private industry, academia, and the general public. Read the NASA Data and\nInformation Policy. \n\nIf you provide the LANCE / FIRMS data to a third party, we request you follow the\nguidelines in the citation and replicate or provide a link to the disclaimer.\n\nData Use Guidance & Disclaimer - see: https://www.earthdata.nasa.gov/data/tools/firms\n\nDISCLAIMER\nThe LANCE system is operated by the NASA/GSFC Earth Science Data and Information\nSystem (ESDIS). The information presented through LANCE, Rapid Response, GIBS,\nWorldview, and FIRMS are provided \"as is\" and users bear all responsibility and\nliability for their use of data, and for any loss of business or profits, or for\nany indirect, incidental or consequential damages arising out of any use of, or\ninability to use, the data, even if NASA or ESDIS were previously advised of the\npossibility of such damages, or for any other claim by you or any other person.\nESDIS makes no representations or warranties of any kind, express or implied,\nincluding implied warranties of fitness for a particular purpose or merchantability,\nor with respect to the accuracy of or the absence or the presence or defects or\nerrors in data, databases of other information. The designations employed in the\ndata do not imply the expression of any opinion whatsoever on the part of ESDIS\nconcerning the legal or development status of any country, territory, city or area\nor of its authorities, or concerning the delimitation of its frontiers or boundaries.\nFor more information please contact Earthdata Support.\n\n"
+  },
+  "limitations": [
+    "This is an availability evidence snapshot, not a guarantee of exhaustive continuous coverage.",
+    "Country archive file modification dates are publication metadata, not acquisition coverage dates.",
+    "No product or sensor has been substituted into the Suomi-NPP baseline."
+  ],
+  "snapshot_updated_at_utc": "2026-11-16T01:28:48.060913+00:00"
+}

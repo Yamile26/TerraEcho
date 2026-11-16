@@ -1,0 +1,19 @@
+{
+  "name": "terraecho",
+  "private": true,
+  "workspaces": [
+    "web"
+  ],
+  "scripts": {
+    "dev": "node web/scripts/dev.mjs",
+    "build": "node web/scripts/build-site-worker.mjs",
+    "build:node": "npm --workspace web run build",
+    "start": "npm --workspace web run start",
+    "typecheck": "npm --workspace web run typecheck",
+    "test:web": "npm --workspace web test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": { "esbuild": "0.28.2" }
+}

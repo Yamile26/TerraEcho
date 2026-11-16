@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0.0",
+  "source": {
+    "id": "NASA-SVS-5669",
+    "url": "https://svs.gsfc.nasa.gov/5669/",
+    "observedAt": "2025-08-19T20:00:00Z",
+    "publishedAt": "2026-08-10",
+    "credit": "NASA GMAO / NASA Scientific Visualization Studio; Joseph V. Ardizzone, Helen-Nicole Kostis; scientific consulting Lesley Ott",
+    "sha256": "0c6a8f6c46fb52a2f9a636bbd804fc6e5e23454dcb2f0d3fe04c653c772e8a7a",
+    "originalDownloadedAt": null,
+    "verifiedReacquisition": {
+      "retrievedAt": "2026-11-16T03:58:08.014Z",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_2025-08-19T20_00_00_1920x1080.png",
+      "sha256": "0c6a8f6c46fb52a2f9a636bbd804fc6e5e23454dcb2f0d3fe04c653c772e8a7a"
+    },
+    "method": "https://svs.gsfc.nasa.gov/13786/",
+    "limitations": "Visual features of a GEOS model rendering, not measured concentrations. Color overlap and base-map contamination remain possible."
+  },
+  "pieces": [
+    {
+      "id": "aerosols-global",
+      "title": "Un planeta, cuatro voces",
+      "question": "¿Cómo se distribuyen los colores de aerosoles en esta imagen?",
+      "crop": null,
+      "enabled": [
+        "black_carbon",
+        "dust",
+        "sea_salt",
+        "sulfate"
+      ],
+      "description": "Barrido completo de la imagen global. Cada color activa un timbre distinto.",
+      "score": "/eic/pieces/aerosols-global.json",
+      "image": "/eic/aerosols.png",
+      "mask": "/eic/pieces/aerosols-global-mask.png",
+      "steps": 104,
+      "durationSeconds": 26,
+      "cropPixels": [
+        0,
+        0,
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "aerosols-smoke",
+      "title": "Escuchar el color del humo",
+      "question": "¿En qué segmentos aparece más color asociado al humo?",
+      "crop": null,
+      "enabled": [
+        "black_carbon"
+      ],
+      "description": "La misma imagen global con la voz naranja/roja aislada. No identifica el origen exacto de cada pluma.",
+      "score": "/eic/pieces/aerosols-smoke.json",
+      "image": "/eic/aerosols.png",
+      "mask": "/eic/pieces/aerosols-global-mask.png",
+      "steps": 104,
+      "durationSeconds": 26,
+      "cropPixels": [
+        0,
+        0,
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "aerosols-south-america",
+      "title": "Una escucha desde Sudamérica",
+      "question": "¿Qué cambia al escuchar un encuadre de Sudamérica?",
+      "crop": [
+        0.26,
+        0.43,
+        0.42,
+        0.83
+      ],
+      "enabled": [
+        "black_carbon",
+        "dust",
+        "sea_salt",
+        "sulfate"
+      ],
+      "description": "Encuadre visual aproximado de Sudamérica y océano vecino. No es un recorte geográfico exacto de Perú.",
+      "score": "/eic/pieces/aerosols-south-america.json",
+      "image": "/eic/pieces/aerosols-south-america.png",
+      "mask": "/eic/pieces/aerosols-south-america-mask.png",
+      "steps": 104,
+      "durationSeconds": 26,
+      "cropPixels": [
+        499,
+        464,
+        806,
+        896
+      ]
+    }
+  ]
+}

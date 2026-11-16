@@ -1,0 +1,1614 @@
+{
+  "schema_version": 1,
+  "audit": "TerraEcho FIRMS public country archive acquisition",
+  "acquisition_started_at_utc": "2026-11-16T01:21:56.268768+00:00",
+  "manifest_written_at_utc": "2026-11-16T01:22:28.478887+00:00",
+  "requested_years": [
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "requested_country": "Peru",
+  "source_template": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/{year}/viirs-snpp_{year}_Peru.csv",
+  "authentication": "None; public HTTPS requests only. No MAP_KEY, Earthdata login, token or credential used.",
+  "download_policy": "Only nonempty CSVs with the exact expected schema and valid numeric/time/date/platform fields are saved to data/raw. Source bytes remain unchanged.",
+  "source_documentation": [
+    "https://firms.modaps.eosdis.nasa.gov/country/",
+    "https://firms.modaps.eosdis.nasa.gov/download/",
+    "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+    "https://firms.modaps.eosdis.nasa.gov/api/missing_data/"
+  ],
+  "entries": [
+    {
+      "year": 2012,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2012/viirs-snpp_2012_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:21:56.272962+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2012/viirs-snpp_2012_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "6410998",
+      "last_modified": "Tue, 24 Jun 2025 19:12:53 GMT",
+      "etag": "\"7024b0a162437aaa22107473c03d795e\"",
+      "retrieved_at_utc": "2026-11-16T01:22:04.369279+00:00",
+      "byte_count": 6410998,
+      "sha256": "d017d562a3c53e295983a716e6c65f404c18640c9fc2412c4dd0ecb1b21e8da2",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2012_Peru.csv",
+      "row_count": 80482,
+      "observation_date_min": "2012-01-20",
+      "observation_date_max": "2012-12-31",
+      "days_with_detections": 346,
+      "days_without_detections_within_observation_span": 1,
+      "geographic_extent": {
+        "latitude_min": -18.29,
+        "latitude_max": -0.059,
+        "longitude_min": -81.28837,
+        "longitude_max": -68.69036
+      },
+      "values": {
+        "version": {
+          "2": 80482
+        },
+        "satellite": {
+          "N": 80482
+        },
+        "instrument": {
+          "VIIRS": 80482
+        },
+        "type": {
+          "0": 79254,
+          "2": 1081,
+          "3": 147
+        },
+        "confidence": {
+          "n": 72355,
+          "l": 4043,
+          "h": 4084
+        },
+        "daynight": {
+          "N": 6669,
+          "D": 73813
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2012_Peru.csv",
+        "size": "6410998",
+        "updated": "2025-06-20 10:22:31"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2013,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2013/viirs-snpp_2013_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:21:56.273519+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2013/viirs-snpp_2013_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "5130605",
+      "last_modified": "Tue, 24 Jun 2025 19:01:38 GMT",
+      "etag": "\"7d68b2e9c718f41f11a6e6e5ef6409a2\"",
+      "retrieved_at_utc": "2026-11-16T01:22:05.982738+00:00",
+      "byte_count": 5130605,
+      "sha256": "4338c0e156e72ce11b68fb84912a57a7cb548a1a4693654abe1b813a85f83da2",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2013_Peru.csv",
+      "row_count": 64406,
+      "observation_date_min": "2013-01-01",
+      "observation_date_max": "2013-12-31",
+      "days_with_detections": 365,
+      "days_without_detections_within_observation_span": 0,
+      "geographic_extent": {
+        "latitude_min": -18.27377,
+        "latitude_max": -0.04074,
+        "longitude_min": -81.28783,
+        "longitude_max": -68.78245
+      },
+      "values": {
+        "version": {
+          "2": 64406
+        },
+        "satellite": {
+          "N": 64406
+        },
+        "instrument": {
+          "VIIRS": 64406
+        },
+        "type": {
+          "0": 62695,
+          "2": 1598,
+          "3": 113
+        },
+        "confidence": {
+          "n": 57685,
+          "h": 3126,
+          "l": 3595
+        },
+        "daynight": {
+          "N": 3914,
+          "D": 60492
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2013_Peru.csv",
+        "size": "5130605",
+        "updated": "2025-06-20 09:46:56"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2014,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2014/viirs-snpp_2014_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:21:56.273935+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2014/viirs-snpp_2014_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "4594579",
+      "last_modified": "Tue, 24 Jun 2025 18:52:54 GMT",
+      "etag": "\"41dca1c9dd5423c97021cf10496e1446\"",
+      "retrieved_at_utc": "2026-11-16T01:22:04.766095+00:00",
+      "byte_count": 4594579,
+      "sha256": "146a72fe8519eee68657faa7f0ea1bc99cdab64563095940d6ef2ca44250d788",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2014_Peru.csv",
+      "row_count": 57655,
+      "observation_date_min": "2014-01-01",
+      "observation_date_max": "2014-12-31",
+      "days_with_detections": 363,
+      "days_without_detections_within_observation_span": 2,
+      "geographic_extent": {
+        "latitude_min": -18.31151,
+        "latitude_max": -0.04343,
+        "longitude_min": -81.28574,
+        "longitude_max": -68.7628
+      },
+      "values": {
+        "version": {
+          "2": 57655
+        },
+        "satellite": {
+          "N": 57655
+        },
+        "instrument": {
+          "VIIRS": 57655
+        },
+        "type": {
+          "0": 56328,
+          "2": 1209,
+          "3": 105,
+          "1": 13
+        },
+        "confidence": {
+          "n": 52061,
+          "l": 3034,
+          "h": 2560
+        },
+        "daynight": {
+          "N": 4088,
+          "D": 53567
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2014_Peru.csv",
+        "size": "4594579",
+        "updated": "2025-06-20 09:06:05"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2015,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2015/viirs-snpp_2015_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:21:56.274444+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2015/viirs-snpp_2015_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "5578959",
+      "last_modified": "Tue, 24 Jun 2025 18:44:56 GMT",
+      "etag": "\"2644409c26ee372c97c35902fc1cb1ad\"",
+      "retrieved_at_utc": "2026-11-16T01:22:04.153522+00:00",
+      "byte_count": 5578959,
+      "sha256": "3045ffd6cc447fbf3e9d5967f016ab3cb0f61d81d7cec944fc815f8af0e1275c",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2015_Peru.csv",
+      "row_count": 69996,
+      "observation_date_min": "2015-01-01",
+      "observation_date_max": "2015-12-31",
+      "days_with_detections": 365,
+      "days_without_detections_within_observation_span": 0,
+      "geographic_extent": {
+        "latitude_min": -18.13094,
+        "latitude_max": -0.03057,
+        "longitude_min": -81.28831,
+        "longitude_max": -68.6911
+      },
+      "values": {
+        "version": {
+          "2": 69996
+        },
+        "satellite": {
+          "N": 69996
+        },
+        "instrument": {
+          "VIIRS": 69996
+        },
+        "type": {
+          "0": 68618,
+          "2": 1106,
+          "3": 213,
+          "1": 59
+        },
+        "confidence": {
+          "n": 62841,
+          "h": 3113,
+          "l": 4042
+        },
+        "daynight": {
+          "N": 4908,
+          "D": 65088
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2015_Peru.csv",
+        "size": "5578959",
+        "updated": "2025-06-20 08:35:51"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2016,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2016/viirs-snpp_2016_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:22:05.618419+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2016/viirs-snpp_2016_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "7281547",
+      "last_modified": "Tue, 24 Jun 2025 18:33:13 GMT",
+      "etag": "\"157c734a451dfd63890dd41a37ff2c88\"",
+      "retrieved_at_utc": "2026-11-16T01:22:13.593446+00:00",
+      "byte_count": 7281547,
+      "sha256": "078ec6bdc12b47ac37b6366c7e6843cf1f0a811336eedbf130100b41069e6702",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2016_Peru.csv",
+      "row_count": 91343,
+      "observation_date_min": "2016-01-01",
+      "observation_date_max": "2016-12-31",
+      "days_with_detections": 365,
+      "days_without_detections_within_observation_span": 1,
+      "geographic_extent": {
+        "latitude_min": -18.12476,
+        "latitude_max": -0.04168,
+        "longitude_min": -81.29436,
+        "longitude_max": -68.77631
+      },
+      "values": {
+        "version": {
+          "2": 91343
+        },
+        "satellite": {
+          "N": 91343
+        },
+        "instrument": {
+          "VIIRS": 91343
+        },
+        "type": {
+          "0": 89592,
+          "2": 1314,
+          "1": 42,
+          "3": 395
+        },
+        "confidence": {
+          "n": 81095,
+          "l": 5628,
+          "h": 4620
+        },
+        "daynight": {
+          "N": 10701,
+          "D": 80642
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2016_Peru.csv",
+        "size": "7281547",
+        "updated": "2025-06-20 08:05:50"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2017,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2017/viirs-snpp_2017_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:22:05.941848+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2017/viirs-snpp_2017_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "4558559",
+      "last_modified": "Tue, 24 Jun 2025 18:21:47 GMT",
+      "etag": "\"7c0e28f8fa594466478013363503c926\"",
+      "retrieved_at_utc": "2026-11-16T01:22:13.265206+00:00",
+      "byte_count": 4558559,
+      "sha256": "dda594cbd9e482e66be7db9f6d8ab2fe3dcc1fac20ad68784e38a21c550b043e",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2017_Peru.csv",
+      "row_count": 57168,
+      "observation_date_min": "2017-01-01",
+      "observation_date_max": "2017-12-31",
+      "days_with_detections": 364,
+      "days_without_detections_within_observation_span": 1,
+      "geographic_extent": {
+        "latitude_min": -18.25315,
+        "latitude_max": -0.19838,
+        "longitude_min": -81.28587,
+        "longitude_max": -68.77406
+      },
+      "values": {
+        "version": {
+          "2": 57168
+        },
+        "satellite": {
+          "N": 57168
+        },
+        "instrument": {
+          "VIIRS": 57168
+        },
+        "type": {
+          "0": 55250,
+          "2": 1113,
+          "1": 442,
+          "3": 363
+        },
+        "confidence": {
+          "l": 3018,
+          "n": 52108,
+          "h": 2042
+        },
+        "daynight": {
+          "D": 52850,
+          "N": 4318
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2017_Peru.csv",
+        "size": "4558559",
+        "updated": "2025-06-19 19:43:49"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2018,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2018/viirs-snpp_2018_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:22:05.980308+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2018/viirs-snpp_2018_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "5035858",
+      "last_modified": "Tue, 24 Jun 2025 18:09:59 GMT",
+      "etag": "\"68dddbb66c5bba8f836d1a8b953360cc\"",
+      "retrieved_at_utc": "2026-11-16T01:22:12.713314+00:00",
+      "byte_count": 5035858,
+      "sha256": "a3c9ad7b9d45f12ef56208411a70d5a3d59120c4b0c58de29fdc3420da35d401",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2018_Peru.csv",
+      "row_count": 63185,
+      "observation_date_min": "2018-01-01",
+      "observation_date_max": "2018-12-31",
+      "days_with_detections": 365,
+      "days_without_detections_within_observation_span": 0,
+      "geographic_extent": {
+        "latitude_min": -18.15237,
+        "latitude_max": -0.05421,
+        "longitude_min": -81.28889,
+        "longitude_max": -68.77415
+      },
+      "values": {
+        "version": {
+          "2": 63185
+        },
+        "satellite": {
+          "N": 63185
+        },
+        "instrument": {
+          "VIIRS": 63185
+        },
+        "type": {
+          "2": 1189,
+          "1": 395,
+          "3": 208,
+          "0": 61393
+        },
+        "confidence": {
+          "n": 56968,
+          "l": 3396,
+          "h": 2821
+        },
+        "daynight": {
+          "N": 5109,
+          "D": 58076
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2018_Peru.csv",
+        "size": "5035858",
+        "updated": "2025-06-19 18:52:52"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2019,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2019/viirs-snpp_2019_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:22:06.429030+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2019/viirs-snpp_2019_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "5936720",
+      "last_modified": "Tue, 24 Jun 2025 17:55:34 GMT",
+      "etag": "\"c16608834452a453f4f57de73b30461d\"",
+      "retrieved_at_utc": "2026-11-16T01:22:13.723857+00:00",
+      "byte_count": 5936720,
+      "sha256": "f7c3b65cbed4551a6d1e7db5a7d4ce668a897993b7d0992678c1a1b080b7bdf5",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2019_Peru.csv",
+      "row_count": 74411,
+      "observation_date_min": "2019-01-01",
+      "observation_date_max": "2019-12-31",
+      "days_with_detections": 364,
+      "days_without_detections_within_observation_span": 1,
+      "geographic_extent": {
+        "latitude_min": -18.24619,
+        "latitude_max": -0.23182,
+        "longitude_min": -81.28954,
+        "longitude_max": -68.77155
+      },
+      "values": {
+        "version": {
+          "2": 74411
+        },
+        "satellite": {
+          "N": 74411
+        },
+        "instrument": {
+          "VIIRS": 74411
+        },
+        "type": {
+          "0": 72336,
+          "2": 1167,
+          "1": 645,
+          "3": 263
+        },
+        "confidence": {
+          "n": 66798,
+          "l": 4047,
+          "h": 3566
+        },
+        "daynight": {
+          "N": 6764,
+          "D": 67647
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2019_Peru.csv",
+        "size": "5936720",
+        "updated": "2025-06-19 17:54:55"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2020,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2020/viirs-snpp_2020_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:22:13.175659+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2020/viirs-snpp_2020_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "7853597",
+      "last_modified": "Tue, 24 Jun 2025 17:42:59 GMT",
+      "etag": "\"f3181d101b011b990ce620b71ac0110d\"",
+      "retrieved_at_utc": "2026-11-16T01:22:20.387024+00:00",
+      "byte_count": 7853597,
+      "sha256": "4b390a47f1726589a295428b19b24fcaa67326e42fdc2c1bd4683836cfbad4d6",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2020_Peru.csv",
+      "row_count": 98416,
+      "observation_date_min": "2020-01-01",
+      "observation_date_max": "2020-12-31",
+      "days_with_detections": 366,
+      "days_without_detections_within_observation_span": 0,
+      "geographic_extent": {
+        "latitude_min": -18.29726,
+        "latitude_max": -0.04702,
+        "longitude_min": -81.26834,
+        "longitude_max": -68.71209
+      },
+      "values": {
+        "version": {
+          "2": 98416
+        },
+        "satellite": {
+          "N": 98416
+        },
+        "instrument": {
+          "VIIRS": 98416
+        },
+        "type": {
+          "1": 467,
+          "2": 1075,
+          "0": 96644,
+          "3": 230
+        },
+        "confidence": {
+          "n": 87588,
+          "l": 5849,
+          "h": 4979
+        },
+        "daynight": {
+          "N": 7999,
+          "D": 90417
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2020_Peru.csv",
+        "size": "7853597",
+        "updated": "2025-06-19 15:28:39"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2021,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2021/viirs-snpp_2021_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:22:13.666481+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2021/viirs-snpp_2021_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "5371354",
+      "last_modified": "Tue, 24 Jun 2025 17:32:24 GMT",
+      "etag": "\"85b43c55b8eabc4f51b9f77d2d782a3e\"",
+      "retrieved_at_utc": "2026-11-16T01:22:20.091459+00:00",
+      "byte_count": 5371354,
+      "sha256": "e6899971029457ce8f03e4d9ffb2c1e18616d74d4edf0229fa7f63acf045c8de",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2021_Peru.csv",
+      "row_count": 67345,
+      "observation_date_min": "2021-01-01",
+      "observation_date_max": "2021-12-31",
+      "days_with_detections": 365,
+      "days_without_detections_within_observation_span": 0,
+      "geographic_extent": {
+        "latitude_min": -18.33546,
+        "latitude_max": -0.08132,
+        "longitude_min": -81.29421,
+        "longitude_max": -68.71091
+      },
+      "values": {
+        "version": {
+          "2": 67345
+        },
+        "satellite": {
+          "N": 67345
+        },
+        "instrument": {
+          "VIIRS": 67345
+        },
+        "type": {
+          "0": 65385,
+          "3": 184,
+          "2": 1240,
+          "1": 536
+        },
+        "confidence": {
+          "n": 60714,
+          "l": 3308,
+          "h": 3323
+        },
+        "daynight": {
+          "D": 61911,
+          "N": 5434
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2021_Peru.csv",
+        "size": "5371354",
+        "updated": "2025-06-19 14:57:48"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2022,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2022/viirs-snpp_2022_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:22:14.690598+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2022/viirs-snpp_2022_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "7142122",
+      "last_modified": "Tue, 24 Jun 2025 17:18:50 GMT",
+      "etag": "\"494a1a2cbb7c642bddec2a1fec422e8b\"",
+      "retrieved_at_utc": "2026-11-16T01:22:21.287486+00:00",
+      "byte_count": 7142122,
+      "sha256": "a166cde959b0d11866b7634a3817d571c17998d98053f6bff92310cbe3420ab0",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2022_Peru.csv",
+      "row_count": 89579,
+      "observation_date_min": "2022-01-01",
+      "observation_date_max": "2022-12-31",
+      "days_with_detections": 350,
+      "days_without_detections_within_observation_span": 15,
+      "geographic_extent": {
+        "latitude_min": -18.31615,
+        "latitude_max": -0.06688,
+        "longitude_min": -81.2886,
+        "longitude_max": -68.77203
+      },
+      "values": {
+        "version": {
+          "2": 89579
+        },
+        "satellite": {
+          "N": 89579
+        },
+        "instrument": {
+          "VIIRS": 89579
+        },
+        "type": {
+          "0": 87032,
+          "2": 1676,
+          "1": 633,
+          "3": 238
+        },
+        "confidence": {
+          "n": 78193,
+          "l": 6372,
+          "h": 5014
+        },
+        "daynight": {
+          "N": 8985,
+          "D": 80594
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 1
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2022_Peru.csv",
+        "size": "7142122",
+        "updated": "2025-06-19 14:25:57"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2023,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2023/viirs-snpp_2023_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:22:14.782575+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2023/viirs-snpp_2023_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "6342229",
+      "last_modified": "Tue, 24 Jun 2025 17:09:41 GMT",
+      "etag": "\"f8c7d316dc2d6ea60fd4749d1d3ae4bc\"",
+      "retrieved_at_utc": "2026-11-16T01:22:19.596326+00:00",
+      "byte_count": 6342229,
+      "sha256": "8f87cc4b4c76a44c941269e2c4313c72080564bfb454c1679f6f759f9e1d2fa3",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2023_Peru.csv",
+      "row_count": 79577,
+      "observation_date_min": "2023-01-01",
+      "observation_date_max": "2023-12-31",
+      "days_with_detections": 363,
+      "days_without_detections_within_observation_span": 2,
+      "geographic_extent": {
+        "latitude_min": -18.25483,
+        "latitude_max": -0.05621,
+        "longitude_min": -81.28834,
+        "longitude_max": -68.70283
+      },
+      "values": {
+        "version": {
+          "2": 79577
+        },
+        "satellite": {
+          "N": 79577
+        },
+        "instrument": {
+          "VIIRS": 79577
+        },
+        "type": {
+          "2": 1781,
+          "0": 76927,
+          "1": 352,
+          "3": 517
+        },
+        "confidence": {
+          "h": 3316,
+          "n": 71347,
+          "l": 4914
+        },
+        "daynight": {
+          "D": 71802,
+          "N": 7775
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2023_Peru.csv",
+        "size": "6342229",
+        "updated": "2025-06-19 14:01:44"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2024,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2024/viirs-snpp_2024_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:22:20.145154+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2024/viirs-snpp_2024_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "7963113",
+      "last_modified": "Tue, 24 Jun 2025 17:00:37 GMT",
+      "etag": "\"a3912847516a3e67e15b780e9ed18cec\"",
+      "retrieved_at_utc": "2026-11-16T01:22:27.776575+00:00",
+      "byte_count": 7963113,
+      "sha256": "21afe44401c95f7988950c425d23938dbaffd98d392b8702fcdbab49a7a68ef8",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2024_Peru.csv",
+      "row_count": 99932,
+      "observation_date_min": "2024-01-01",
+      "observation_date_max": "2024-12-31",
+      "days_with_detections": 346,
+      "days_without_detections_within_observation_span": 20,
+      "geographic_extent": {
+        "latitude_min": -18.27837,
+        "latitude_max": -0.03865,
+        "longitude_min": -81.28967,
+        "longitude_max": -68.69946
+      },
+      "values": {
+        "version": {
+          "2": 99932
+        },
+        "satellite": {
+          "N": 99932
+        },
+        "instrument": {
+          "VIIRS": 99932
+        },
+        "type": {
+          "0": 97662,
+          "1": 358,
+          "2": 1547,
+          "3": 365
+        },
+        "confidence": {
+          "n": 88096,
+          "l": 6723,
+          "h": 5113
+        },
+        "daynight": {
+          "N": 13889,
+          "D": 86043
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2024_Peru.csv",
+        "size": "7963113",
+        "updated": "2025-06-19 13:27:57"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2025,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2025/viirs-snpp_2025_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:22:20.994060+00:00",
+      "http_status": 200,
+      "final_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2025/viirs-snpp_2025_Peru.csv",
+      "content_type": "text/csv",
+      "advertised_content_length": "4270586",
+      "last_modified": "Sat, 10 Oct 2026 13:23:26 GMT",
+      "etag": "\"f14da40cc02618964d4ee2c07121fa6d\"",
+      "retrieved_at_utc": "2026-11-16T01:22:26.195440+00:00",
+      "byte_count": 4270586,
+      "sha256": "dabd1155fd71d2f011ae8279c97df451022c431ae6a0e064d275c5b311d2b4ba",
+      "columns": [
+        "latitude",
+        "longitude",
+        "bright_ti4",
+        "scan",
+        "track",
+        "acq_date",
+        "acq_time",
+        "satellite",
+        "instrument",
+        "confidence",
+        "version",
+        "bright_ti5",
+        "frp",
+        "daynight",
+        "type"
+      ],
+      "status": "downloaded_and_schema_checked",
+      "local_path": "data/raw/viirs-snpp_2025_Peru.csv",
+      "row_count": 53579,
+      "observation_date_min": "2025-01-01",
+      "observation_date_max": "2025-12-31",
+      "days_with_detections": 362,
+      "days_without_detections_within_observation_span": 3,
+      "geographic_extent": {
+        "latitude_min": -18.27397,
+        "latitude_max": -0.04092,
+        "longitude_min": -81.29089,
+        "longitude_max": -68.78945
+      },
+      "values": {
+        "version": {
+          "2": 53579
+        },
+        "satellite": {
+          "N": 53579
+        },
+        "instrument": {
+          "VIIRS": 53579
+        },
+        "type": {
+          "0": 51742,
+          "2": 1602,
+          "3": 230,
+          "1": 5
+        },
+        "confidence": {
+          "n": 48211,
+          "l": 2867,
+          "h": 2501
+        },
+        "daynight": {
+          "N": 4734,
+          "D": 48845
+        }
+      },
+      "qa": {
+        "all_rows_have_expected_field_count": true,
+        "invalid_numeric_or_time_values": {},
+        "missing_value_counts": {},
+        "duplicate_rows": 0,
+        "duplicate_location_date_time_keys": 0
+      },
+      "product": {
+        "archive_family": "VIIRS Suomi-NPP 375 m yearly country archive",
+        "country_as_named_by_source": "Peru",
+        "platform": "Suomi-NPP",
+        "instrument": "VIIRS",
+        "version_values_observed": [
+          "2"
+        ],
+        "processing_identification": "Standard processing, inferred from NASA-documented collection-only version convention and presence of type attribute; exact upstream monthly processing revision is not established.",
+        "collection_values_observed": [
+          "2"
+        ],
+        "identification_source": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+        "archive_readme_source": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt"
+      },
+      "limitations": [
+        "Acquisition date range describes detections, not independently verified satellite observation coverage.",
+        "Days without detections cannot distinguish no detected hotspot from missing or excluded observations.",
+        "Country-boundary source, edition and clipping method are not identified in the downloaded CSV.",
+        "No TerraEcho confidence, type, geography or deduplication filters have been applied to these source bytes.",
+        "CSV version identifies collection and processing class, not the exact upstream reprocessing revision."
+      ],
+      "saved_action": "validated_source_bytes_saved",
+      "country_archive_index_record": {
+        "filename": "viirs-snpp_2025_Peru.csv",
+        "size": "4270586",
+        "updated": "2026-10-10 08:57:09"
+      },
+      "country_archive_index_size_matches": true
+    },
+    {
+      "year": 2026,
+      "source_url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp/2026/viirs-snpp_2026_Peru.csv",
+      "request_started_at_utc": "2026-11-16T01:22:21.410061+00:00",
+      "status": "failed",
+      "failed_at_utc": "2026-11-16T01:22:25.107404+00:00",
+      "error_type": "HTTPError",
+      "error_message": "HTTP Error 404: Not Found",
+      "raw_file_saved": false,
+      "http_status": 404
+    }
+  ],
+  "limitations": [
+    "This manifest does not certify continuous coverage or reconcile the country archive against granule-level satellite availability.",
+    "This audit does not assert any historical source snapshot is reproduced by an older generated TerraEcho score.",
+    "The currently downloaded bytes are source snapshots; public archives may be revised."
+  ],
+  "metadata_sources": [
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/api/missing_data/?action=fetch_data",
+      "requested_at_utc": "2026-11-16T01:25:17.102639+00:00",
+      "retrieved_at_utc": "2026-11-16T01:25:32.823593+00:00",
+      "http_status": 200,
+      "content_type": "application/json",
+      "byte_count": 24401,
+      "sha256": "60ab8a4d35394d116378ba11747f6a4286d7303c9a8a77b8ec7ac01757f1b3e1",
+      "last_modified": null
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/yearly_summary_files.txt",
+      "requested_at_utc": "2026-11-16T01:25:32.826877+00:00",
+      "retrieved_at_utc": "2026-11-16T01:25:38.715160+00:00",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "byte_count": 554849,
+      "sha256": "a85c319c545f0004ffaa659e5063ed0547cc59c409e16d2a54fdcf37e7a33f8c",
+      "last_modified": "Sat, 10 Oct 2026 13:31:52 GMT"
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/AttributesReadme.txt",
+      "requested_at_utc": "2026-11-16T01:25:38.725620+00:00",
+      "retrieved_at_utc": "2026-11-16T01:25:43.722055+00:00",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "byte_count": 3178,
+      "sha256": "803256e72246bb045952eda540aa704c5eb318ce3b7a9b8a178ea6425d127735",
+      "last_modified": "Tue, 24 Jun 2025 20:22:05 GMT"
+    }
+  ],
+  "manifest_updated_at_utc": "2026-11-16T01:28:48.062181+00:00",
+  "summary": {
+    "downloaded_years": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "downloaded_file_count": 14,
+    "total_row_count": 1047074,
+    "total_byte_count": 83470826,
+    "failed_years": [
+      2026
+    ]
+  },
+  "source_audit_document": "docs/research/FIRMS_SOURCE_AUDIT.md",
+  "availability_snapshot": "data/manifests/firms-product-availability.json",
+  "documentation_source_responses": [
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/download/",
+      "requested_at_utc": "2026-11-16T01:26:06.586873+00:00",
+      "retrieved_at_utc": "2026-11-16T01:26:11.795485+00:00",
+      "http_status": 200,
+      "byte_count": 14233,
+      "sha256": "7bf5ca9a0698072bffd792a3b7375a3e9bd9461d5fd4602785f8358ec780458c",
+      "content_type": "text/html; charset=UTF-8",
+      "temporal_coverage_excerpt": "VIIRS S-NPP 375m: Temporal Coverage: 20 January 2012 - 2 November 2026"
+    },
+    {
+      "url": "https://firms.modaps.eosdis.nasa.gov/content/descriptions/FIRMS_VIIRS_Firehotspots.html",
+      "requested_at_utc": "2026-11-16T01:26:06.587553+00:00",
+      "retrieved_at_utc": "2026-11-16T01:26:12.266898+00:00",
+      "http_status": 200,
+      "byte_count": 10430,
+      "sha256": "b7c304c5c03cbcb2be9c6a73eaa123db75469db3098dc276f9c28274c1ca0e9c",
+      "content_type": "text/html",
+      "temporal_coverage_excerpt": "VIIRS S-NPP Temporal Coverage: 20 January 2012 - 2 November 2026"
+    }
+  ]
+}
