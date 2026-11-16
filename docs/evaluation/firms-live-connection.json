@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-11-16T03:11:51.989Z",
+  "http": 200,
+  "responseValid": true,
+  "product": "VIIRS_NOAA20_NRT",
+  "start": "2026-11-14",
+  "end": "2026-11-16",
+  "serverRetrievedAt": "2026-11-16T03:12:01.483Z",
+  "detections": 174,
+  "anomalyComputed": false,
+  "coverageStatus": "product availability unverified; cloud coverage unknown",
+  "errorCode": null,
+  "note": "A valid server response does not establish absence of fire or complete observation coverage. NASA source availability and participant validation remain separate checks.",
+  "execution": "Actual upstream NASA response through local production Next.js server; server key held in process memory only.",
+  "verification_command": "node web/scripts/check-live.mjs <local-application-origin>"
+}

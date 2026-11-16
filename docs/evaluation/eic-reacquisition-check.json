@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-11-16T03:58:11.476Z",
+  "originalAcquisitionTimeRecovered": false,
+  "assets": [
+    {
+      "asset": "frame",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_2025-08-19T20_00_00_1920x1080.png",
+      "startedAt": "2026-11-16T03:58:01.352Z",
+      "retrievedAt": "2026-11-16T03:58:08.014Z",
+      "http": 200,
+      "mediaType": "image/png",
+      "bytes": 2768951,
+      "isPng": true,
+      "sha256": "0c6a8f6c46fb52a2f9a636bbd804fc6e5e23454dcb2f0d3fe04c653c772e8a7a",
+      "matchesManifest": true,
+      "matchesLocalBytes": true
+    },
+    {
+      "asset": "legend",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_cbar.png",
+      "startedAt": "2026-11-16T03:58:01.362Z",
+      "retrievedAt": "2026-11-16T03:58:11.468Z",
+      "http": 503,
+      "mediaType": "text/plain",
+      "bytes": 91,
+      "isPng": false,
+      "sha256": null,
+      "matchesManifest": false,
+      "matchesLocalBytes": false
+    },
+    {
+      "asset": "print_variant",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_2025-08-19T20_00_00_1500x1179_72dpi.png",
+      "startedAt": "2026-11-16T03:58:01.363Z",
+      "retrievedAt": "2026-11-16T03:58:11.476Z",
+      "http": 503,
+      "mediaType": "text/plain",
+      "bytes": 91,
+      "isPng": false,
+      "sha256": null,
+      "matchesManifest": false,
+      "matchesLocalBytes": false
+    }
+  ]
+}

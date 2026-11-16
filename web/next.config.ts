@@ -3,7 +3,10 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   devIndicators: false,
   outputFileTracingIncludes: {
-    "/api/fires": ["./public/data/terraecho_*.json"],
+    "/api/fires": [
+      "./public/data/terraecho_*.json",
+      "./public/data/peru_departments.geojson",
+    ],
   },
   async headers() {
     return [

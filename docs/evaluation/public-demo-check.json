@@ -1,0 +1,13 @@
+{
+  "site": "https://terraecho-earth-jukebox.dotingchime4.chatgpt.site",
+  "deployedSourceCommit": "9955e9e40332378212b2540202c77bcd6ee35cf5",
+  "publicBrowserVerified": true,
+  "archiveLoaded": true,
+  "eicPlaybackCompleted": true,
+  "eicWavDownloaded": true,
+  "piece": "aerosols-global",
+  "sha256": "2fe414104d83f7bf9e6640a4c1069dec856952796d7d661207b269903afadb03",
+  "matchesCliReferenceBytes": true,
+  "recentMode": "archive-only demo explains full server requirement",
+  "privateKeyConfigured": false
+}

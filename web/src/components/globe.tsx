@@ -64,6 +64,7 @@ export function Globe({
     [textureFailed, setTextureFailed] = useState(false);
   useEffect(() => {
     if (!host.current) return;
+    if (failed) return;
     const el = host.current;
     let renderer: THREE.WebGLRenderer;
     try {
@@ -130,7 +131,11 @@ export function Globe({
         if (mounted) setTextureFailed(true);
       },
     );
-    earth.add(new THREE.Mesh(new THREE.SphereGeometry(1.65, 80, 56), material));
+    const earthBody = new THREE.Mesh(
+      new THREE.SphereGeometry(1.65, 80, 56),
+      material,
+    );
+    earth.add(earthBody);
     scene.add(new THREE.AmbientLight(PALETTE.secondary, 1.45));
     const sun = new THREE.DirectionalLight(PALETTE.text, 2.4);
     sun.position.set(-3, 3, 5);
@@ -280,8 +285,9 @@ export function Globe({
     resize.observe(el);
     const ray = new THREE.Raycaster();
     let down = { x: 0, y: 0 };
-    const inspect = (e: PointerEvent) => {
-      if (Math.hypot(e.clientX - down.x, e.clientY - down.y) > 8) return;
+    const inspect = (e: PointerEvent, hover = false) => {
+      if (!hover && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 8)
+        return;
       const rect = el.getBoundingClientRect();
       ray.setFromCamera(
         new THREE.Vector2(
@@ -291,13 +297,29 @@ export function Globe({
         camera,
       );
       const hit = ray.intersectObjects(markers.children)[0];
-      if (hit) latest.current.onInspect(hit.object.userData.cell ?? null);
+      const surface = ray.intersectObject(earthBody)[0];
+      latest.current.onInspect(
+        hit && (!surface || hit.distance <= surface.distance + 0.03)
+          ? (hit.object.userData.cell ?? null)
+          : null,
+      );
     };
     const pointerdown = (e: PointerEvent) => {
       down = { x: e.clientX, y: e.clientY };
     };
     renderer.domElement.addEventListener("pointerdown", pointerdown);
-    renderer.domElement.addEventListener("pointerup", inspect);
+    const inspectClick = (e: PointerEvent) => inspect(e);
+    let lastHover = 0;
+    const hover = (e: PointerEvent) => {
+      if (!e.buttons && performance.now() - lastHover > 120) {
+        lastHover = performance.now();
+        inspect(e, true);
+      }
+    };
+    const leave = () => latest.current.onInspect(null);
+    renderer.domElement.addEventListener("pointerup", inspectClick);
+    renderer.domElement.addEventListener("pointermove", hover);
+    renderer.domElement.addEventListener("pointerleave", leave);
     const contextLost = (e: Event) => {
       e.preventDefault();
       setFailed(true);
@@ -341,7 +363,9 @@ export function Globe({
       resize.disconnect();
       controls.dispose();
       renderer.domElement.removeEventListener("pointerdown", pointerdown);
-      renderer.domElement.removeEventListener("pointerup", inspect);
+      renderer.domElement.removeEventListener("pointerup", inspectClick);
+      renderer.domElement.removeEventListener("pointermove", hover);
+      renderer.domElement.removeEventListener("pointerleave", leave);
       renderer.domElement.removeEventListener("webglcontextlost", contextLost);
       disposeNode(scene);
       material.map?.dispose();
@@ -349,7 +373,7 @@ export function Globe({
       renderer.domElement.remove();
       state.current = null;
     };
-  }, []);
+  }, [failed]);
   useEffect(() => {
     const s = state.current;
     if (!s) return;

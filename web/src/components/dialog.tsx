@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "./icon";
+import { ARCHIVE_ONLY } from "@/lib/build-mode";
 export type DialogKind = "method" | "sources" | "accessibility";
 export function InfoDialog({
   kind,
@@ -14,6 +15,7 @@ export function InfoDialog({
     [checking, setChecking] = useState(false);
   useEffect(() => {
     const d = ref.current;
+    const previousFocus = document.activeElement;
     if (d && !d.open) d.showModal();
     const cancel = (e: Event) => {
       e.preventDefault();
@@ -23,16 +25,24 @@ export function InfoDialog({
     return () => {
       d?.removeEventListener("cancel", cancel);
       if (d?.open) d.close();
+      if (previousFocus instanceof HTMLElement && previousFocus.isConnected)
+        previousFocus.focus();
     };
   }, [onClose]);
   async function checkApi() {
+    if (ARCHIVE_ONLY) {
+      setApi(
+        "Esta demo incluye EIC y el archivo histórico. Las consultas recientes requieren ejecutar la versión con servidor y configurar FIRMS_MAP_KEY allí.",
+      );
+      return;
+    }
     setChecking(true);
     try {
       const r = await fetch("/api/fires?mode=live&days=1");
       const d = await r.json();
       setApi(
         r.ok
-          ? `Conexión correcta: ${d.observations.length} detecciones en la ventana consultada. Estos datos recientes no sustituyen la serie semanal ni tienen anomalía calculada.`
+          ? `FIRMS respondió: ${d.observations.length} detecciones dentro del ámbito. Producto ${d.meta.source}; ventana ${d.meta.startDate} a ${d.meta.endDate} UTC. ${d.observations.length ? "La respuesta contiene registros." : "Una respuesta vacía no demuestra ausencia de fuego."} Cobertura de nubes y pasadas sin certificar; anomalía no calculada.`
           : (d.error?.message ?? "No fue posible conectar con FIRMS."),
       );
     } catch {
@@ -47,6 +57,13 @@ export function InfoDialog({
     <dialog
       ref={ref}
       className="info-dialog"
+      aria-label={
+        kind === "sources"
+          ? "Fuentes y metodología"
+          : kind === "method"
+            ? "Gramática sonora FIRMS"
+            : "Guía de accesibilidad"
+      }
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -128,15 +145,15 @@ export function InfoDialog({
           </h2>
           <div className="source-block">
             <span className="outline-tag">01 / OBSERVACIONES</span>
-            <h3>NASA FIRMS · VIIRS Suomi NPP</h3>
+            <h3>NASA FIRMS · archivo SP y consulta reciente</h3>
             <p>
-              Se muestran los JSON existentes del pipeline del equipo: 52
-              semanas de 2025 y 44 de 2026, hasta la semana del 29 de octubre.
-              2026 es provisional. El agregado general cubre la caja geográfica
-              del pipeline y puede incluir detecciones fuera del territorio
-              peruano; no equivale a la suma de departamentos. La base de
-              comparación incluye años desde 2012; no todos están exportados
-              como pistas navegables.
+              Archivo 2012–2025 reconstruido desde los CSV públicos NASA VIIRS
+              Suomi NPP, Collection 2 SP, con asignación territorial de puntos y
+              trazabilidad. Las fechas sin producto reportadas por NASA se
+              excluyen del baseline. La cobertura de nubes y pasadas sigue sin
+              certificarse. 2026 se conserva como exportación heredada sin
+              reproducir, con ámbito de caja geográfica. No se mezcla
+              silenciosamente con el nuevo archivo nacional.
             </p>
             <a
               href="https://firms.modaps.eosdis.nasa.gov/"
@@ -167,8 +184,10 @@ export function InfoDialog({
             <p>
               El archivo funciona sin credenciales. Para consultar detecciones
               recientes, configura FIRMS_MAP_KEY únicamente en el servidor. La
-              API consulta un rectángulo que contiene Perú; puede incluir zonas
-              vecinas.
+              consulta usa NOAA-20 por defecto y recorta los puntos por límites
+              ADM1 simplificados. Suomi NPP no aporta observaciones nuevas
+              después del 2 de noviembre de 2026. Los productos recientes no se
+              comparan automáticamente con su baseline histórico.
             </p>
             <button
               className="secondary-button"
@@ -188,8 +207,10 @@ export function InfoDialog({
             Los focos térmicos no equivalen a incendios individuales ni a
             hectáreas quemadas. Las órbitas y ondas son ilustrativas. Esta
             herramienta es educativa y no sustituye sistemas oficiales de
-            emergencia. Los archivos originales se conservan en el repositorio;
-            no se auditaron aquí las descargas históricas.
+            emergencia. Los manifiestos conservan enlaces y huellas de los CSV
+            originales; los datos crudos no se duplican en Git. La capa actual
+            identifica actividad térmica de vegetación, sin clasificación
+            forestal.
           </p>
         </>
       ) : (

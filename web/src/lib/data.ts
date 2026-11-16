@@ -20,8 +20,10 @@ export const LEVEL_COLOR: Record<Level, string> = {
   critical: PALETTE.danger,
   no_data: PALETTE.subtle,
 };
-export const number = (v: number) =>
-  new Intl.NumberFormat("es-PE", { maximumFractionDigits: 0 }).format(v);
+export const number = (v: number | null) =>
+  v === null
+    ? "—"
+    : new Intl.NumberFormat("es-PE", { maximumFractionDigits: 0 }).format(v);
 export function dateLabel(iso: string, long = false) {
   return new Intl.DateTimeFormat("es-PE", {
     day: "2-digit",
@@ -67,6 +69,8 @@ export function regionCells(
 ): CellVoice[] {
   if (week.data_gap) return [];
   if (region === "Perú") return week.cells;
+  if (week.cells.some((c) => c.region !== undefined))
+    return week.cells.filter((c) => c.region === region);
   const f = geo?.features.find((f) => f.properties.shapeName === region);
   return f ? week.cells.filter((c) => contains(f, c.lon, c.lat)) : [];
 }
@@ -101,7 +105,7 @@ export function parseScore(input: unknown): FireScore {
       !(w.country.level in LEVEL_LABEL) ||
       !Number.isFinite(w.country.count) ||
       w.country.count < 0 ||
-      !Number.isFinite(w.country.frp)
+      (w.country.frp !== null && !Number.isFinite(w.country.frp))
     )
       throw new Error("Métricas inválidas.");
     if (
@@ -119,7 +123,6 @@ export function parseScore(input: unknown): FireScore {
           c.lat,
           c.lon,
           c.count,
-          c.frp,
           c.midi,
           c.gain,
           c.pan,
@@ -151,7 +154,7 @@ export function parseScore(input: unknown): FireScore {
         c.partner_gain > 1 ||
         c.dissonance < 0 ||
         c.dissonance > 1 ||
-        c.frp < 0 ||
+        (c.frp !== null && (!Number.isFinite(c.frp) || c.frp < 0)) ||
         c.count < 0
       )
         throw new Error("Celda sonora inválida.");

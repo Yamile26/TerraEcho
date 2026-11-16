@@ -1,0 +1,5 @@
+# Versions used for release reconstruction. Python 3.12.
+numpy==2.3.5
+pandas==2.2.3
+shapely==2.2.0
+Pillow==13.0.0

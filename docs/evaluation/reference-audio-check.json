@@ -1,0 +1,33 @@
+{
+  "sourceImageSha256": "0c6a8f6c46fb52a2f9a636bbd804fc6e5e23454dcb2f0d3fe04c653c772e8a7a",
+  "renderer": "Shared CLI/browser-worker offline synthesis; live Web Audio uses a different master chain",
+  "pieces": [
+    {
+      "piece": "aerosols-global",
+      "sampleRate": 22050,
+      "channels": 2,
+      "seconds": 25.997641723356008,
+      "peakPCM": 13833,
+      "clippedSamples": 0,
+      "sha256": "2fe414104d83f7bf9e6640a4c1069dec856952796d7d661207b269903afadb03"
+    },
+    {
+      "piece": "aerosols-smoke",
+      "sampleRate": 22050,
+      "channels": 2,
+      "seconds": 25.997641723356008,
+      "peakPCM": 5882,
+      "clippedSamples": 0,
+      "sha256": "70cf01042aa009fa53c3fed841a9b619558b446e7e30c7450d6b78a84d8d9691"
+    },
+    {
+      "piece": "aerosols-south-america",
+      "sampleRate": 22050,
+      "channels": 2,
+      "seconds": 25.997641723356008,
+      "peakPCM": 16339,
+      "clippedSamples": 0,
+      "sha256": "0de986f71ca57eaa98ad59bd14e4e76cef8ecc7134c2aab2c76908b656901869"
+    }
+  ]
+}

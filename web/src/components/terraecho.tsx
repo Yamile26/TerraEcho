@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import { useListeningPreferences } from "@/hooks/use-listening-preferences";
 import { Sonifier } from "@/lib/audio";
 import { PALETTE } from "@/lib/theme";
 import {
@@ -13,7 +14,7 @@ import {
   toCsv,
   weekRange,
 } from "@/lib/data";
-import { useDataset, useGeography } from "@/hooks/use-dataset";
+import { useDataset, useGeography, useCatalog } from "@/hooks/use-dataset";
 import type { CellVoice, FireWeek } from "@/lib/types";
 import type { GlobeLayers } from "./globe";
 import { PeruMap } from "./globe";
@@ -21,6 +22,14 @@ import { Icon, type IconName } from "./icon";
 import { Timeline } from "./timeline";
 import { Temporal } from "./temporal";
 import { EicStudio } from "./eic-studio";
+import { RecentStudio } from "./recent-studio";
+import { CellTable } from "./cell-table";
+import {
+  readSelection as readUrlSelection,
+  shareUrl,
+  type TerraView,
+} from "@/lib/navigation";
+import { representation } from "@/lib/recent";
 import { InfoDialog, type DialogKind } from "./dialog";
 const Globe = dynamic(() => import("./globe").then((m) => m.Globe), {
   ssr: false,
@@ -31,11 +40,12 @@ const Globe = dynamic(() => import("./globe").then((m) => m.Globe), {
     </div>
   ),
 });
-type View = "explorer" | "history" | "eic";
+type View = TerraView;
 const NAV: { id: View; label: string; icon: IconName; index: string }[] = [
   { id: "explorer", label: "Explorar la Tierra", icon: "globe", index: "01" },
   { id: "history", label: "Observatorio", icon: "chart", index: "02" },
-  { id: "eic", label: "Estudio EIC", icon: "wave", index: "03" },
+  { id: "eic", label: "Jukebox EIC", icon: "wave", index: "03" },
+  { id: "recent", label: "Datos recientes", icon: "satellite", index: "04" },
 ];
 
 function MiniChart({ weeks, index }: { weeks: FireWeek[]; index: number }) {
@@ -80,15 +90,22 @@ function MiniChart({ weeks, index }: { weeks: FireWeek[]; index: number }) {
 }
 export function TerraEcho() {
   const [view, setView] = useState<View>("explorer"),
-    [year, setYear] = useState(2026),
+    [year, setYear] = useState(2025),
     [index, setIndex] = useState(39),
     [region, setRegion] = useState("Perú");
   const { score, error, loading, retry } = useDataset(year);
-  const geo = useGeography();
+  const geography = useGeography(),
+    geo = geography.geo;
+  const { catalog, error: catalogError } = useCatalog();
+  const [navigationReady, setNavigationReady] = useState(false);
+  const datasetEntry = catalog?.entries.find((e) => e.year === year);
+  const isNational =
+    score?.meta.geographic_scope === "peru-admin1-point-clipped";
+
   const [sound, setSound] = useState(false),
     [playing, setPlaying] = useState(false),
-    [volume, setVolume] = useState(0.35),
     [audioError, setAudioError] = useState("");
+  const { volume, setVolume, mono, setMono } = useListeningPreferences();
   const [rotating, setRotating] = useState(true),
     [map2d, setMap2d] = useState(false),
     [resetKey, setResetKey] = useState(0),
@@ -110,6 +127,45 @@ export function TerraEcho() {
     () => (week ? regionCells(week, region, geo) : []),
     [week, region, geo],
   );
+  const mix = representation(cells);
+  useEffect(() => {
+    if (score && index >= score.weeks.length) setIndex(score.weeks.length - 1);
+  }, [score, index]);
+  useEffect(() => {
+    const s = readUrlSelection(location.search);
+    setView(s.view);
+    setYear(s.year);
+    setIndex(s.week);
+    setRegion(s.region);
+    setNavigationReady(true);
+  }, []);
+  useEffect(() => {
+    if (!navigationReady) return;
+    const p = new URLSearchParams(location.search),
+      extra: Record<string, string> = {};
+    if (view === "eic")
+      for (const k of ["piece", "step", "layers", "mono"])
+        if (p.has(k)) extra[k] = p.get(k)!;
+    history.replaceState(
+      null,
+      "",
+      shareUrl(location.origin, location.pathname, {
+        view,
+        year,
+        week: index,
+        region,
+        ...extra,
+      }),
+    );
+  }, [navigationReady, view, year, index, region]);
+  useEffect(() => {
+    if (
+      geo &&
+      region !== "Perú" &&
+      !geo.features.some((f) => f.properties.shapeName === region)
+    )
+      setRegion("Perú");
+  }, [geo, region]);
   const sortedRegions = useMemo(
     () => (week ? [...week.regions].sort((a, b) => b.count - a.count) : []),
     [week],
@@ -129,10 +185,11 @@ export function TerraEcho() {
   }, []);
   useEffect(() => {
     engine.current?.volume(volume);
-  }, [volume]);
+    engine.current?.setMono(mono);
+  }, [volume, mono]);
   useEffect(() => {
     engine.current?.stop();
-    if (!sound || !week || view === "eic") return;
+    if (!sound || !week || view === "eic" || view === "recent") return;
     const synth = () => engine.current?.fire(week, cells, region === "Perú");
     synth();
     const timer = setInterval(synth, 1400);
@@ -142,7 +199,7 @@ export function TerraEcho() {
     };
   }, [sound, week, cells, region, view]);
   useEffect(() => {
-    if (!playing || !score || view === "eic") return;
+    if (!playing || !score || view === "eic" || view === "recent") return;
     const id = setTimeout(() => {
       if (datasetIndex >= score.weeks.length - 1) {
         setPlaying(false);
@@ -186,6 +243,8 @@ export function TerraEcho() {
     setIndex(39);
   }
   async function enableSound() {
+    window.speechSynthesis?.cancel();
+    setSpeaking(false);
     try {
       await engine.current?.enable();
       engine.current?.volume(volume);
@@ -197,6 +256,20 @@ export function TerraEcho() {
         "No se pudo iniciar el audio. Prueba de nuevo desde el botón de escucha.",
       );
       return false;
+    }
+  }
+  async function listenCell(c: CellVoice) {
+    window.speechSynthesis?.cancel();
+    setSpeaking(false);
+    setSound(false);
+    setPlaying(false);
+    engine.current?.stop();
+    try {
+      await engine.current?.enable();
+      engine.current?.volume(volume);
+      if (week) engine.current?.fire(week, [c], false);
+    } catch {
+      setAudioError("No se pudo iniciar la escucha de esta celda.");
     }
   }
   async function toggleSound() {
@@ -239,7 +312,7 @@ export function TerraEcho() {
       return;
     }
     setSound(false);
-    const message = `${region === "Perú" ? "Área de estudio alrededor de Perú" : region}. Semana del ${dateLabel(week.start_date, true)} de ${year}. ${week.data_gap ? "Datos insuficientes. No se interpreta como calma." : `${number(metrics?.count ?? 0)} focos de calor detectados. ${LEVEL_LABEL[metrics?.level ?? "no_data"]}. Anomalía ${metrics?.z?.toFixed(2)}. Los focos no equivalen a incendios individuales.`}`;
+    const message = `${region === "Perú" ? (isNational ? "Perú, límites departamentales simplificados" : "Área de estudio alrededor de Perú") : region}. Semana del ${dateLabel(week.start_date, true)} de ${year}. ${week.data_gap ? "Datos insuficientes. No se interpreta como calma." : `${number(metrics?.count ?? 0)} focos de calor detectados. ${LEVEL_LABEL[metrics?.level ?? "no_data"]}. Anomalía ${metrics?.z?.toFixed(2)}. Los focos no equivalen a incendios individuales.`}`;
     const utterance = new SpeechSynthesisUtterance(message);
     utterance.lang = "es-PE";
     utterance.rate = 0.92;
@@ -250,7 +323,7 @@ export function TerraEcho() {
   }
   const selectionText =
     week && (metrics || week.data_gap)
-      ? `${region === "Perú" ? "Área de estudio alrededor de Perú" : region}, ${weekRange(week)} de ${year}. ${week.data_gap ? "Datos insuficientes." : `${number(metrics?.count ?? 0)} focos de calor. ${LEVEL_LABEL[metrics?.level ?? "no_data"]}. Anomalía z ${metrics?.z?.toFixed(2)}.`}`
+      ? `${region === "Perú" ? (isNational ? "Perú, límites departamentales simplificados" : "Área de estudio alrededor de Perú") : region}, ${weekRange(week)} de ${year}. ${week.data_gap ? "Datos insuficientes." : `${number(metrics?.count ?? 0)} focos de calor. ${LEVEL_LABEL[metrics?.level ?? "no_data"]}. Anomalía z ${metrics?.z?.toFixed(2)}.`}`
       : "";
   const regionField = (
     <label className="region-field">
@@ -311,7 +384,7 @@ export function TerraEcho() {
           <button
             className="sources-nav"
             onClick={() => setDialog("sources")}
-            aria-label="Fuentes y conexión API"
+            aria-label="Fuentes y metodología, conexión API"
           >
             Fuentes y metodología
           </button>
@@ -323,7 +396,7 @@ export function TerraEcho() {
           <button
             className="access-button"
             onClick={() => setDialog("accessibility")}
-            aria-label="Opciones y guía de accesibilidad"
+            aria-label="Accesibilidad, opciones y guía"
           >
             <Icon name="headphones" size={18} />
             <span>Accesibilidad</span>
@@ -404,16 +477,24 @@ export function TerraEcho() {
                 </span>
               </div>
               <div className="hero-copy">
-                <span className="outline-tag">PERÚ / 2025–2026</span>
+                <span className="outline-tag">PERÚ / ARCHIVO 2012–2025</span>
                 <h1>
-                  Escucha los
+                  Escucha las
                   <br />
-                  <em>bosques de Perú.</em>
+                  <em>señales de Perú.</em>
                 </h1>
                 <p>
-                  Explora la huella de los incendios forestales a través de
-                  satélites y sonido.
+                  Imágenes NASA y focos térmicos se convierten en una
+                  experiencia para explorar y escuchar.
                 </p>
+                <button
+                  className="primary-button eic-entry"
+                  onClick={() => navigate("eic")}
+                >
+                  <Icon name="headphones" size={17} />
+                  Escuchar una imagen EIC
+                  <Icon name="arrow" size={15} />
+                </button>
                 <div className="geography-card">
                   <span className="micro">EXPLORACIÓN GEOGRÁFICA</span>
                   <div className="country-field">
@@ -426,7 +507,11 @@ export function TerraEcho() {
                   {regionField}
                   <small>
                     {region === "Perú"
-                      ? "Ámbito: Perú y entorno."
+                      ? isNational
+                        ? "Ámbito: Perú, límites ADM1 simplificados."
+                        : score
+                          ? "Legado 2026: caja geográfica, sin reproducir."
+                          : "Cargando ámbito del archivo…"
                       : `Departamento: ${region}.`}
                   </small>
                 </div>
@@ -587,16 +672,18 @@ export function TerraEcho() {
                   : "El observatorio necesita el archivo de datos."}
               </div>
             )
-          ) : (
+          ) : view === "eic" ? (
             <EicStudio />
+          ) : (
+            <RecentStudio geo={geo} />
           )}
-          {loading && view !== "eic" && (
+          {loading && (view === "explorer" || view === "history") && (
             <div className="data-loading" role="status">
               <span className="status-dot" />
               Cargando archivo satelital…
             </div>
           )}
-          {error && view !== "eic" && (
+          {error && (view === "explorer" || view === "history") && (
             <div className="data-error" role="alert">
               <strong>No se pudo cargar el archivo.</strong>
               <span>{error}</span>
@@ -605,6 +692,17 @@ export function TerraEcho() {
                 <Icon name="reset" size={15} />
               </button>
             </div>
+          )}
+          {geography.error && view !== "eic" && (
+            <p className="error-message" role="alert">
+              {geography.error}
+              <button className="secondary-button" onClick={geography.retry}>
+                Reintentar límites
+              </button>
+            </p>
+          )}
+          {catalogError && view !== "eic" && (
+            <p className="source-warning">{catalogError}</p>
           )}
         </main>
         <aside className="signal-panel" aria-label="Datos de la selección">
@@ -646,7 +744,7 @@ export function TerraEcho() {
                 <span>03</span>
                 <div>
                   <strong>Barrido → estéreo</strong>
-                  <p>Del oeste hacia el este.</p>
+                  <p>De izquierda a derecha en la imagen.</p>
                 </div>
               </div>
               <button
@@ -664,6 +762,13 @@ export function TerraEcho() {
           ) : (
             <>
               {view === "history" && regionField}
+              <p className="archive-quality">
+                {!score
+                  ? "Cargando procedencia del archivo…"
+                  : datasetEntry?.quality === "legacy-unreproduced"
+                    ? "2026 · Exportación heredada: CSV de origen y cobertura sin reproducir. No comparar sus cifras con el archivo nacional regenerado."
+                    : "Archivo NASA SP regenerado · actividad térmica de vegetación. Sin clasificación forestal; cobertura de nubes no certificada."}
+              </p>
               <div className="observation-date">
                 <span>{week ? weekRange(week) : "—"}</span>
                 <small>
@@ -696,11 +801,15 @@ export function TerraEcho() {
                   <span>↗</span>
                 </strong>
                 <p>
-                  {week?.data_gap
-                    ? "Conteo parcial · no interpretable"
-                    : region === "Perú"
-                      ? "Caja geográfica: puede incluir territorio vecino."
-                      : "Detecciones satelitales, no incendios individuales."}
+                  {!week
+                    ? "Cargando el ámbito de la selección…"
+                    : week.data_gap
+                      ? "Conteo parcial · no interpretable"
+                      : region === "Perú"
+                        ? isNational
+                          ? "Perú: registros asignados por punto a límites ADM1 simplificados."
+                          : "Legado: caja geográfica; puede incluir territorio vecino."
+                        : "Detecciones satelitales, no incendios individuales."}
                 </p>
               </div>
               <div className="paired-metrics">
@@ -769,7 +878,7 @@ export function TerraEcho() {
             </>
           )}
           <div className="panel-bottom">
-            {view !== "eic" && (
+            {(view === "explorer" || view === "history") && (
               <button className="eic-teaser" onClick={() => navigate("eic")}>
                 <span className="eic-thumb">
                   <Icon name="wave" size={24} />
@@ -788,16 +897,18 @@ export function TerraEcho() {
             >
               <span className="status-dot" />
               <span>
-                Archivo NASA ·{" "}
-                {year === 2026 ? "datos provisionales" : "serie 2025"}
+                {view === "eic"
+                  ? "Imagen NASA · SVS 5669 · 2025"
+                  : `Archivo NASA · ${year === 2026 ? "legado sin reproducir" : `archivo SP ${year}`}`}
               </span>
               <Icon name="external" size={12} />
             </button>
           </div>
         </aside>
         <div className="lower-deck">
-          {view !== "eic" && score ? (
+          {(view === "explorer" || view === "history") && score ? (
             <Timeline
+              catalog={catalog}
               score={score}
               index={datasetIndex}
               region={region}
@@ -829,7 +940,7 @@ export function TerraEcho() {
               </button>
             </div>
           )}
-          {view !== "eic" && (
+          {(view === "explorer" || view === "history") && (
             <section
               className={`sound-dock ${week?.data_gap ? "no-signal" : ""}`}
               aria-label="Estudio de sonificación"
@@ -854,7 +965,7 @@ export function TerraEcho() {
                 <button
                   className={`play-button ${sound ? "is-playing" : ""}`}
                   onClick={toggleSound}
-                  disabled={!week}
+                  disabled={!week || week.data_gap || !cells.length}
                   aria-label={sound ? "Pausar escucha" : "Escuchar la Tierra"}
                   aria-pressed={sound}
                 >
@@ -863,7 +974,7 @@ export function TerraEcho() {
                 <div className="sound-dock-copy">
                   <strong>
                     {region === "Perú"
-                      ? "Incendios forestales · Perú"
+                      ? "Focos de calor · Perú"
                       : `Señales de ${region}`}
                   </strong>
                   <span>
@@ -871,12 +982,16 @@ export function TerraEcho() {
                       ? `${weekRange(week)} · ${year}`
                       : "Preparando la selección…"}
                   </span>
-                  <small>
-                    {week?.data_gap
-                      ? "DATOS INSUFICIENTES · SILENCIO"
-                      : sound
-                        ? "SONIFICACIÓN ACTIVA"
-                        : "LISTO PARA ESCUCHAR"}
+                  <small role="status">
+                    {!week
+                      ? "CARGANDO DATOS"
+                      : week.data_gap
+                        ? "DATOS INSUFICIENTES · SILENCIO"
+                        : !cells.length
+                          ? "SIN DETECCIONES EN LA SELECCIÓN · SILENCIO"
+                          : sound
+                            ? "SONIFICACIÓN ACTIVA"
+                            : "LISTO PARA ESCUCHAR"}
                   </small>
                 </div>
                 <div
@@ -916,6 +1031,13 @@ export function TerraEcho() {
                   </span>
                 </label>
                 <button
+                  className="secondary-button"
+                  aria-pressed={mono}
+                  onClick={() => setMono((v) => !v)}
+                >
+                  {mono ? "Mono activo" : "Estéreo"}
+                </button>
+                <button
                   className="voice-button"
                   aria-label={
                     speaking
@@ -933,6 +1055,12 @@ export function TerraEcho() {
               <div className="sound-dock-footer">
                 <span>DEL DATO AL SONIDO</span>
                 <span>Detecciones → ritmo</span>
+                <span>
+                  {mix.voices}/{mix.cells} celdas ·{" "}
+                  {Math.round(mix.countShare * 100)} % de detecciones ·{" "}
+                  {Math.round((mix.frpShare ?? 0) * 100)} % de FRP conocida en
+                  la mezcla
+                </span>
                 <span>Anomalía → disonancia</span>
                 <span>
                   <Icon name="headphones" size={12} />
@@ -940,6 +1068,14 @@ export function TerraEcho() {
                 </span>
               </div>
             </section>
+          )}
+          {(view === "explorer" || view === "history") && (
+            <CellTable
+              cells={cells}
+              onInspect={setInspected}
+              onListen={listenCell}
+              onStop={() => engine.current?.stop()}
+            />
           )}
         </div>
       </div>
@@ -984,7 +1120,9 @@ export function TerraEcho() {
       >
         {view === "eic"
           ? "Estudio EIC. Visualización de aerosoles, 19 de agosto de 2025."
-          : selectionText}
+          : view === "recent"
+            ? "Consulta reciente FIRMS. Producto y ventana propios; anomalía histórica no calculada."
+            : selectionText}
       </p>
       {dialog && <InfoDialog kind={dialog} onClose={closeDialog} />}
     </div>

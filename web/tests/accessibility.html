@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>TerraEcho accessibility verification</title>
+    <style>
+      body {
+        font: 14px system-ui;
+        background: #040810;
+        color: #e3edf7;
+      }
+      iframe {
+        width: 390px;
+        height: 820px;
+        border: 1px solid #1d3548;
+      }
+      pre {
+        white-space: pre-wrap;
+        max-width: 1100px;
+      }
+      button {
+        padding: 12px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="view">Vista</label
+    ><select id="view">
+      <option value="eic">EIC</option>
+      <option value="explorer">Archivo</option>
+      <option value="recent">Reciente</option></select
+    ><button id="load">Cargar vista</button
+    ><button id="run">Revisar accesibilidad</button>
+    <pre id="results">Esperando revisión</pre>
+    <iframe
+      id="frame"
+      title="TerraEcho a 390 CSS píxeles"
+      src="/?view=eic"
+    ></iframe>
+    <script src="/qa/axe.min.js"></script>
+    <script>
+      document.querySelector("#load").onclick = () => {
+        document.querySelector("iframe").src =
+          "/?view=" + document.querySelector("#view").value;
+      };
+      document.querySelector("#run").onclick = async () => {
+        try {
+          const w = document.querySelector("iframe").contentWindow;
+          if (!w.axe)
+            await new Promise((resolve, reject) => {
+              const s = w.document.createElement("script");
+              s.src = "/qa/axe.min.js";
+              s.onload = resolve;
+              s.onerror = reject;
+              w.document.head.appendChild(s);
+            });
+          const r = await w.axe.run(w.document, {
+            runOnly: {
+              type: "tag",
+              values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"],
+            },
+          });
+          document.querySelector("#results").textContent = JSON.stringify(
+            {
+              version: r.testEngine.version,
+              violations: r.violations.map((v) => ({
+                id: v.id,
+                impact: v.impact,
+                description: v.description,
+                nodes: v.nodes.map((n) => ({
+                  target: n.target,
+                  summary: n.failureSummary,
+                })),
+              })),
+              passes: r.passes.length,
+              incomplete: r.incomplete.map((v) => v.id),
+            },
+            null,
+            2,
+          );
+        } catch (e) {
+          document.querySelector("#results").textContent = String(e);
+        }
+      };
+    </script>
+  </body>
+</html>

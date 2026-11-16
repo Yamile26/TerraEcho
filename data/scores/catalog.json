@@ -1,0 +1,170 @@
+{
+  "schema_version": "1.0.0",
+  "defaultYear": 2025,
+  "entries": [
+    {
+      "year": 2012,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2012-12-31",
+      "scoreSha256": "6095b086332af460f958a1252e08921a994cad57946f0a228bc80580c6fcf15d"
+    },
+    {
+      "year": 2013,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2013-12-31",
+      "scoreSha256": "737160d557294e36ded6bd49677eab33ca4293a8c87c4bd85837e4ef827f1257"
+    },
+    {
+      "year": 2014,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2014-12-31",
+      "scoreSha256": "f31ff6561aabb9d783ec9558915984b22fccf9781d3a2efc98df47d1b45afd5a"
+    },
+    {
+      "year": 2015,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2015-12-31",
+      "scoreSha256": "1591780ec006d0e36e21fed73ccdcb54262b623bf64bbadb6a29aac522a27bdf"
+    },
+    {
+      "year": 2016,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2016-12-31",
+      "scoreSha256": "7fbcacb3a25e342059c2073c87591c4cc5bb07111cd06bbfbad3acd40fe11633"
+    },
+    {
+      "year": 2017,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2017-12-31",
+      "scoreSha256": "7fba21229e584e0282544c8ce4e096dfbe1b06a9e4da8c4e80b9567c99b7a982"
+    },
+    {
+      "year": 2018,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2018-12-31",
+      "scoreSha256": "755b2c2a1b82c0ca8987d1d4d42640eac376bd89a31e853b677b4bd427e0ed44"
+    },
+    {
+      "year": 2019,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2019-12-31",
+      "scoreSha256": "465b22e3021441891afbaf875e46260958f380e970daad67a50eed834f5b96f5"
+    },
+    {
+      "year": 2020,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2020-12-31",
+      "scoreSha256": "db72ec8a3a2608e6617e1e22b8bd07440316ec7cd5e9506e005b9531d6c3b1f3"
+    },
+    {
+      "year": 2021,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2021-12-31",
+      "scoreSha256": "6cc9aec7e0f7d8752a17462edf67fb224b89abe5ba87e83b48ec5e584187645f"
+    },
+    {
+      "year": 2022,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2022-12-30",
+      "scoreSha256": "77f9bf2a566bbe30f0ccf135edae0a354485adb35c7d9f431414f6384d10a9ba"
+    },
+    {
+      "year": 2023,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2023-12-31",
+      "scoreSha256": "d6093d9a82421b029e9a2a3cbbcc8a4b38dfd1b1e15ab6b3399fc3272011194b"
+    },
+    {
+      "year": 2024,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2024-12-31",
+      "scoreSha256": "6e22fef42a97918ec9450a1053708ea53634a8f169daa2c34febc991fcdc9d15"
+    },
+    {
+      "year": 2025,
+      "weeks": 52,
+      "source": "NASA FIRMS SP",
+      "scope": "peru-admin1-point-clipped",
+      "quality": "reprocessed-source-archive",
+      "storage": "gzip",
+      "coverage": "reported gaps checked; cloud coverage unknown",
+      "lastObservation": "2025-12-31",
+      "scoreSha256": "fbbff8dfaec00ba2d5a4b4354ed8d7c9ec8c7c3c376b18c0d619398a048d8fdc"
+    },
+    {
+      "year": 2026,
+      "weeks": 44,
+      "source": "Team legacy export; raw source unavailable",
+      "scope": "bounding-box",
+      "quality": "legacy-unreproduced",
+      "coverage": "Unverified heuristically flagged gaps",
+      "lastObservation": "2026-10-29",
+      "scoreSha256": "8c0b25230ff14a63221725e3e6d3f537e87ceb5a91d8cfca415f65e3c1b95f24"
+    }
+  ]
+}
