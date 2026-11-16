@@ -239,6 +239,7 @@ export function RecentStudio({ geo }: { geo: GeoCollection | null }) {
               value={region}
               onChange={(e) => {
                 setRegion(e.target.value);
+                setPlaying(false);
                 setInspected(null);
                 setPage(0);
               }}
@@ -258,6 +259,10 @@ export function RecentStudio({ geo }: { geo: GeoCollection | null }) {
             <div className="recent-summary">
               <span className="micro">DETECCIONES REGISTRADAS</span>
               <strong>{number(observations.length)}</strong>
+              <p role="status">
+                {region === "Perú" ? "Todos los departamentos" : region}: {number(observations.length)} detecciones en la ventana consultada.
+                {observations.length === 0 && " Cero registros no demuestra ausencia de fuego."}
+              </p>
               <p>
                 FRP de registros conocidos: {number(frp)} MW sumados.{" "}
                 {observations.filter((o) => o.frp === null).length} con FRP

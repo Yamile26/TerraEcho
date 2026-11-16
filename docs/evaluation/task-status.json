@@ -143,8 +143,8 @@
       "id": "F02",
       "status": "parcial",
       "title": "Datos recientes al mapa y audio",
-      "evidence": "API pública NOAA-20 real comprobada con 174 detecciones. La recarga del navegador detectó activos comprimidos ilegibles; el adaptador sirve ahora bytes originales y delega la compresión de transporte al host. Tres regresiones HTML/JSON/binario/cache añadidas; 37 pruebas y tipos pasan. Recorrido público pendiente de publicar la corrección.",
-      "remaining": "Publicar la corrección de transporte y verificar con NASA real el recorrido de departamento, mapa, tabla y audio."
+      "evidence": "Versión pública 4: recorrido NOAA-20 real con 174 detecciones, Madre de Dios 18 registros/7 celdas, reproducción/pausa y El Callao cero registros con audio desactivado. Se corrige además el anuncio no visual que conservaba una anomalía del archivo; cambiar departamento pausa el audio y anuncia el total propio.",
+      "remaining": "Publicar y comprobar las correcciones finales de anuncio y cambio regional antes de cerrar la tarea."
     },
     {
       "id": "F03",
