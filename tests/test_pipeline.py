@@ -176,5 +176,22 @@ def test_data_gap_weeks_are_silent():
         render(score, os.path.join(tmp, "g.wav"))
 
 
+def test_foreign_detections_are_clipped():
+    """Rectangle downloads include neighbouring countries; those points must be dropped."""
+    import pandas as pd
+    geo = os.path.join(ROOT, "data", "peru_departments.geojson")
+    with tempfile.TemporaryDirectory() as tmp:
+        base = dict(bright_ti4=330, acq_time="1800", satellite="N", instrument="VIIRS",
+                    confidence="n", frp=5.0, daynight="D", acq_date="2026-09-01", version="2.0NRT")
+        pd.DataFrame([
+            dict(latitude=-8.38, longitude=-74.55, **base),    # Pucallpa, Peru
+            dict(latitude=-9.25, longitude=-68.75, **base),    # Acre, Brazil
+            dict(latitude=-11.0, longitude=-68.0, **base),     # Pando, Bolivia (outside bbox east edge check)
+            dict(latitude=-16.40, longitude=-71.54, **base),   # Arequipa, Peru
+        ]).to_csv(os.path.join(tmp, "a.csv"), index=False)
+        df = P.load_firms(tmp, clip_geojson=geo)
+        assert len(df) == 2 and (df.longitude < -71).all(), df
+
+
 if __name__ == "__main__":
-    test_end_to_end(); test_dissonance_bounds(); test_regions(); test_missing_year_is_masked(); test_frames_colour_layers(); test_nrt_overlap_and_static_sources(); test_data_gap_weeks_are_silent(); print("all tests passed")
+    test_end_to_end(); test_dissonance_bounds(); test_regions(); test_missing_year_is_masked(); test_frames_colour_layers(); test_nrt_overlap_and_static_sources(); test_data_gap_weeks_are_silent(); test_foreign_detections_are_clipped(); print("all tests passed")

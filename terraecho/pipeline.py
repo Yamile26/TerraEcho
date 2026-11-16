@@ -52,8 +52,32 @@ class Grid:
         return self.south + (i + 0.5) * self.res, self.west + (j + 0.5) * self.res
 
 
+def clip_to_country(df: pd.DataFrame, geojson_path: str, buffer_deg: float = 0.02) -> pd.DataFrame:
+    """Keep only detections inside the country outline (union of the polygons in the file).
+
+    Yearly FIRMS country files are already clipped, but API and area downloads
+    cover a rectangle and bring in fires from neighbouring countries. Clipping
+    every year with the same outline keeps all years comparable.
+    """
+    import shapely
+    from shapely.geometry import shape
+    from shapely.ops import unary_union
+
+    with open(geojson_path, encoding="utf-8") as f:
+        gj = json.load(f)
+    outline = unary_union([shape(ft["geometry"]) for ft in gj["features"]]).buffer(buffer_deg)
+    shapely.prepare(outline)
+    inside = shapely.contains_xy(outline, df.longitude.to_numpy(), df.latitude.to_numpy())
+    if (~inside).any():
+        lost = df.loc[~inside, "acq_date"].dt.year.value_counts().sort_index()
+        detail = ", ".join(f"{y}: {n:,}" for y, n in lost.items() if n >= 100)
+        print(f"note: dropped {int((~inside).sum()):,} detections outside the country outline ({detail})")
+    return df[inside]
+
+
 def load_firms(raw_dir: str, bbox=PERU_BBOX, satellite: str | None = "N",
-               drop_low_confidence: bool = True) -> pd.DataFrame:
+               drop_low_confidence: bool = True,
+               clip_geojson: str | None = "data/peru_departments.geojson") -> pd.DataFrame:
     """Read every FIRMS CSV in raw_dir into one clean table.
 
     satellite: keep one platform so the record is consistent across years
@@ -78,6 +102,11 @@ def load_firms(raw_dir: str, bbox=PERU_BBOX, satellite: str | None = "N",
 
     w, s, e, n = bbox
     df = df[(df.longitude >= w) & (df.longitude < e) & (df.latitude >= s) & (df.latitude < n)]
+
+    if clip_geojson and os.path.exists(clip_geojson):
+        df = clip_to_country(df, clip_geojson)
+    elif clip_geojson:
+        print(f"WARNING: {clip_geojson} not found; data is NOT clipped to the country outline")
 
     # Near real-time (NRT) rows are provisional. Where science-quality (SP) rows
     # exist for the same dates, keep SP only, so no day is counted twice.
