@@ -26,6 +26,8 @@ The app works with the existing score exports without a FIRMS key or a running P
 
 See [web architecture and independent workstreams](docs/WEB_ARCHITECTURE.md), [API contract](docs/API_CONTRACT.md), [run/deployment guide](docs/DEPLOYMENT.md), [asset credits](docs/ASSETS.md) and [validation notes](docs/VALIDATION.md). No production deployment has been created.
 
+Guías en español: [arranque en Windows, ramas y fuentes de datos](docs/DESARROLLO_LOCAL.md) e [inventario priorizado de pendientes](docs/PENDIENTES_WEB.md). `main` y `develop` ya existen; la web está en `feat/terraecho-web-experience` y su PR #1 apunta a `develop`.
+
 ## Data core (this folder)
 
 The data core turns NASA fire hotspots into musical parameters. It does not depend on the web app.
