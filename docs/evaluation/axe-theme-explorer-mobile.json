@@ -1,0 +1,10 @@
+{
+  "view": "explorer",
+  "version": "4.14.0",
+  "violations": [],
+  "passes": 27,
+  "incomplete": [
+    "color-contrast",
+    "target-size"
+  ]
+}

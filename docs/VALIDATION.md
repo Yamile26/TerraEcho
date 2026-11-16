@@ -1,6 +1,6 @@
 # Evidencia de validación de la entrega
 
-Revisión 16-nov-2026 UTC. Ver el historial Git y [registro de53 tareas](ESTADO_53_TAREAS.md) para distinguir funciones y validaciones pendientes. Las capturas anteriores a `terraecho-release-*` corresponden a estados previos.
+Este documento conserva comprobaciones históricas de la entrega. El estado vigente está en el [registro de 53 tareas](ESTADO_53_TAREAS.md). La corrección del tema azul marino/turquesa se registra en `evaluation/theme-restoration-check.json`; las capturas históricas conservan su contexto original.
 
 | Comprobación | Resultado real |
 | --- | --- |
@@ -21,7 +21,7 @@ Se comprobaron: entrada EIC, tres lecturas, aislamiento/máscaras, transporte po
 
 Axe-core4.14.0, reglas WCAG2A/AA,2.1A/AA y2.2AA: cero infracciones detectadas en EIC, explorador y reciente en iframe390 CSS px. Se guardaron informes; algunos items requieren revisión manual (`incomplete`: contraste sobre imagen, atributos o tamaño de objetivo según vista). En explorador y EIC el documento midió380px de viewport y380px de contenido, reservándose el scrollbar del iframe. Esto prueba esa anchura, no todos los zoom/dispositivos ni conformidad WCAG integral.
 
-La paleta final usa acento `#C5ECA3` y superficies oscuras verdosas. Las capturas finales se guardan en `docs/screenshots/terraecho-release-*.jpg`. El navegador no ofrece WebGL acelerado: se ejercitó la esfera compatible. La corrección de raycast/oclusión necesita comprobación GPU real; no se atribuye una prueba acelerada a esas capturas.
+Las capturas `docs/screenshots/terraecho-release-*.jpg` documentan la revisión histórica con paleta verde, posteriormente corregida porque no correspondía a la referencia de la usuaria. La paleta vigente usa fondo `#040810`, paneles `#0A1623` y acento turquesa `#53E7DE`; ver [THEME.md](THEME.md). El navegador no ofrece WebGL acelerado: se ejercitó la esfera compatible. La corrección de raycast/oclusión necesita comprobación GPU real; no se atribuye una prueba acelerada a esas capturas.
 
 ## Hallazgos científicos que limitan la interpretación
 
@@ -42,3 +42,9 @@ La demo HTTPS fue abierta sin login, cargó el archivo2025 y los activos EIC, co
 Continuación F01: el comprobador de conexión ahora rechaza HTTP 200 con JSON incompleto, snapshot, producto distinto, fechas/ámbito incorrectos, conteos incompatibles, FRP u observaciones inválidas. Conserva los ceros válidos y la disponibilidad desconocida sin afirmar cobertura total. Solo escribe campos permitidos y códigos de error conocidos. Ocho pruebas nuevas con fixtures sintéticos verifican estos casos, respuestas HTML, fallos de red y rechazo de orígenes con credenciales antes de consultar. `npm run test:web`: **29 pruebas pasan**; `npm run typecheck`: pasa. Estos fixtures no se guardan como evidencia de una consulta NASA real. F01 sigue parcial hasta ejecutar el comando en el servidor del equipo con su clave local.
 
 Participantes reales ciegos/baja visión, comprensión y confort, lectores/voz/zoom/tacto en equipos reales, evaluación independiente de máscaras, sincronización GPU+audio, nueva consulta NASA con la clave del equipo, hosting completo con secreto, licencia aprobada y envío oficial. El [protocolo](evaluation/PROTOCOL.md) y los comprobadores están preparados. No se presentan fixtures ni ausencia de resultados como evidencia positiva.
+
+## Restauración de la referencia azul marino y turquesa
+
+Se restauran los tokens del commit `da3a282` y se eliminan los tres colores verdes independientes de los controles desactivados. Las cuatro vistas de escritorio muestran fondo `#040810`, panel `#0A1623` y acento `#53E7DE`, sin desbordamiento horizontal en la anchura revisada. En iframe de 390 CSS px, el documento interior midió 380 px de viewport y contenido. Axe 4.14.0 no detectó infracciones en EIC, archivo y reciente; EIC conserva dos categorías `incomplete` y archivo dos, que requieren revisión manual.
+
+Las 38 pruebas web, tipos y build Worker pasan. Los datos y archivos científicos no se modifican. La fuente visual aportada queda versionada en `docs/design/terraecho-reference-navy-cyan.png`; la evidencia y sus límites están en `evaluation/theme-restoration-check.json`. Las capturas `terraecho-navy-cyan-*.jpg` representan esta corrección.

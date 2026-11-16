@@ -1,0 +1,133 @@
+{
+  "checkedAt": "2026-11-16T04:29:08.878970+00:00",
+  "task": "Restore the user-approved navy/cyan interface across all views",
+  "basedOnDevelop": "9fa235247e606bf10cc3b497b6948f3ef3beeb72",
+  "restoredPaletteFrom": "da3a2827feaf797cf8ced8f4d7381b91d2084e67",
+  "incorrectPaletteIntroducedBy": "033f30f364f81db22ecb31d39e51e6552aecd1ce",
+  "reference": {
+    "path": "docs/design/terraecho-reference-navy-cyan.png",
+    "sha256": "2b6dc79b6400088a6d7b8a087b848c8abffdf999f19f11611b07e9bf14e21d2b"
+  },
+  "desktopViews": [
+    {
+      "view": "Explorador",
+      "bg": "#040810",
+      "panel": "#0a1623",
+      "accent": "#53e7de",
+      "bodyBackground": "rgb(4, 8, 16)",
+      "viewport": 1353,
+      "content": 1353
+    },
+    {
+      "view": "Observatorio",
+      "accent": "#53e7de",
+      "bg": "#040810",
+      "content": 1353,
+      "disabled": {
+        "background": "rgb(13, 32, 48)",
+        "color": "rgb(140, 164, 183)"
+      },
+      "panel": "#0a1623",
+      "viewport": 1353
+    },
+    {
+      "view": "Jukebox EIC",
+      "accent": "#53e7de",
+      "bg": "#040810",
+      "content": 1353,
+      "disabled": {
+        "background": "rgb(13, 32, 48)",
+        "color": "rgb(140, 164, 183)"
+      },
+      "panel": "#0a1623",
+      "viewport": 1353
+    },
+    {
+      "view": "Datos recientes",
+      "accent": "#53e7de",
+      "bg": "#040810",
+      "content": 1363,
+      "disabled": null,
+      "panel": "#0a1623",
+      "viewport": 1363
+    }
+  ],
+  "mobile": {
+    "iframeWidthCssPx": 390,
+    "innerViewportCssPx": 380,
+    "contentWidthCssPx": 380,
+    "horizontalOverflow": false,
+    "axe": [
+      {
+        "view": "eic",
+        "report": "docs/evaluation/axe-theme-eic-mobile.json",
+        "version": "4.14.0",
+        "violations": 0,
+        "passes": 30,
+        "incomplete": [
+          "aria-prohibited-attr",
+          "color-contrast"
+        ]
+      },
+      {
+        "view": "explorer",
+        "report": "docs/evaluation/axe-theme-explorer-mobile.json",
+        "version": "4.14.0",
+        "violations": 0,
+        "passes": 27,
+        "incomplete": [
+          "color-contrast",
+          "target-size"
+        ]
+      },
+      {
+        "view": "recent",
+        "report": "docs/evaluation/axe-theme-recent-mobile.json",
+        "version": "4.14.0",
+        "violations": 0,
+        "passes": 27,
+        "incomplete": []
+      }
+    ]
+  },
+  "checks": {
+    "webTests": 38,
+    "webTestsPassed": true,
+    "typecheck": "passed",
+    "workerBuild": "passed",
+    "themeValuesAlsoUsedBy": [
+      "CSS",
+      "Three.js",
+      "Canvas compatible globe",
+      "SVG maps and timelines"
+    ],
+    "disabledControlsUseSharedTokens": true
+  },
+  "screenshots": [
+    {
+      "view": "explorer",
+      "path": "docs/screenshots/terraecho-navy-cyan-explorer.jpg",
+      "sha256": "f2e21325061da5a76e3c47df36527e189af0be5e5339b327fa011b4f9f4344d0"
+    },
+    {
+      "view": "eic",
+      "path": "docs/screenshots/terraecho-navy-cyan-eic.jpg",
+      "sha256": "6381e5a0f4df8973c4d15e8c19a18eef3e04f2bd3351282e656bb244ce910423"
+    },
+    {
+      "view": "recent",
+      "path": "docs/screenshots/terraecho-navy-cyan-recent.jpg",
+      "sha256": "8ccf5d1c599ec93e3bfa0492d37246f14f429448655711361121fe708fff7a7d"
+    },
+    {
+      "view": "mobile",
+      "path": "docs/screenshots/terraecho-navy-cyan-mobile.jpg",
+      "sha256": "fd52b968c8eccf456f1fc60b74bfab42f0c3b40f4eccad1ccb22ad46eb2e6c6e"
+    }
+  ],
+  "limits": [
+    "Browser used the compatible globe; physical accelerated WebGL remains unverified.",
+    "Axe incomplete items require manual review; no full WCAG certification is claimed.",
+    "Scientific source-image colors keep their source meaning; interface tokens are the restored approved palette."
+  ]
+}
