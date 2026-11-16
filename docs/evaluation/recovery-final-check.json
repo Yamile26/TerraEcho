@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-11-16T04:04:29.927Z",
+  "site": "https://terraecho-earth-jukebox.dotingchime4.chatgpt.site",
+  "versionNumber": 6,
+  "deployedSourceCommit": "e5a3e637642e727f9e17898b88040c0017c60618",
+  "deploymentId": "appgdep_6afa80923eb081918320348bfd1abd77",
+  "deploymentStatus": "succeeded",
+  "assets": [
+    {
+      "path": "/",
+      "http": 200,
+      "bytes": 27621,
+      "sha256": "4accac15941d6a83698b8c651aa724ee2d63266292fa89ca8caa0c6a7a7b36fe",
+      "matchesSourceBytes": true
+    },
+    {
+      "path": "/eic/pieces/catalog.json",
+      "http": 200,
+      "bytes": 3052,
+      "sha256": "cf7c418b7acafe1fa04d175a86d4cf71054b87c24bdddb38b0df59afa3787b28",
+      "matchesSourceBytes": true
+    },
+    {
+      "path": "/eic/aerosols.png",
+      "http": 200,
+      "bytes": 2768951,
+      "sha256": "0c6a8f6c46fb52a2f9a636bbd804fc6e5e23454dcb2f0d3fe04c653c772e8a7a",
+      "matchesSourceBytes": true
+    }
+  ],
+  "eicSource": {
+    "originalDownloadedAt": null,
+    "verifiedReacquisition": {
+      "retrievedAt": "2026-11-16T03:58:08.014Z",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_2025-08-19T20_00_00_1920x1080.png",
+      "sha256": "0c6a8f6c46fb52a2f9a636bbd804fc6e5e23454dcb2f0d3fe04c653c772e8a7a"
+    },
+    "pieces": [
+      "aerosols-global",
+      "aerosols-smoke",
+      "aerosols-south-america"
+    ]
+  },
+  "live": {
+    "checkedAt": "2026-11-16T04:04:28.061Z",
+    "http": 200,
+    "responseValid": true,
+    "product": "VIIRS_NOAA20_NRT",
+    "start": "2026-11-14",
+    "end": "2026-11-16",
+    "serverRetrievedAt": "2026-11-16T04:04:29.759Z",
+    "detections": 174,
+    "anomalyComputed": false,
+    "coverageStatus": "product availability unverified; cloud coverage unknown",
+    "errorCode": null,
+    "note": "A valid server response does not establish absence of fire or complete observation coverage. NASA source availability and participant validation remain separate checks."
+  },
+  "ci": {
+    "commit": "e5a3e637642e727f9e17898b88040c0017c60618",
+    "workflowRun": 43801644680,
+    "status": "completed",
+    "conclusion": "success"
+  }
+}

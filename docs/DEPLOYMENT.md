@@ -5,8 +5,8 @@
 ```bash
 cd ~/projects/TerraEcho
 git fetch origin
-git switch feat/terraecho-web-experience
-git pull --ff-only origin feat/terraecho-web-experience
+git switch feat/terraecho-recovery
+git pull --ff-only origin feat/terraecho-recovery
 npm ci
 [ -f web/.env.local ] || cp web/.env.example web/.env.local
 nano web/.env.local
@@ -17,10 +17,18 @@ En Ubuntu se usa `npm`, no `npm.cmd`. Mantener Node y npm instalados dentro de W
 
 ## Web completa con servidor
 
+La publicación principal usa ahora un Worker con la misma interfaz Next exportada y el mismo proveedor FIRMS TypeScript. `npm run build` genera un ES module autocontenido con los activos comprimidos; `.openai/hosting.json` mantiene el identificador/audiencia existentes y declara `DB` para el presupuesto global. La migración versionada crea una sola fila de cuota, sin almacenar claves ni observaciones. Una sentencia UPSERT atómica admite diez consultas por minuto entre instancias; si falta la base o falla, la API reciente no llama a NASA. EIC y archivo siguen disponibles.
+
+Configurar `FIRMS_MAP_KEY` como secreto de ejecución del servicio de publicación. No se incorpora al build, los activos, la cuota ni las respuestas. Verificar `/api/health` y ejecutar el comprobador contra el origen HTTPS publicado. La API conserva las diferencias entre NOAA-20/21 y el archivo histórico, sin anomalías recientes inventadas.
+
+La [publicación completa HTTPS](https://terraecho-earth-jukebox.dotingchime4.chatgpt.site) está comprobada hasta la versión 6, fuente `e5a3e637642e727f9e17898b88040c0017c60618`; `recovery-final-check.json` registra la comprobación final y la adquisición EIC nueva. La versión 5 conserva la comprobación detallada del recorrido reciente. `public-https-check.json` registra bytes originales de HTML, imagen NASA, catálogo EIC y snapshots 2012/2025; `firms-host-check.json` registra la API y `recent-browser-check.json` el recorrido real de mapa, tabla y audio. Los activos quedan comprimidos dentro del bundle; el handler los decodifica antes de responder para que la pasarela controle la compresión de transporte. Esto corrige la recarga que mostraba bytes gzip en la versión 3.
+
+La alternativa Node/Next existente se construye con `npm run build:node` y se ejecuta con `npm start`:
+
 ```bash
 npm run test:web
 npm run typecheck
-npm run build
+npm run build:node
 npm start
 ```
 
@@ -28,19 +36,19 @@ Necesita Node 22+, dependencias, `.next` y `web/public`. No es un sitio purament
 
 ## Demo EIC/archivo independiente
 
-[Demo pública HTTPS](https://terraecho-earth-jukebox.dotingchime4.chatgpt.site), desplegada y probada desde el navegador. Ver `docs/evaluation/public-demo-check.json` para la versión y comprobación de exportación.
+El generador estático se conserva como alternativa independiente. La URL principal ya sirve la aplicación completa con servidor. `docs/evaluation/public-demo-check.json` conserva la comprobación histórica de la primera edición estática y su exportación WAV; no describe el alcance actual del host.
 
 ```bash
 node web/scripts/build-archive-demo.mjs
 ```
 
-Genera `dist/` a partir de la misma aplicación Next mediante una copia temporal saneada, excluyendo `.env`, API y QA. No cambia el código del servidor completo. Usa snapshots estáticos, incluye imágenes, audio sintetizado y exportación WAV; la sección reciente explica que requiere servidor. `.openai/hosting.json` identifica el hosting de esa demo. No guardar una clave allí ni anunciar API reciente activa en esa edición.
+Genera `dist/` a partir de la misma aplicación Next mediante una copia temporal saneada, excluyendo `.env`, API y QA. No cambia el código del servidor completo. Usa snapshots estáticos, incluye imágenes, audio sintetizado y exportación WAV; la sección reciente explica que requiere servidor. Ese resultado no reemplaza el artefacto Worker de la publicación principal. No guardar una clave allí ni anunciar API reciente activa en esa edición.
 
 ## Cierre de publicación
 
 1. CI: contratos Python, huellas de los 14 archivos SP, tests web, tipos y build limpio.
 2. `/api/health`: presencia de variable, sin secretos. No es una prueba NASA.
-3. En host Node, ejecutar `node web/scripts/check-live.mjs http://localhost:3000` para consultar NOAA-20, ventana explícita, y guardar HTTP/producto/fecha/conteo sin clave en `out/firms-connection.json`. Un 200 vacío no prueba ausencia de fuego. SNPP no tiene datos nuevos después del 2-nov-2026.
+3. Contra el origen publicado o Node local, ejecutar `node web/scripts/check-live.mjs http://localhost:3000` para consultar NOAA-20, ventana explícita, y guardar HTTP/producto/fecha/conteo sin clave en `out/firms-connection.json`. Usar el origen raíz sin ruta, credenciales, parámetros ni fragmento. El comando solo termina con código 0 si `responseValid` es `true`: comprueba producto, modo, fechas, ámbito, observaciones, FRP desconocida, disponibilidad y reconciliación de conteos. Un HTTP 200 con JSON incompleto, HTML estático o un snapshot termina con código 1 y no se registra como consulta válida. `serverRetrievedAt` distingue adquisición del servidor de la hora de comprobación. Los errores se limitan a códigos conocidos; no se copia texto del proveedor. Un 200 vacío válido no prueba ausencia de fuego. SNPP no tiene datos nuevos después del 2-nov-2026.
 4. EIC: cambiar pieza/capa, pausa/seek, mono, WAV y recargar enlace compartido.
 5. Archivo: 2012 gap inicial, 2024 caso contextual, 2025 y aviso del legado 2026.
 6. WebGL en dispositivo real, alternativa 2D, teclado/lector y móvil. Las pruebas del navegador de revisión usaron render compatible.

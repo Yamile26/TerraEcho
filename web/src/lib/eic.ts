@@ -108,6 +108,15 @@ export function parseEicCatalog(value: unknown): EicCatalog {
     d.pieces.length > 12
   )
     throw new Error("Catálogo EIC inválido.");
+  const acquisition = d.source.verifiedReacquisition;
+  if (acquisition !== undefined && acquisition !== null && (
+    typeof acquisition !== "object" || Array.isArray(acquisition) ||
+    acquisition.url !== "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_2025-08-19T20_00_00_1920x1080.png" ||
+    acquisition.sha256 !== d.source.sha256 ||
+    typeof acquisition.retrievedAt !== "string" ||
+    !Number.isFinite(Date.parse(acquisition.retrievedAt)) ||
+    new Date(acquisition.retrievedAt).toISOString() !== acquisition.retrievedAt
+  )) throw new Error("Adquisición verificada EIC inválida.");
   const seen = new Set<string>();
   for (const p of d.pieces) {
     if (

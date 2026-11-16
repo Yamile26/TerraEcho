@@ -1120,7 +1120,9 @@ export function TerraEcho() {
       >
         {view === "eic"
           ? "Estudio EIC. Visualización de aerosoles, 19 de agosto de 2025."
-          : selectionText}
+          : view === "recent"
+            ? "Consulta reciente FIRMS. Producto y ventana propios; anomalía histórica no calculada."
+            : selectionText}
       </p>
       {dialog && <InfoDialog kind={dialog} onClose={closeDialog} />}
     </div>

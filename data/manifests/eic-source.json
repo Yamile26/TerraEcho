@@ -34,7 +34,16 @@
       "mode": "RGB",
       "media_type": "image/png",
       "original_downloaded_at_utc": null,
-      "original_download_note": "Original acquisition time is not recorded. File modification times and embedded editing dates are not download timestamps."
+      "original_download_note": "Original acquisition time is not recorded. File modification times and embedded editing dates are not download timestamps.",
+      "verified_reacquisition": {
+        "retrieved_at_utc": "2026-11-16T03:58:08.014Z",
+        "source_url": "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_2025-08-19T20_00_00_1920x1080.png",
+        "http_status": 200,
+        "sha256": "0c6a8f6c46fb52a2f9a636bbd804fc6e5e23454dcb2f0d3fe04c653c772e8a7a",
+        "bytes": 2768951,
+        "matches_local_bytes": true,
+        "original_acquisition_time_recovered": false
+      }
     },
     "legend": {
       "role": "official category legend; not a numeric concentration scale",
@@ -49,7 +58,13 @@
       "mode": "RGBA",
       "media_type": "image/png",
       "original_downloaded_at_utc": null,
-      "original_download_note": "Original acquisition time is not recorded. File modification times and embedded editing dates are not download timestamps."
+      "original_download_note": "Original acquisition time is not recorded. File modification times and embedded editing dates are not download timestamps.",
+      "latest_reacquisition_attempt": {
+        "checked_at_utc": "2026-11-16T03:58:11.468Z",
+        "source_url": "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_cbar.png",
+        "http_status": 503,
+        "matches_local_bytes": false
+      }
     },
     "print_variant": {
       "role": "alternate print composition; not the source of the audited score",
@@ -64,15 +79,22 @@
       "mode": "RGB",
       "media_type": "image/png",
       "original_downloaded_at_utc": null,
-      "original_download_note": "Original acquisition time is not recorded. File modification times and embedded editing dates are not download timestamps."
+      "original_download_note": "Original acquisition time is not recorded. File modification times and embedded editing dates are not download timestamps.",
+      "latest_reacquisition_attempt": {
+        "checked_at_utc": "2026-11-16T03:58:11.476Z",
+        "source_url": "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_2025-08-19T20_00_00_1500x1179_72dpi.png",
+        "http_status": 503,
+        "matches_local_bytes": false
+      }
     }
   },
   "provenance_verification": {
-    "status": "official_page_links_and_dimensions_verified_local_files_fingerprinted",
+    "status": "official_source_frame_reacquired_and_byte_matched_auxiliary_assets_unverified",
     "official_frame_and_legend_links_opened_on_utc": "2026-11-16",
     "upstream_byte_equality_verified": false,
-    "upstream_byte_equality_note": "Direct binary re-downloads of the frame and legend returned HTTP 503 during this audit. The hashes identify repository files; they do not claim a newly verified byte match to the remote server.",
-    "original_download_timestamp_known": false
+    "upstream_byte_equality_note": "The source frame was re-downloaded from its official NASA URL and matched byte for byte on 2026-11-16 UTC. The legend and print variant returned HTTP 503 on that attempt. The original acquisition time remains unknown; this records a separate new verified acquisition.",
+    "original_download_timestamp_known": false,
+    "evidence": "docs/evaluation/eic-reacquisition-check.json"
   },
   "credits": {
     "source_credit_line": "NASA's Global Modeling Assimilation Office (GMAO) and NASA's Scientific Visualization Studio (SVS)",

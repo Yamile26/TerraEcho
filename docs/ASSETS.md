@@ -2,7 +2,7 @@
 
 | Activo | Procedencia, función y límites |
 | --- | --- |
-| Imagen EIC original | NASA GMAO / Scientific Visualization Studio, [GEOS Aerosols, SVS 5669](https://svs.gsfc.nasa.gov/5669/), Joseph V. Ardizzone, Helen-Nicole Kostis; asesoría Lesley Ott. Frame 2025-08-19 20:00 UTC, GEOS-FP 2 km Replay, publicación 2026-08-10. Huella y fuentes en `data/manifests/eic-source.json`. Fecha original de descarga desconocida; no se inventó. |
+| Imagen EIC original | NASA GMAO / Scientific Visualization Studio, [GEOS Aerosols, SVS 5669](https://svs.gsfc.nasa.gov/5669/), Joseph V. Ardizzone, Helen-Nicole Kostis; asesoría Lesley Ott. Frame 2025-08-19 20:00 UTC, GEOS-FP 2 km Replay, publicación 2026-08-10. Huella y fuentes en `data/manifests/eic-source.json`. Fecha original de descarga desconocida. Nueva adquisición del frame verificada byte a byte: 2026-11-16 03:58:08.014 UTC, registrada por separado en `eic-reacquisition-check.json`. |
 | Máscaras, crop y partituras | Derivados de ese mismo activo mediante reglas HSV de TerraEcho. Tres lecturas, no tres fechas/datasets. No son concentraciones ni clasificación atmosférica validada. |
 | Audio | Síntesis original de parámetros TerraEcho. No se extrae música ni pista sonora de vídeos NASA. Inspiración: [Caldwell 73, SVS 13786](https://svs.gsfc.nasa.gov/13786/), NASA/CXC/SYSTEM Sounds (M. Russo, A. Santaguida). Su radar rotatorio no es nuestro barrido lineal: se reconoce la adaptación, no se atribuye el concepto original. |
 | FIRMS 2012–2025 | NASA FIRMS VIIRS Suomi NPP 375 m, Collection 2, Standard Processing. URL, UTC de adquisición, hash, filas y cobertura en manifiestos; datos crudos descargables, no versionados. |

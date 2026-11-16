@@ -48,6 +48,21 @@ test("malformed EIC audio parameters and arbitrary asset URLs are rejected", () 
   c.pieces[0].image = "https://unknown.example/image.png";
   assert.throws(() => parseEicCatalog(c));
 });
+test("verified reacquisition stays separate from original acquisition and rejects mismatched evidence", () => {
+  const c = catalog();
+  assert.equal(c.source.originalDownloadedAt, null);
+  assert.ok(c.source.verifiedReacquisition);
+  assert.equal(c.source.verifiedReacquisition.sha256, c.source.sha256);
+  for (const mutation of [
+    { retrievedAt: "2026-02-30T00:00:00.000Z" },
+    { url: "https://unknown.example/frame.png" },
+    { sha256: "0".repeat(64) },
+  ]) {
+    const changed = structuredClone(c);
+    Object.assign(changed.source.verifiedReacquisition!, mutation);
+    assert.throws(() => parseEicCatalog(changed));
+  }
+});
 test("audio clock scheduling skips expired notes and is independent of UI tick count", () => {
   let now = 10;
   const t = new AudioTimeline(104, 0.25, () => now),

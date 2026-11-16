@@ -39,4 +39,6 @@ La demo HTTPS fue abierta sin login, cargó el archivo2025 y los activos EIC, co
 
 ## Evidencia aún necesaria
 
+Continuación F01: el comprobador de conexión ahora rechaza HTTP 200 con JSON incompleto, snapshot, producto distinto, fechas/ámbito incorrectos, conteos incompatibles, FRP u observaciones inválidas. Conserva los ceros válidos y la disponibilidad desconocida sin afirmar cobertura total. Solo escribe campos permitidos y códigos de error conocidos. Ocho pruebas nuevas con fixtures sintéticos verifican estos casos, respuestas HTML, fallos de red y rechazo de orígenes con credenciales antes de consultar. `npm run test:web`: **29 pruebas pasan**; `npm run typecheck`: pasa. Estos fixtures no se guardan como evidencia de una consulta NASA real. F01 sigue parcial hasta ejecutar el comando en el servidor del equipo con su clave local.
+
 Participantes reales ciegos/baja visión, comprensión y confort, lectores/voz/zoom/tacto en equipos reales, evaluación independiente de máscaras, sincronización GPU+audio, nueva consulta NASA con la clave del equipo, hosting completo con secreto, licencia aprobada y envío oficial. El [protocolo](evaluation/PROTOCOL.md) y los comprobadores están preparados. No se presentan fixtures ni ausencia de resultados como evidencia positiva.

@@ -25,6 +25,7 @@ jobs:
       - run: npm ci
       - run: npm run test:web
       - run: npm run typecheck
+      - run: npm run build:node
       - run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: '1'

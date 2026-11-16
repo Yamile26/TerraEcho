@@ -1,0 +1,76 @@
+{
+  "checkedAt": "2026-11-16T03:40:41.987Z",
+  "site": "https://terraecho-earth-jukebox.dotingchime4.chatgpt.site",
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "http": 200,
+      "body": {
+        "status": "ok",
+        "service": "terraecho-web",
+        "runtime": "cloudflare-worker",
+        "firmsConfigured": true,
+        "sharedBudgetConfigured": true,
+        "scoreProvider": "repository-snapshot"
+      },
+      "contentType": "application/json"
+    },
+    {
+      "method": "POST",
+      "path": "/api/fires?mode=live",
+      "http": 405,
+      "body": {
+        "errorCode": "METHOD_NOT_ALLOWED"
+      },
+      "contentType": "application/json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/fires?mode=live&source=INVALID",
+      "http": 400,
+      "body": {
+        "errorCode": "INVALID_QUERY"
+      },
+      "contentType": "application/json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/fires?mode=live&days=99",
+      "http": 400,
+      "body": {
+        "errorCode": "INVALID_QUERY"
+      },
+      "contentType": "application/json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/fires?mode=live&unexpected=value",
+      "http": 400,
+      "body": {
+        "errorCode": "INVALID_QUERY"
+      },
+      "contentType": "application/json"
+    }
+  ],
+  "deployedSourceCommit": "a2153c817ffaf6f7d46ec03d431bd64e6d74efda",
+  "versionNumber": 3,
+  "deploymentStatus": "succeeded",
+  "deploymentId": "appgdep_6afa789448ac819181d8cf187e33030f",
+  "liveQuery": {
+    "checkedAt": "2026-11-16T03:39:57.308Z",
+    "http": 200,
+    "responseValid": true,
+    "product": "VIIRS_NOAA20_NRT",
+    "start": "2026-11-14",
+    "end": "2026-11-16",
+    "serverRetrievedAt": "2026-11-16T03:40:05.707Z",
+    "detections": 174,
+    "anomalyComputed": false,
+    "coverageStatus": "product availability unverified; cloud coverage unknown",
+    "errorCode": null,
+    "note": "A valid server response does not establish absence of fire or complete observation coverage. NASA source availability and participant validation remain separate checks."
+  },
+  "sharedBudgetVerification": "Production configuration flags and a valid live request; atomic ten-request SQL gate tested locally against real SQLite with two handler instances. Public quota not deliberately exhausted.",
+  "secretHandling": "Existing runtime secret reused; no secret value was read, copied or included in evidence."
+}

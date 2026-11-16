@@ -8,6 +8,11 @@
     "credit": "NASA GMAO / NASA Scientific Visualization Studio; Joseph V. Ardizzone, Helen-Nicole Kostis; scientific consulting Lesley Ott",
     "sha256": "0c6a8f6c46fb52a2f9a636bbd804fc6e5e23454dcb2f0d3fe04c653c772e8a7a",
     "originalDownloadedAt": null,
+    "verifiedReacquisition": {
+      "retrievedAt": "2026-11-16T03:58:08.014Z",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_2025-08-19T20_00_00_1920x1080.png",
+      "sha256": "0c6a8f6c46fb52a2f9a636bbd804fc6e5e23454dcb2f0d3fe04c653c772e8a7a"
+    },
     "method": "https://svs.gsfc.nasa.gov/13786/",
     "limitations": "Visual features of a GEOS model rendering, not measured concentrations. Color overlap and base-map contamination remain possible."
   },
