@@ -21,31 +21,32 @@ flowchart TD
 
 ## Boundaries
 
-| Workstream | Owns | Stable interface |
-| --- | --- | --- |
-| Data science / Python | acquisition, QA, national clipping, anomaly and score exports | `data/scores/terraecho_<year>.json` |
-| Web / API | validation, snapshot loading, future Python service adapter, protected FIRMS proxy | `GET /api/fires` |
-| Visual exploration | Three.js scene, compatible spherical renderer, 2D map, timeline, region filters | `FireWeek`, `CellVoice`, `GeoCollection` |
-| Signal engineering | synthesis of score parameters, compression, envelopes, stereo, EIC voices | `Sonifier.fire()` and `Sonifier.eic()` |
-| Accessibility / presentation | keyboard paths, descriptions, spoken selection, reduced motion, source explanations | the same selected region and week |
+| Workstream                   | Owns                                                                                | Stable interface                         |
+| ---------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------- |
+| Data science / Python        | acquisition, QA, national clipping, anomaly and score exports                       | `data/scores/terraecho_<year>.json`      |
+| Web / API                    | validation, snapshot loading, future Python service adapter, protected FIRMS proxy  | `GET /api/fires`                         |
+| Visual exploration           | Three.js scene, compatible spherical renderer, 2D map, timeline, region filters     | `FireWeek`, `CellVoice`, `GeoCollection` |
+| Signal engineering           | synthesis of score parameters, compression, envelopes, stereo, EIC voices           | `Sonifier.fire()` and `Sonifier.eic()`   |
+| Accessibility / presentation | keyboard paths, descriptions, spoken selection, reduced motion, source explanations | the same selected region and week        |
 
 Teams can work with the existing exported JSON immediately. The future Python service can replace the score provider through a server environment variable without changing visualization or audio components.
 
 ## Repository layout
 
-| Path | Purpose |
-| --- | --- |
-| `terraecho/`, `run.py`, `run_eic.py` | Existing scientific pipeline, unchanged |
-| `web/src/app/` | Next.js App Router, metadata and API routes |
-| `web/src/components/` | Product views, scene renderers and controls |
-| `web/src/lib/types.ts` | Shared TypeScript contract |
-| `web/src/lib/data.ts` | Score validation, polygon filtering, formatting and CSV export |
-| `web/src/lib/audio.ts` | Web Audio engine; no autoplay |
-| `web/src/lib/firms.ts` | FIRMS CSV parser and bounded query validation |
-| `web/src/lib/server-data.ts` | Local snapshot / future Python HTTP adapter |
-| `web/scripts/prepare-data.mjs` | Copies existing scientific outputs to public assets before dev/build |
-| `web/public/textures/earth.jpg` | Local Earth texture; credits in `ASSETS.md` |
-| `.github/workflows/web-ci.yml` | Contract tests, typecheck and production build |
+| Path                                 | Purpose                                                                    |
+| ------------------------------------ | -------------------------------------------------------------------------- |
+| `terraecho/`, `run.py`, `run_eic.py` | Existing scientific pipeline, unchanged                                    |
+| `web/src/app/`                       | Next.js App Router, metadata and API routes                                |
+| `web/src/components/`                | Product views, scene renderers and controls                                |
+| `web/src/lib/types.ts`               | Shared TypeScript contract                                                 |
+| `web/src/lib/theme.ts`               | Shared navy/cyan palette for CSS, Three.js, Canvas and SVG; see `THEME.md` |
+| `web/src/lib/data.ts`                | Score validation, polygon filtering, formatting and CSV export             |
+| `web/src/lib/audio.ts`               | Web Audio engine; no autoplay                                              |
+| `web/src/lib/firms.ts`               | FIRMS CSV parser and bounded query validation                              |
+| `web/src/lib/server-data.ts`         | Local snapshot / future Python HTTP adapter                                |
+| `web/scripts/prepare-data.mjs`       | Copies existing scientific outputs to public assets before dev/build       |
+| `web/public/textures/earth.jpg`      | Local Earth texture; credits in `ASSETS.md`                                |
+| `.github/workflows/web-ci.yml`       | Contract tests, typecheck and production build                             |
 
 ## Scene and sound behavior
 

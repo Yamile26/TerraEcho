@@ -1,5 +1,13 @@
 # Implementation validation · November 15, 2026
 
+## Navy/cyan design review · November 16, 2026
+
+The interface now follows the team's supplied design screenshot. Colors are shared through `web/src/lib/theme.ts`; the explorer, 2D map, observatory, EIC controls and dialogs use the same tokens. See `THEME.md` for the palette and the distinction between interface colors and the original EIC aerosol encoding.
+
+The review checked the study-area and Ucayali filters (9,058 and 1,049 detections for week 40 of 2026), 3D/2D switching, fire playback start/stop, the observatory, EIC view and source dialog. The mobile audio volume responded to keyboard input. At a 390-pixel iframe viewport, the body measured 380 pixels wide including the browser's reserved scrollbar space, with an equal scroll width. No horizontal overflow was present. Desktop computed styles confirmed background `rgb(4, 8, 16)` and accent `#53e7de`.
+
+The timeline and sound studio are separate cards. The observatory retains its regional selector; EIC and observatory content grow with the page rather than being clipped inside a fixed-height stage. Existing contracts, counts and synthesis parameters are unchanged. The 12 existing web tests, TypeScript check and production build pass after the visual update. The WebGL and listening-test limits below still apply.
+
 ## Completed checks
 
 | Check | Result |
@@ -30,8 +38,10 @@ The API tests invoke the actual Next.js route handlers in process. Managed previ
 
 ## Review captures
 
-![Desktop explorer](screenshots/terraecho-desktop.jpg)
+![Desktop explorer with navy/cyan palette](screenshots/terraecho-palette-desktop.jpg)
 
-![Mobile explorer](screenshots/terraecho-mobile.jpg)
+![Mobile explorer with navy/cyan palette](screenshots/terraecho-palette-mobile.jpg)
 
-![EIC studio](screenshots/terraecho-eic.jpg)
+![Mobile timeline and sound studio](screenshots/terraecho-palette-mobile-controls.jpg)
+
+![EIC studio with navy/cyan controls](screenshots/terraecho-palette-eic.jpg)
