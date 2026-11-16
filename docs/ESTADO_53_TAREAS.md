@@ -2,7 +2,7 @@
 
 Corte: 2026-11-16 UTC. **No se declaran 53 tareas terminadas.** Cada fila distingue implementación de evidencia externa. “Cerrada” puede incluir una promesa delimitada explícitamente en vez de una función científica no validada. “Parcial” tiene trabajo implementado y una comprobación pendiente. “Externa” necesita participantes, cuenta/sede o decisiones de personas reales; el paquete para ejecutarla está preparado.
 
-**30 cerradas · 19 parciales · 4 externas pendientes.** No es un porcentaje de calidad ni una probabilidad de ganar.
+**31 cerradas · 18 parciales · 4 externas pendientes.** No es un porcentaje de calidad ni una probabilidad de ganar.
 
 | ID | Estado | Tarea y evidencia | Cierre pendiente / límite |
 | --- | --- | --- | --- |
@@ -50,8 +50,8 @@ Corte: 2026-11-16 UTC. **No se declaran 53 tareas terminadas.** Cada fila distin
 | U04 | cerrada | **Selección coherente.** Archivo usa misma región/bin en mapas, métricas, CSV, tabla y audio; años2012/2025 y región comprobados; EIC independiente. | — |
 | U05 | cerrada | **Compartir y repetir.** URL con campos permitidos, sin clave; recarga restituye pieza Sudamérica, segmento2 y mono; tests y navegador. | — |
 | U06 | parcial | **Rendimiento/visual.** Paleta verde de referencia, alternativas y pausa; límite de voces/pixel ratio/hover; exportación en Worker. | Medir CPU/GPU/carga y audio simultáneo en equipo objetivo; medición móvil física pendiente. |
-| R01 | parcial | **HTTPS exterior.** Build de demo EIC/archivo y hosting preparados; app Next completa conserva API. | Registrar publicación comprobada; la demo estática no incluye API reciente. Falta host Node con clave para cerrar alcance completo. |
-| R02 | parcial | **Versión/CI.** Tests científicos/web, preparación con huellas, workflow ampliado, builds y evidencia del navegador. | Registrar commits y CI remoto exitosos de esta entrega. |
+| R01 | parcial | **HTTPS exterior.** Demo EIC/archivo HTTPS publicada y despliegue succeeded comprobado: versión 1, fuente 9955e9e4. App Next completa conserva API. | Falta host Node con clave y consulta real para cerrar alcance completo; la demo estática publicada no incluye API reciente. |
+| R02 | cerrada | **Versión/CI.** Commits 97870deb/033f30f3/9955e9e4 comprobados en GitHub contra árboles locales idénticos; 8 tests científicos, pipeline original, 21 web, tipos y build pasan. CI remoto 43793695690 y 43793652362: completed/success sobre 9955e9e4. Informe de recuperación y reglas incrementales versionados. | — |
 | R03 | cerrada | **README y relato.** README/contratos/arquitectura reemplazan promesas de bosque sano, silencio=sin fuego, NRT comparable y rango no exportado. | — |
 | R04 | cerrada | **Demo con EIC primero.** Experiencia EIC ejecutable y probada, tres WAV originales y guion de2min: problema, rasgo audible, acceso, caso peruano y límites. | El formato/idioma oficial y su grabación final se verifican en R06; el guion interno no es una regla de la sede. |
 | R05 | parcial | **Licencia/atribución/IA.** Fuentes, autores/antecedente, audio propio, declaración de herramientas y propuesta MIT documentadas. | Aprobación real de autores, licencia del código y condiciones específicas de geometría/textura antes de entrega. |

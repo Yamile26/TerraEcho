@@ -69,4 +69,6 @@ The last command writes original WAVs into ignored `out/reference/` and measured
 
 [53-task status](docs/ESTADO_53_TAREAS.md) · [Validation](docs/VALIDATION.md) · [Participant protocol](docs/evaluation/PROTOCOL.md) · [Demo](docs/DEMO_GUIDE.md) · [Credits](docs/ASSETS.md) · [Submission](docs/ENTREGA_SPACE_APPS.md).
 
+[Recovered session and verified commits](docs/RECUPERACION_2026-11-15.md) · [Incremental development rules](AGENTS.md).
+
 Participant sessions, independent mask labels, real GPU/screen-reader checks, a new live-product query using the team's local key, final license approval and official submission remain evidence gates. Automated checks do not establish comfort, comprehension or universal accessibility. No participant results or award guarantee is fabricated.
