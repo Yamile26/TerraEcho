@@ -2,7 +2,7 @@ name: TerraEcho web
 on:
   pull_request:
   push:
-    branches: [data-pipeline, main, 'feat/**']
+    branches: [data-pipeline, main, develop, 'feat/**']
 permissions:
   contents: read
 jobs:
