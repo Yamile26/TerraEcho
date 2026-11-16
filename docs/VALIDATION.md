@@ -4,7 +4,7 @@
 
 | Check | Result |
 | --- | --- |
-| `npm run test:web` | 11 tests pass: exported contracts, gap silence, regional agreement, bounded audio inputs, CSV unknowns, FIRMS parsing, UTC times, query validation, API snapshots and explicit missing-key errors |
+| `npm run test:web` | 12 tests pass: exported contracts, gap silence, regional agreement, bounded audio inputs, CSV unknowns, FIRMS parsing, UTC times, query validation, API snapshots, explicit missing-key errors and final-bin calendar labels |
 | `npm run typecheck` | Pass |
 | `npm run build` | Pass; Next.js generates the page and dynamic `/api/fires` and `/api/health` routes |
 | `python tests/test_pipeline.py` | Original Python tests pass; scientific modules are unchanged |

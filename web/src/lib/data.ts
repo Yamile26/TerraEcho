@@ -31,6 +31,8 @@ export function dateLabel(iso: string, long = false) {
 export function weekRange(week: FireWeek) {
   const end = new Date(`${week.start_date}T12:00:00Z`);
   end.setUTCDate(end.getUTCDate() + 6);
+  // Python uses 52 bins; bin 51 also contains the remaining days of the year.
+  if (week.week === 51) end.setUTCMonth(11, 31);
   return `${dateLabel(week.start_date)} – ${new Intl.DateTimeFormat("es-PE", { day: "2-digit", month: "short", timeZone: "UTC" }).format(end)}`;
 }
 function insideRing(lon: number, lat: number, ring: number[][]) {

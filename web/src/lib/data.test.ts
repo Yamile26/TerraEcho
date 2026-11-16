@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { parseScore, regionCells, toCsv } from "./data";
+import { dateLabel, parseScore, regionCells, toCsv, weekRange } from "./data";
 import type { GeoCollection } from "./types";
 const score = parseScore(
   JSON.parse(readFileSync("../data/scores/terraecho_2026.json", "utf8")),
@@ -9,6 +9,21 @@ const score = parseScore(
 const geo = JSON.parse(
   readFileSync("../data/peru_departments.geojson", "utf8"),
 ) as GeoCollection;
+test("calendar labels include every day in the final Python bin", () => {
+  const base = score.weeks[0];
+  assert.equal(
+    weekRange({ ...base, week: 39, start_date: "2026-10-01" }),
+    `${dateLabel("2026-10-01")} – ${dateLabel("2026-10-07")}`,
+  );
+  assert.equal(
+    weekRange({ ...base, week: 51, start_date: "2025-12-24" }),
+    `${dateLabel("2025-12-24")} – ${dateLabel("2025-12-31")}`,
+  );
+  assert.equal(
+    weekRange({ ...base, week: 51, start_date: "2024-12-23" }),
+    `${dateLabel("2024-12-23")} – ${dateLabel("2024-12-31")}`,
+  );
+});
 test("all shipped scores satisfy the frontend contract", () => {
   assert.equal(score.weeks.length, 44);
   const other = parseScore(
