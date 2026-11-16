@@ -1,8 +1,8 @@
 {
   "reviewDate": "2026-11-16",
   "counts": {
-    "cerrada": 33,
-    "parcial": 16,
+    "cerrada": 34,
+    "parcial": 15,
     "externa": 4
   },
   "tasks": [
@@ -141,10 +141,10 @@
     },
     {
       "id": "F02",
-      "status": "parcial",
+      "status": "cerrada",
       "title": "Datos recientes al mapa y audio",
-      "evidence": "Versión pública 4: recorrido NOAA-20 real con 174 detecciones, Madre de Dios 18 registros/7 celdas, reproducción/pausa y El Callao cero registros con audio desactivado. Se corrige además el anuncio no visual que conservaba una anomalía del archivo; cambiar departamento pausa el audio y anuncia el total propio.",
-      "remaining": "Publicar y comprobar las correcciones finales de anuncio y cambio regional antes de cerrar la tarea."
+      "evidence": "Versión pública 5, consulta NOAA-20 real: 174 detecciones/77 celdas; Madre de Dios 18 registros/7 celdas y tabla coherente; reproducción, pausa al cambiar región y retorno sin autoplay. El Callao cero con escucha desactivada y límite explícito. Anuncio propio sin anomalía heredada; evidencia y captura en recent-browser-check.json.",
+      "remaining": "La comprobación del recorrido no mide confort perceptual ni reemplaza pruebas con dispositivos o participantes (S02/S05/A03)."
     },
     {
       "id": "F03",

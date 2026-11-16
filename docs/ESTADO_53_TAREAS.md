@@ -2,7 +2,7 @@
 
 Corte: 2026-11-16 UTC. **No se declaran 53 tareas terminadas.** Cada fila distingue implementación de evidencia externa. “Cerrada” puede incluir una promesa delimitada explícitamente en vez de una función científica no validada. “Parcial” tiene trabajo implementado y una comprobación pendiente. “Externa” necesita participantes, cuenta/sede o decisiones de personas reales; el paquete para ejecutarla está preparado.
 
-**33 cerradas · 16 parciales · 4 externas pendientes.** No es un porcentaje de calidad ni una probabilidad de ganar.
+**34 cerradas · 15 parciales · 4 externas pendientes.** No es un porcentaje de calidad ni una probabilidad de ganar.
 
 | ID | Estado | Tarea y evidencia | Cierre pendiente / límite |
 | --- | --- | --- | --- |
@@ -25,7 +25,7 @@ Corte: 2026-11-16 UTC. **No se declaran 53 tareas terminadas.** Cada fila distin
 | D09 | cerrada | **Catálogo y años.** 2012–2025 navegables desde catálogo con corte/calidad; 2026 legado señalado aparte, sin prometer reconstrucción. | — |
 | D10 | cerrada | **Caso peruano y unidades.** Bin 16–22 sep 2024 y declaración INDECI del 18-sep en tres regiones; comparación contextual, no exactitud; bin final 8/9 días. | — |
 | F01 | cerrada | **Clave local real.** Consulta NASA real mediante servidor Next.js de producción: NOAA-20, HTTP 200, contrato válido, ventana UTC 14–16 nov 2026, 174 detecciones recortadas. check-live.mjs terminó con código 0; evidencia saneada en firms-live-connection.json. Clave solo en memoria del proceso; no se infiere cobertura completa. | — |
-| F02 | parcial | **Datos recientes al mapa y audio.** Versión pública 4: recorrido NOAA-20 real con 174 detecciones, Madre de Dios 18 registros/7 celdas, reproducción/pausa y El Callao cero registros con audio desactivado. Se corrige además el anuncio no visual que conservaba una anomalía del archivo; cambiar departamento pausa el audio y anuncia el total propio. | Publicar y comprobar las correcciones finales de anuncio y cambio regional antes de cerrar la tarea. |
+| F02 | cerrada | **Datos recientes al mapa y audio.** Versión pública 5, consulta NOAA-20 real: 174 detecciones/77 celdas; Madre de Dios 18 registros/7 celdas y tabla coherente; reproducción, pausa al cambiar región y retorno sin autoplay. El Callao cero con escucha desactivada y límite explícito. Anuncio propio sin anomalía heredada; evidencia y captura en recent-browser-check.json. | La comprobación del recorrido no mide confort perceptual ni reemplaza pruebas con dispositivos o participantes (S02/S05/A03). |
 | F03 | cerrada | **Comparabilidad reciente.** Alcance delimitado: reciente no calcula anomalía ni usa baseline SNPP para NOAA; frontera por punto con política compartida. | — |
 | F04 | cerrada | **Disponibilidad/producto.** NOAA-20/21 explícitos, disponibilidad consultada y rango visible; SNPP termina 2-nov-2026 y ventana fuera rechazada; tests. | — |
 | F05 | cerrada | **Lotes y publicación íntegra.** Descarga con checksum antes de construir; validación de todos los inputs antes de preparar; CI y artefacto completo por versión; rollback documentado. | No hay cron activo. La atomicidad es del despliegue completo, no de escribir todo el directorio de investigación. |

@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-11-16T03:54:34.491707+00:00",
+  "site": "https://terraecho-earth-jukebox.dotingchime4.chatgpt.site",
+  "deployedSourceCommit": "5345207e44e9e6a0f664b7d6ad94255ba5120c28",
+  "versionNumber": 5,
+  "deploymentStatus": "succeeded",
+  "deploymentId": "appgdep_6afa7df16ebc81918f624a1baefb1788",
+  "browser": "Cloud Chrome; public page reloaded before testing",
+  "product": "VIIRS_NOAA20_NRT",
+  "windowUtc": {
+    "start": "2026-11-14",
+    "end": "2026-11-16"
+  },
+  "national": {
+    "observations": 174,
+    "excludedOutside": 84,
+    "mapCells": 77,
+    "firstPageRows": 50,
+    "paginationAvailable": true
+  },
+  "region": {
+    "name": "Madre de Dios",
+    "observations": 18,
+    "mapCells": 7,
+    "mixedCells": 7,
+    "representedDetectionsPercent": 100,
+    "allTableRowsInSelectedRegion": true
+  },
+  "audio": {
+    "userInitiatedPlayControlReachedPauseState": true,
+    "departmentChangePausedPlayback": true,
+    "restoringRegionDidNotAutoplay": true,
+    "physicalAudioCapturePerformed": false,
+    "perceptualComfortEvaluated": false
+  },
+  "zeroSelection": {
+    "region": "El Callao",
+    "observations": 0,
+    "mapCells": 0,
+    "listenDisabled": true,
+    "explicitNoAbsenceOfFireClaim": true
+  },
+  "accessibleAnnouncement": "Consulta reciente FIRMS. Producto y ventana propios; anomalía histórica no calculada.",
+  "archiveAnomalyAnnouncedInRecentView": false,
+  "screenshot": {
+    "path": "docs/screenshots/terraecho-recent-live.jpg",
+    "sha256": "d88a8a79f1ba90ff211f976a6a98465f2761ac002155f1d1dd43db93a68d2793"
+  },
+  "limits": [
+    "Product availability remains unverified; cloud and overpass coverage are unknown.",
+    "No screen-reader hardware, physical touch/GPU validation or participant sessions were performed."
+  ]
+}
