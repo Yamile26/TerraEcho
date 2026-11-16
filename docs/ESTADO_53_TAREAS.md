@@ -2,7 +2,7 @@
 
 Corte: 2026-11-16 UTC. **No se declaran 53 tareas terminadas.** Cada fila distingue implementación de evidencia externa. “Cerrada” puede incluir una promesa delimitada explícitamente en vez de una función científica no validada. “Parcial” tiene trabajo implementado y una comprobación pendiente. “Externa” necesita participantes, cuenta/sede o decisiones de personas reales; el paquete para ejecutarla está preparado.
 
-**32 cerradas · 17 parciales · 4 externas pendientes.** No es un porcentaje de calidad ni una probabilidad de ganar.
+**33 cerradas · 16 parciales · 4 externas pendientes.** No es un porcentaje de calidad ni una probabilidad de ganar.
 
 | ID | Estado | Tarea y evidencia | Cierre pendiente / límite |
 | --- | --- | --- | --- |
@@ -29,7 +29,7 @@ Corte: 2026-11-16 UTC. **No se declaran 53 tareas terminadas.** Cada fila distin
 | F03 | cerrada | **Comparabilidad reciente.** Alcance delimitado: reciente no calcula anomalía ni usa baseline SNPP para NOAA; frontera por punto con política compartida. | — |
 | F04 | cerrada | **Disponibilidad/producto.** NOAA-20/21 explícitos, disponibilidad consultada y rango visible; SNPP termina 2-nov-2026 y ventana fuera rechazada; tests. | — |
 | F05 | cerrada | **Lotes y publicación íntegra.** Descarga con checksum antes de construir; validación de todos los inputs antes de preparar; CI y artefacto completo por versión; rollback documentado. | No hay cron activo. La atomicidad es del despliegue completo, no de escribir todo el directorio de investigación. |
-| F06 | parcial | **Clave y presupuestos en host.** Adaptador Worker reutiliza proveedor FIRMS/UI Next; clave de ejecución, errores saneados, límite SQL atómico compartido de diez consultas/minuto y fallo cerrado. 34 pruebas, tipos y builds; prueba de bytes EIC/archivos. Despliegue y consulta pública en comprobación. | Configurar secreto, publicar y comprobar la API real en el host con presupuesto compartido. |
+| F06 | cerrada | **Clave y presupuestos en host.** Versión 3 pública basada en a2153c8: despliegue succeeded, health confirma secreto y presupuesto D1 compartido, consulta NOAA-20 HTTP 200 con 174 detecciones y contrato válido. Métodos/consultas inválidos rechazados; 34 tests incluyen cuota SQL real, dos instancias y fallo cerrado. Evidencia saneada en firms-host-check.json. | La cuota de diez consultas/minuto se verifica con SQLite real; no se agotó deliberadamente la cuota del host público. La consulta válida no demuestra cobertura completa. |
 | S01 | cerrada | **Gramáticas sonoras.** Guías separadas para EIC, archivo FIRMS y reciente; tabla explica variables, unidades y normalización relativa. | — |
 | S02 | parcial | **Picos/transiciones/confort.** Tres WAV medidos sin clipping, fundidos y parada suavizada en web; exportación real de navegador verificada. | Medir salida Web Audio y cambios en dispositivos; evaluar confort con personas. |
 | S03 | parcial | **Reloj de audio.** EIC usa AudioContext y anticipación; simulación de reloj detecta saltos y omite notas expiradas. | Medir deriva/respuesta real durante órbita GPU y carga en equipo objetivo. |
@@ -68,6 +68,6 @@ Corte: 2026-11-16 UTC. **No se declaran 53 tareas terminadas.** Cada fila distin
 - Personas y dispositivos: [protocolo](evaluation/PROTOCOL.md); registros vacíos deliberadamente.
 - Entrega: [despliegue](DEPLOYMENT.md), [envío](ENTREGA_SPACE_APPS.md), [licencia](LICENSE_PROPOSAL.md), [decisiones](DECISIONES_TECNICAS.md) y [validación](VALIDATION.md).
 
-Solo el equipo puede aportar la nueva consulta NOAA-20 con su clave local, sesiones consentidas, revisión independiente de máscaras, GPU/tacto/lectores reales, responsables, aprobación de autoría/licencia y envío oficial. La conexión anterior con cero detecciones no demuestra una nueva consulta NOAA ni cobertura completa. No enviar la MAP_KEY al chat ni al repositorio.
+Las consultas NOAA-20 comprobadas se registran en `firms-live-connection.json` y `firms-host-check.json`; no demuestran cobertura completa. Siguen pendientes sesiones consentidas, revisión independiente de máscaras, GPU/tacto/lectores reales, responsables, aprobación de autoría/licencia y envío oficial. No enviar la MAP_KEY al chat ni al repositorio.
 
 Fuente editable: `docs/evaluation/task-status.json`; regenerar con `python scripts/render_task_status.py`.

@@ -1,8 +1,8 @@
 {
   "reviewDate": "2026-11-16",
   "counts": {
-    "cerrada": 32,
-    "parcial": 17,
+    "cerrada": 33,
+    "parcial": 16,
     "externa": 4
   },
   "tasks": [
@@ -169,10 +169,10 @@
     },
     {
       "id": "F06",
-      "status": "parcial",
+      "status": "cerrada",
       "title": "Clave y presupuestos en host",
-      "evidence": "Adaptador Worker reutiliza proveedor FIRMS/UI Next; clave de ejecución, errores saneados, límite SQL atómico compartido de diez consultas/minuto y fallo cerrado. 34 pruebas, tipos y builds; prueba de bytes EIC/archivos. Despliegue y consulta pública en comprobación.",
-      "remaining": "Configurar secreto, publicar y comprobar la API real en el host con presupuesto compartido."
+      "evidence": "Versión 3 pública basada en a2153c8: despliegue succeeded, health confirma secreto y presupuesto D1 compartido, consulta NOAA-20 HTTP 200 con 174 detecciones y contrato válido. Métodos/consultas inválidos rechazados; 34 tests incluyen cuota SQL real, dos instancias y fallo cerrado. Evidencia saneada en firms-host-check.json.",
+      "remaining": "La cuota de diez consultas/minuto se verifica con SQLite real; no se agotó deliberadamente la cuota del host público. La consulta válida no demuestra cobertura completa."
     },
     {
       "id": "S01",

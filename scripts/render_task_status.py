@@ -46,7 +46,7 @@ intro += """
 - Personas y dispositivos: [protocolo](evaluation/PROTOCOL.md); registros vacíos deliberadamente.
 - Entrega: [despliegue](DEPLOYMENT.md), [envío](ENTREGA_SPACE_APPS.md), [licencia](LICENSE_PROPOSAL.md), [decisiones](DECISIONES_TECNICAS.md) y [validación](VALIDATION.md).
 
-Solo el equipo puede aportar la nueva consulta NOAA-20 con su clave local, sesiones consentidas, revisión independiente de máscaras, GPU/tacto/lectores reales, responsables, aprobación de autoría/licencia y envío oficial. La conexión anterior con cero detecciones no demuestra una nueva consulta NOAA ni cobertura completa. No enviar la MAP_KEY al chat ni al repositorio.
+Las consultas NOAA-20 comprobadas se registran en `firms-live-connection.json` y `firms-host-check.json`; no demuestran cobertura completa. Siguen pendientes sesiones consentidas, revisión independiente de máscaras, GPU/tacto/lectores reales, responsables, aprobación de autoría/licencia y envío oficial. No enviar la MAP_KEY al chat ni al repositorio.
 
 Fuente editable: `docs/evaluation/task-status.json`; regenerar con `python scripts/render_task_status.py`.
 """
