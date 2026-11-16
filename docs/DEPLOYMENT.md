@@ -40,7 +40,7 @@ Genera `dist/` a partir de la misma aplicación Next mediante una copia temporal
 
 1. CI: contratos Python, huellas de los 14 archivos SP, tests web, tipos y build limpio.
 2. `/api/health`: presencia de variable, sin secretos. No es una prueba NASA.
-3. En host Node, ejecutar `node web/scripts/check-live.mjs http://localhost:3000` para consultar NOAA-20, ventana explícita, y guardar HTTP/producto/fecha/conteo sin clave en `out/firms-connection.json`. Un 200 vacío no prueba ausencia de fuego. SNPP no tiene datos nuevos después del 2-nov-2026.
+3. En host Node, ejecutar `node web/scripts/check-live.mjs http://localhost:3000` para consultar NOAA-20, ventana explícita, y guardar HTTP/producto/fecha/conteo sin clave en `out/firms-connection.json`. Usar el origen raíz sin ruta, credenciales, parámetros ni fragmento. El comando solo termina con código 0 si `responseValid` es `true`: comprueba producto, modo, fechas, ámbito, observaciones, FRP desconocida, disponibilidad y reconciliación de conteos. Un HTTP 200 con JSON incompleto, HTML estático o un snapshot termina con código 1 y no se registra como consulta válida. `serverRetrievedAt` distingue adquisición del servidor de la hora de comprobación. Los errores se limitan a códigos conocidos; no se copia texto del proveedor. Un 200 vacío válido no prueba ausencia de fuego. SNPP no tiene datos nuevos después del 2-nov-2026.
 4. EIC: cambiar pieza/capa, pausa/seek, mono, WAV y recargar enlace compartido.
 5. Archivo: 2012 gap inicial, 2024 caso contextual, 2025 y aviso del legado 2026.
 6. WebGL en dispositivo real, alternativa 2D, teclado/lector y móvil. Las pruebas del navegador de revisión usaron render compatible.

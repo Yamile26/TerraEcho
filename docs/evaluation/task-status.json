@@ -136,7 +136,7 @@
       "id": "F01",
       "status": "parcial",
       "title": "Clave local real",
-      "evidence": "Captura del equipo: HTTP aceptado/0 en producto anterior. Nuevo default NOAA-20; comprobador sin secretos preparado.",
+      "evidence": "Captura original: HTTP aceptado/0 en producto anterior. Nuevo default NOAA-20; comprobador valida contrato, ventana, observaciones, cobertura y conteos; rechaza falsos éxitos HTTP 200 y sanea errores. Ocho pruebas de regresión nuevas; 29 pruebas web pasan. Sin consulta NASA real nueva en este entorno.",
       "remaining": "Ejecutar check-live.mjs en el servidor del equipo con su clave; registrar producto/ventana/HTTP/conteo reales."
     },
     {
