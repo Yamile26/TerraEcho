@@ -1,8 +1,8 @@
 {
   "reviewDate": "2026-11-16",
   "counts": {
-    "cerrada": 31,
-    "parcial": 18,
+    "cerrada": 32,
+    "parcial": 17,
     "externa": 4
   },
   "tasks": [
@@ -134,10 +134,10 @@
     },
     {
       "id": "F01",
-      "status": "parcial",
+      "status": "cerrada",
       "title": "Clave local real",
-      "evidence": "Captura original: HTTP aceptado/0 en producto anterior. Nuevo default NOAA-20; comprobador valida contrato, ventana, observaciones, cobertura y conteos; rechaza falsos éxitos HTTP 200 y sanea errores. Ocho pruebas de regresión nuevas; 29 pruebas web pasan. Sin consulta NASA real nueva en este entorno.",
-      "remaining": "Ejecutar check-live.mjs en el servidor del equipo con su clave; registrar producto/ventana/HTTP/conteo reales."
+      "evidence": "Consulta NASA real mediante servidor Next.js de producción: NOAA-20, HTTP 200, contrato válido, ventana UTC 14–16 nov 2026, 174 detecciones recortadas. check-live.mjs terminó con código 0; evidencia saneada en firms-live-connection.json. Clave solo en memoria del proceso; no se infiere cobertura completa.",
+      "remaining": ""
     },
     {
       "id": "F02",

@@ -2,7 +2,7 @@
 
 Corte: 2026-11-16 UTC. **No se declaran 53 tareas terminadas.** Cada fila distingue implementación de evidencia externa. “Cerrada” puede incluir una promesa delimitada explícitamente en vez de una función científica no validada. “Parcial” tiene trabajo implementado y una comprobación pendiente. “Externa” necesita participantes, cuenta/sede o decisiones de personas reales; el paquete para ejecutarla está preparado.
 
-**31 cerradas · 18 parciales · 4 externas pendientes.** No es un porcentaje de calidad ni una probabilidad de ganar.
+**32 cerradas · 17 parciales · 4 externas pendientes.** No es un porcentaje de calidad ni una probabilidad de ganar.
 
 | ID | Estado | Tarea y evidencia | Cierre pendiente / límite |
 | --- | --- | --- | --- |
@@ -24,7 +24,7 @@ Corte: 2026-11-16 UTC. **No se declaran 53 tareas terminadas.** Cada fila distin
 | D08 | cerrada | **Sensibilidad.** 9 combinaciones nacionales de suavizado/escala; 3 resoluciones espaciales con anomalías por celda/departamento y comparación de etiquetas sobre 945,872 registros comparables. | La sensibilidad cuantificada no demuestra precisión frente a incendios etiquetados ni que 0.5 grados sea óptimo. |
 | D09 | cerrada | **Catálogo y años.** 2012–2025 navegables desde catálogo con corte/calidad; 2026 legado señalado aparte, sin prometer reconstrucción. | — |
 | D10 | cerrada | **Caso peruano y unidades.** Bin 16–22 sep 2024 y declaración INDECI del 18-sep en tres regiones; comparación contextual, no exactitud; bin final 8/9 días. | — |
-| F01 | parcial | **Clave local real.** Captura original: HTTP aceptado/0 en producto anterior. Nuevo default NOAA-20; comprobador valida contrato, ventana, observaciones, cobertura y conteos; rechaza falsos éxitos HTTP 200 y sanea errores. Ocho pruebas de regresión nuevas; 29 pruebas web pasan. Sin consulta NASA real nueva en este entorno. | Ejecutar check-live.mjs en el servidor del equipo con su clave; registrar producto/ventana/HTTP/conteo reales. |
+| F01 | cerrada | **Clave local real.** Consulta NASA real mediante servidor Next.js de producción: NOAA-20, HTTP 200, contrato válido, ventana UTC 14–16 nov 2026, 174 detecciones recortadas. check-live.mjs terminó con código 0; evidencia saneada en firms-live-connection.json. Clave solo en memoria del proceso; no se infiere cobertura completa. | — |
 | F02 | parcial | **Datos recientes al mapa y audio.** Modo explícito con consulta, departamento, mapa, tabla y gramática descriptiva; proveedor probado con fixtures y error 503 en navegador. | Verificar el recorrido con respuesta NASA real del nuevo producto y la clave local, incluso si devuelve cero. |
 | F03 | cerrada | **Comparabilidad reciente.** Alcance delimitado: reciente no calcula anomalía ni usa baseline SNPP para NOAA; frontera por punto con política compartida. | — |
 | F04 | cerrada | **Disponibilidad/producto.** NOAA-20/21 explícitos, disponibilidad consultada y rango visible; SNPP termina 2-nov-2026 y ventana fuera rechazada; tests. | — |
