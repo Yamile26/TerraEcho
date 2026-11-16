@@ -637,6 +637,12 @@ export function EicStudio() {
           La fecha original de descarga del activo del equipo no está
           registrada. La huella permite identificar el archivo usado.
         </p>
+        {catalog?.source.verifiedReacquisition && (
+          <p>
+            Nueva adquisición verificada desde NASA: {catalog.source.verifiedReacquisition.retrievedAt}.
+            Coincide byte a byte con el frame usado por las tres lecturas; esta fecha no reemplaza la descarga original desconocida.
+          </p>
+        )}
         <code>SHA-256 {catalog?.source.sha256}</code>
         <p>
           Este frame global de 2025 no demuestra humo causado por las semanas

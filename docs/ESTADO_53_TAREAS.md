@@ -2,12 +2,12 @@
 
 Corte: 2026-11-16 UTC. **No se declaran 53 tareas terminadas.** Cada fila distingue implementación de evidencia externa. “Cerrada” puede incluir una promesa delimitada explícitamente en vez de una función científica no validada. “Parcial” tiene trabajo implementado y una comprobación pendiente. “Externa” necesita participantes, cuenta/sede o decisiones de personas reales; el paquete para ejecutarla está preparado.
 
-**35 cerradas · 14 parciales · 4 externas pendientes.** No es un porcentaje de calidad ni una probabilidad de ganar.
+**36 cerradas · 13 parciales · 4 externas pendientes.** No es un porcentaje de calidad ni una probabilidad de ganar.
 
 | ID | Estado | Tarea y evidencia | Cierre pendiente / límite |
 | --- | --- | --- | --- |
 | E01 | cerrada | **Acceso EIC protagonista.** CTA directo y estudio EIC con fuente/guía; recorrido en navegador. | — |
-| E02 | parcial | **Ficha/manifiesto por pieza.** Fuente, fechas del frame/publicación, hash y algoritmo; descarga original explícitamente desconocida. | No se puede recuperar una fecha histórica inexistente; registrar una adquisición nueva verificable si se obtiene. |
+| E02 | cerrada | **Ficha/manifiesto por pieza.** Nueva adquisición del frame fuente desde NASA: HTTP 200, 2,768,951 bytes y coincidencia byte a byte/SHA-256. Manifiesto, catálogo común de las tres piezas y ficha/exportación distinguen esa adquisición de la fecha original desconocida; contrato rechaza URL/fecha/hash incoherentes. Evidencia en eic-reacquisition-check.json. | La adquisición original sigue desconocida; leyenda y variante de impresión devolvieron HTTP 503 y no tienen una nueva igualdad certificada. Son activos auxiliares; las tres sonificaciones usan el frame verificado. |
 | E03 | parcial | **Máscaras HSV.** Máscaras visibles, umbrales por capa y cuatro muestras oficiales de leyenda; ejemplo de confusión corregido. | Etiquetar muestra independiente; matriz de confusión y revisión de superposición/terreno. |
 | E04 | cerrada | **Imagen a rasgo y sonido.** Tabla de presencia/altura/nota/ganancia y voz textual por segmento; parámetros del mismo score. | — |
 | E05 | cerrada | **Relato EIC/Perú.** Fechas y escalas separadas; no causalidad ni concentración inventada; 2026 legado explícito. | — |

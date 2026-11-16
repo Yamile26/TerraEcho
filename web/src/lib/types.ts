@@ -126,6 +126,11 @@ export interface EicCatalog {
     credit: string;
     sha256: string;
     originalDownloadedAt: string | null;
+    verifiedReacquisition?: {
+      retrievedAt: string;
+      url: string;
+      sha256: string;
+    } | null;
     method: string;
     limitations: string;
   };

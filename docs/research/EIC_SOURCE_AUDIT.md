@@ -14,6 +14,8 @@ La página primaria [NASA SVS 5669](https://svs.gsfc.nasa.gov/5669/) enlaza el P
 
 Los enlaces oficiales se abrieron durante la revisión. La descarga binaria directa devolvió HTTP 503: **no se certifica una comparación byte a byte nueva con el servidor**. Los hashes identifican los archivos presentes. Se desconoce cuándo se descargaron originalmente; ni `mtime` ni las fechas de edición XMP prueban una descarga. El manifiesto conserva ese dato como `null`.
 
+**Actualización posterior de adquisición:** una nueva descarga del frame fuente terminó el 16 de noviembre de 2026 a las 03:58:08.014 UTC (15 de noviembre, 22:58 en Lima), con HTTP 200 y 2,768,951 bytes. Su SHA-256 y todos sus bytes coinciden con el frame versionado. La adquisición se registra separadamente como `verified_reacquisition`; no recupera ni reemplaza la fecha original desconocida. Las tres lecturas usan este mismo frame y su catálogo/ficha conserva ambas situaciones. En ese intento la leyenda y la variante de impresión siguieron devolviendo HTTP 503; no se certifica una nueva igualdad de esos dos archivos. El resultado por activo está en [`eic-reacquisition-check.json`](../evaluation/eic-reacquisition-check.json).
+
 La variante de impresión tiene otra composición y no debe sustituir el frame manteniendo sus mismas coordenadas. Tampoco se confirmó la inclusión explícita de 5669 en la [galería EIC recuperada](https://svs.gsfc.nasa.gov/gallery/earth-information-center/); la fuente NASA exacta sí está identificada.
 
 ## 2. Leyenda y antecedente de sonificación

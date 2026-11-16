@@ -59,6 +59,12 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     image = Image.open(SOURCE).convert("RGB")
     sha = hashlib.sha256(SOURCE.read_bytes()).hexdigest()
+    manifest = json.loads((ROOT / "data/manifests/eic-source.json").read_text())
+    acquisition = manifest["assets"]["frame"].get("verified_reacquisition")
+    if acquisition and (
+        not acquisition["matches_local_bytes"] or acquisition["sha256"] != sha
+    ):
+        raise ValueError("Verified acquisition does not match the source frame")
     catalog = {
         "schema_version": "1.0.0",
         "source": {
@@ -69,6 +75,11 @@ def main():
             "credit": "NASA GMAO / NASA Scientific Visualization Studio; Joseph V. Ardizzone, Helen-Nicole Kostis; scientific consulting Lesley Ott",
             "sha256": sha,
             "originalDownloadedAt": None,
+            "verifiedReacquisition": {
+                "retrievedAt": acquisition["retrieved_at_utc"],
+                "url": acquisition["source_url"],
+                "sha256": acquisition["sha256"],
+            } if acquisition else None,
             "method": "https://svs.gsfc.nasa.gov/13786/",
             "limitations": "Visual features of a GEOS model rendering, not measured concentrations. Color overlap and base-map contamination remain possible.",
         },

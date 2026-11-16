@@ -1,8 +1,8 @@
 {
   "reviewDate": "2026-11-16",
   "counts": {
-    "cerrada": 35,
-    "parcial": 14,
+    "cerrada": 36,
+    "parcial": 13,
     "externa": 4
   },
   "tasks": [
@@ -15,10 +15,10 @@
     },
     {
       "id": "E02",
-      "status": "parcial",
+      "status": "cerrada",
       "title": "Ficha/manifiesto por pieza",
-      "evidence": "Fuente, fechas del frame/publicación, hash y algoritmo; descarga original explícitamente desconocida.",
-      "remaining": "No se puede recuperar una fecha histórica inexistente; registrar una adquisición nueva verificable si se obtiene."
+      "evidence": "Nueva adquisición del frame fuente desde NASA: HTTP 200, 2,768,951 bytes y coincidencia byte a byte/SHA-256. Manifiesto, catálogo común de las tres piezas y ficha/exportación distinguen esa adquisición de la fecha original desconocida; contrato rechaza URL/fecha/hash incoherentes. Evidencia en eic-reacquisition-check.json.",
+      "remaining": "La adquisición original sigue desconocida; leyenda y variante de impresión devolvieron HTTP 503 y no tienen una nueva igualdad certificada. Son activos auxiliares; las tres sonificaciones usan el frame verificado."
     },
     {
       "id": "E03",
