@@ -63,7 +63,7 @@ The new reference fixes 2012–2024, excludes the target, masks reported SP gaps
 npm run test:web
 npm run typecheck
 npm run build
-npm start
+# Alternative Node deployment: npm run build:node && npm start
 node --import tsx web/scripts/export-reference.mts
 ```
 

@@ -20,3 +20,9 @@
 | Demo estática separada | EIC y archivo se pueden demostrar aunque no haya backend o clave | No contiene ni simula la API reciente; versión Next completa conserva esa función |
 
 Registro de responsable: cada carril debe asignar a una persona real antes del cierre del equipo. Autoría y licencia del trabajo original requieren su aprobación; la asistencia de IA se declara en la entrega.
+
+## Backend de la publicación completa
+
+El hosting existente ejecuta Workers en vez de un proceso Node persistente. El adaptador de publicación reutiliza el proveedor FIRMS, contratos, límites territoriales y la UI exportada de Next; la alternativa Node se conserva en `build:node`. Los archivos de ciencia continúan versionados como JSON/gzip. La única tabla D1 implementa un presupuesto compartido de diez consultas por minuto mediante UPSERT atómico: resuelve el requisito de cuota entre instancias, no sustituye el archivo científico ni guarda secretos. La migración se aplica antes de publicar; las peticiones nunca crean tablas.
+
+Los activos están comprimidos e incluidos en el ES module para conservar los mismos hashes y una publicación completa. Una caída de NASA o del presupuesto no bloquea EIC/archivo. El cambio se verifica con pruebas de contrato, SQL real, dos instancias de handler y comprobación de los bytes de la imagen NASA.

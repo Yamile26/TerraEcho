@@ -171,8 +171,8 @@
       "id": "F06",
       "status": "parcial",
       "title": "Clave y presupuestos en host",
-      "evidence": "Proxy privado, errores saneados, timeout/tamaño/caché/deduplicación/cuota por proceso y test de ausencia de clave en respuesta.",
-      "remaining": "Configurar secreto y comprobar host Node real; cuota compartida si se despliega en varias instancias."
+      "evidence": "Adaptador Worker reutiliza proveedor FIRMS/UI Next; clave de ejecución, errores saneados, límite SQL atómico compartido de diez consultas/minuto y fallo cerrado. 34 pruebas, tipos y builds; prueba de bytes EIC/archivos. Despliegue y consulta pública en comprobación.",
+      "remaining": "Configurar secreto, publicar y comprobar la API real en el host con presupuesto compartido."
     },
     {
       "id": "S01",

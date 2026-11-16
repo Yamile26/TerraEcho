@@ -7,6 +7,7 @@ const root = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   "../..",
 );
+const withApi = process.argv.includes("--edge-api");
 const stage = path.join(root, ".sites-build/web");
 let result = spawnSync(
   process.execPath,
@@ -48,7 +49,7 @@ result = spawnSync(
     stdio: "inherit",
     env: {
       ...process.env,
-      NEXT_PUBLIC_ARCHIVE_ONLY: "true",
+      NEXT_PUBLIC_ARCHIVE_ONLY: withApi ? "false" : "true",
       NEXT_TELEMETRY_DISABLED: "1",
     },
   },
@@ -57,5 +58,7 @@ if (result.status !== 0) process.exit(result.status ?? 1);
 await rm(path.join(root, "dist"), { recursive: true, force: true });
 await cp(path.join(stage, "out"), path.join(root, "dist"), { recursive: true });
 console.log(
-  "Archive demo built in dist/. EIC/audio/history included; recent server API deliberately excluded.",
+  withApi
+    ? "Static UI prepared for the server-side Worker API."
+    : "Archive demo built in dist/. EIC/audio/history included; recent server API deliberately excluded.",
 );

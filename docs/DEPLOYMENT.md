@@ -17,10 +17,16 @@ En Ubuntu se usa `npm`, no `npm.cmd`. Mantener Node y npm instalados dentro de W
 
 ## Web completa con servidor
 
+La publicación principal usa ahora un Worker con la misma interfaz Next exportada y el mismo proveedor FIRMS TypeScript. `npm run build` genera un ES module autocontenido con los activos comprimidos; `.openai/hosting.json` mantiene el identificador/audiencia existentes y declara `DB` para el presupuesto global. La migración versionada crea una sola fila de cuota, sin almacenar claves ni observaciones. Una sentencia UPSERT atómica admite diez consultas por minuto entre instancias; si falta la base o falla, la API reciente no llama a NASA. EIC y archivo siguen disponibles.
+
+Configurar `FIRMS_MAP_KEY` como secreto de ejecución del servicio de publicación. No se incorpora al build, los activos, la cuota ni las respuestas. Verificar `/api/health` y ejecutar el comprobador contra el origen HTTPS publicado. La API conserva las diferencias entre NOAA-20/21 y el archivo histórico, sin anomalías recientes inventadas.
+
+La alternativa Node/Next existente se construye con `npm run build:node` y se ejecuta con `npm start`:
+
 ```bash
 npm run test:web
 npm run typecheck
-npm run build
+npm run build:node
 npm start
 ```
 
