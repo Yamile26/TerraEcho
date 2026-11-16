@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "id": "nasa-svs-5669-geos-aerosols-20250819T200000Z",
+  "title": "GEOS Aerosols (2025)",
+  "audited_on_utc": "2026-11-16",
+  "source": {
+    "svs_id": 5669,
+    "page_url": "https://svs.gsfc.nasa.gov/5669/",
+    "doi_url": "https://doi.org/10.5281/zenodo.21893141",
+    "visualized_model_time_utc": "2025-08-19T20:00:00Z",
+    "page_release_date": "2026-08-10",
+    "page_last_updated": "2026-08-10T17:08:00-04:00",
+    "dataset": {
+      "name": "GEOS-FP 2Km Replay",
+      "svs_dataset_id": 1258,
+      "type": "model",
+      "visualized_date": "2025-08-19"
+    },
+    "data_scope": "Rendered global model visualization. This PNG is not the underlying aerosol field or a local sensor observation.",
+    "eic_gallery_url": "https://svs.gsfc.nasa.gov/gallery/earth-information-center/",
+    "eic_gallery_membership_status": "not_verified_from_retrieved_gallery_page"
+  },
+  "assets": {
+    "frame": {
+      "role": "sonification source frame",
+      "local_path": "data/eic/Aerosols_2025-08-19T20_00_00_1920x1080.png",
+      "official_download_url": "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_2025-08-19T20_00_00_1920x1080.png",
+      "sha256": "0c6a8f6c46fb52a2f9a636bbd804fc6e5e23454dcb2f0d3fe04c653c772e8a7a",
+      "bytes": 2768951,
+      "dimensions_px": [
+        1920,
+        1080
+      ],
+      "mode": "RGB",
+      "media_type": "image/png",
+      "original_downloaded_at_utc": null,
+      "original_download_note": "Original acquisition time is not recorded. File modification times and embedded editing dates are not download timestamps."
+    },
+    "legend": {
+      "role": "official category legend; not a numeric concentration scale",
+      "local_path": "data/eic/Aerosols_cbar.png",
+      "official_download_url": "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_cbar.png",
+      "sha256": "e3a280ef5b9598f6c9c765d43a5cc10fe4c9865b13cd471b1e80543643a11ec3",
+      "bytes": 38691,
+      "dimensions_px": [
+        1500,
+        300
+      ],
+      "mode": "RGBA",
+      "media_type": "image/png",
+      "original_downloaded_at_utc": null,
+      "original_download_note": "Original acquisition time is not recorded. File modification times and embedded editing dates are not download timestamps."
+    },
+    "print_variant": {
+      "role": "alternate print composition; not the source of the audited score",
+      "local_path": "data/eic/Aerosols_2025-08-19T20_00_00_1500x1179_72dpi.png",
+      "official_download_url": "https://svs.gsfc.nasa.gov/vis/a000000/a005600/a005669/Aerosols_2025-08-19T20_00_00_1500x1179_72dpi.png",
+      "sha256": "68a8b2294943a50eafd347e085a440b7113142333cf89ff7cd238071bcf04078",
+      "bytes": 2351097,
+      "dimensions_px": [
+        1500,
+        1179
+      ],
+      "mode": "RGB",
+      "media_type": "image/png",
+      "original_downloaded_at_utc": null,
+      "original_download_note": "Original acquisition time is not recorded. File modification times and embedded editing dates are not download timestamps."
+    }
+  },
+  "provenance_verification": {
+    "status": "official_page_links_and_dimensions_verified_local_files_fingerprinted",
+    "official_frame_and_legend_links_opened_on_utc": "2026-11-16",
+    "upstream_byte_equality_verified": false,
+    "upstream_byte_equality_note": "Direct binary re-downloads of the frame and legend returned HTTP 503 during this audit. The hashes identify repository files; they do not claim a newly verified byte match to the remote server.",
+    "original_download_timestamp_known": false
+  },
+  "credits": {
+    "source_credit_line": "NASA's Global Modeling Assimilation Office (GMAO) and NASA's Scientific Visualization Studio (SVS)",
+    "visualizers": [
+      {
+        "name": "Joseph V. Ardizzone",
+        "affiliation": "NASA/GSFC"
+      },
+      {
+        "name": "Helen-Nicole Kostis",
+        "affiliation": "Science and Technology Corporation"
+      }
+    ],
+    "scientist": {
+      "name": "Lesley Ott",
+      "affiliation": "NASA/GSFC"
+    },
+    "suggested_short_display": "Imagen: NASA GMAO / SVS. Sonificación y análisis de imagen: TerraEcho.",
+    "no_endorsement_claim": true
+  },
+  "legend": {
+    "meaning": "Four categorical colors. The legend supplies no numeric units or concentration-to-opacity transfer function.",
+    "sample_coordinate_convention": "zero-based source-legend pixel coordinates (x, y); solid swatch centers",
+    "layers": [
+      {
+        "key": "black_carbon",
+        "official_legend_label": "Black Carbon",
+        "page_color_description": "orange/red; smoke from fires",
+        "sample_xy_px": [
+          300,
+          185
+        ],
+        "sample_rgb_8bit": [
+          210,
+          94,
+          69
+        ],
+        "sample_hue_deg": 10.638298
+      },
+      {
+        "key": "dust",
+        "official_legend_label": "Dust",
+        "page_color_description": "pink/magenta",
+        "sample_xy_px": [
+          600,
+          185
+        ],
+        "sample_rgb_8bit": [
+          193,
+          154,
+          220
+        ],
+        "sample_hue_deg": 275.454545
+      },
+      {
+        "key": "sea_salt",
+        "official_legend_label": "Sea Salt",
+        "page_color_description": "blue",
+        "sample_xy_px": [
+          900,
+          185
+        ],
+        "sample_rgb_8bit": [
+          133,
+          170,
+          169
+        ],
+        "sample_hue_deg": 178.378378
+      },
+      {
+        "key": "sulfate",
+        "official_legend_label": "Sulfate",
+        "page_color_description": "green",
+        "sample_xy_px": [
+          1200,
+          185
+        ],
+        "sample_rgb_8bit": [
+          83,
+          220,
+          52
+        ],
+        "sample_hue_deg": 108.928571
+      }
+    ],
+    "interpretation_limit": "A selected pixel is a visual color match, not identification or measurement of a chemical species. Mixed or base-map colors may enter a hue window."
+  },
+  "baseline_mask_audit": {
+    "audit_basis_repo_revision": "2bd392fbfc0f34a133f7005f7fd776abec42d0c9",
+    "audited_source_path": "terraecho/frames.py",
+    "audited_source_sha256": "9acdcde5e894b5898f09eb6ab04ef4ad786622dbc975a9b45fb195ddebb89471",
+    "source_fingerprint_scope": "Historical baseline inspected for this audit; later implementation changes must record their own algorithm version.",
+    "minimum_saturation": 0.15,
+    "minimum_value": 0.2,
+    "hue_windows_deg": {
+      "black_carbon": [
+        [
+          345,
+          360
+        ],
+        [
+          0,
+          45
+        ]
+      ],
+      "dust": [
+        [
+          245,
+          300
+        ]
+      ],
+      "sea_salt": [
+        [
+          160,
+          230
+        ]
+      ],
+      "sulfate": [
+        [
+          80,
+          150
+        ]
+      ]
+    },
+    "weight_definition": "HSV saturation * HSV value for qualifying pixels, zero otherwise; with RGB in [0,1], this equals max(R,G,B)-min(R,G,B) for qualifying pixels.",
+    "coverage_definition": "Fraction of image pixels with positive color weight. This is not atmospheric or geographic area coverage.",
+    "global_color_coverage": {
+      "black_carbon": 0.016668595679012344,
+      "dust": 0.02886188271604938,
+      "sea_salt": 0.09203751929012345,
+      "sulfate": 0.20675202546296295
+    },
+    "mask_validation_status": "not_human_validated",
+    "human_annotations_completed": 0,
+    "accuracy_estimate": null,
+    "annotation_template": "docs/evaluation/eic-mask-annotation-template.csv",
+    "limitations": [
+      "Composited terrain, illumination, city lights and aerosol colors cannot be separated reliably using hue alone.",
+      "Single legend swatch checks do not validate broad hue windows or ambiguous composite pixels.",
+      "No numeric aerosol concentration or latitude can be recovered from the recorded PNG and this manifest alone."
+    ]
+  },
+  "curated_view_recommendations": [
+    {
+      "id": "global",
+      "label_es": "Panorama global",
+      "crop_fraction_xyxy": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "pixel_bounds_xyxy_exclusive": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "active_layers": [
+        "black_carbon",
+        "dust",
+        "sea_salt",
+        "sulfate"
+      ],
+      "question_es": "¿Cómo se distribuyen los colores del frame de izquierda a derecha?",
+      "geographic_precision": "Full source image; screen coordinates only."
+    },
+    {
+      "id": "smoke-solo",
+      "label_es": "Aislar el color del humo",
+      "crop_fraction_xyxy": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "pixel_bounds_xyxy_exclusive": [
+        0,
+        0,
+        1920,
+        1080
+      ],
+      "active_layers": [
+        "black_carbon"
+      ],
+      "question_es": "¿Qué cambia al escuchar solo la ventana naranja/roja?",
+      "geographic_precision": "Same full image and time; audio-layer selection, not physical separation of smoke."
+    },
+    {
+      "id": "south-america-approx",
+      "label_es": "Sudamérica: encuadre visual aproximado",
+      "crop_fraction_xyxy": [
+        0.26,
+        0.43,
+        0.42,
+        0.83
+      ],
+      "pixel_bounds_xyxy_exclusive": [
+        499,
+        464,
+        806,
+        896
+      ],
+      "active_layers": [
+        "black_carbon",
+        "dust",
+        "sea_salt",
+        "sulfate"
+      ],
+      "question_es": "¿Cómo cambia la presencia de color al explorar este encuadre de Sudamérica?",
+      "geographic_precision": "Approximate image-space crop containing visible mainland and neighboring ocean; not a Peru boundary, national statistic or validated latitude/longitude selection."
+    }
+  ],
+  "curated_view_status": "Recommendations for one real frame, not independent dates or observations. No new rendered audio is attested by this source audit.",
+  "sonification_reference": {
+    "svs_id": 13786,
+    "page_url": "https://svs.gsfc.nasa.gov/13786/",
+    "title": "Data Sonification: Caldwell 73",
+    "release_date": "2020-12-23",
+    "credited_creators": "SYSTEM Sounds (M. Russo, A. Santaguida)",
+    "item_credit": "NASA's Goddard Space Flight Center",
+    "original_mapping": "Rotating radar scan; star distance from center maps to pitch; the entire image becomes a choir, with orange/red stars represented by marimba and blue stars by glockenspiel.",
+    "terraecho_adaptation": "Left-to-right scan; color selects an original synthesized voice, visual color weight controls gain, vertical image position controls pitch. This is an adaptation, not the Caldwell algorithm or its audio.",
+    "reference_audio_reused": false
+  },
+  "rights": {
+    "asset_specific_license_identifier": null,
+    "guidelines_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "brand_guidelines_url": "https://www.nasa.gov/nasa-brand-center/brand-guidelines/",
+    "summary": "NASA describes general educational/informational reuse subject to its media guidelines and applicable third-party rights; no CC license is asserted here.",
+    "source_policy_notes": [
+      "Acknowledge NASA and preserve the item-specific credits.",
+      "Do not imply NASA review, sponsorship or endorsement of TerraEcho or its derived outputs.",
+      "Third-party copyright, if identified on an asset, is not transferred by NASA hosting.",
+      "NASA insignia, logotype, seal and identifiers have separate protections; an image credit is not permission to brand the project with them."
+    ],
+    "audit_observation": "No separate third-party copyright notice was found on the retrieved SVS 5669 entry. This observation is not a blanket clearance of all NASA-hosted assets."
+  },
+  "audit_document": "docs/research/EIC_SOURCE_AUDIT.md",
+  "conservative_rule_diagnostics": {
+    "rule": "Layer-specific saturation floors with unchanged hue windows and value floor.",
+    "minimum_saturation_by_layer": {
+      "black_carbon": 0.35,
+      "dust": 0.15,
+      "sea_salt": 0.15,
+      "sulfate": 0.35
+    },
+    "minimum_value": 0.2,
+    "official_center_swatch_checks": {
+      "black_carbon": {
+        "saturation": 0.6714285714285715,
+        "minimum_saturation": 0.35,
+        "selected_by_revised_rule": true
+      },
+      "dust": {
+        "saturation": 0.3000000000000001,
+        "minimum_saturation": 0.15,
+        "selected_by_revised_rule": true
+      },
+      "sea_salt": {
+        "saturation": 0.2176470588235293,
+        "minimum_saturation": 0.15,
+        "selected_by_revised_rule": true
+      },
+      "sulfate": {
+        "saturation": 0.7636363636363637,
+        "minimum_saturation": 0.35,
+        "selected_by_revised_rule": true
+      }
+    },
+    "global_color_coverage": {
+      "black_carbon": 0.01486448688271605,
+      "dust": 0.02886188271604938,
+      "sea_salt": 0.09203751929012345,
+      "sulfate": 0.1552806712962963
+    },
+    "greenland_candidate": {
+      "xy_px": [
+        700,
+        100
+      ],
+      "baseline_sulfate_weight": 0.0784313725490196,
+      "revised_sulfate_weight": 0.0,
+      "patch_xyxy_exclusive": [
+        672,
+        64,
+        748,
+        118
+      ],
+      "baseline_sulfate_coverage": 0.6717836257309941,
+      "revised_sulfate_coverage": 0.07626705653021443
+    },
+    "validation_status": "Deterministic color-rule compatibility checks only. Preserving four swatch centers and rejecting one muted confound candidate does not establish segmentation accuracy or physical validity.",
+    "human_annotations_completed": 0,
+    "annotation_template_scope": "The separate CSV records the historical baseline, not this revised rule."
+  }
+}

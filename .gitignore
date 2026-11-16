@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 data/raw/*.csv
+data/scores/verified/*.json
 out/
 .venv/
 data/listening_test/key.txt
@@ -18,3 +19,10 @@ web/public/eic/
 !.env.example
 !.env.*.example
 .sites-local/
+
+# Generated demo and temporary browser QA
+.sites-build/
+dist/
+web/public/qa/
+web/public/qa-accessibility.html
+docs/evaluation/pilot-responses-private*.csv
