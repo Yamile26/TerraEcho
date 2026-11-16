@@ -35,7 +35,7 @@ export function Timeline({
     <section className="timeline" aria-label="Exploración temporal">
       <div className="timeline-heading">
         <div className="timeline-title">
-          <span className="micro">VIAJA EN EL TIEMPO</span>
+          <span className="micro">LÍNEA DE TIEMPO</span>
           <span className="timeline-subtitle">
             Cada semana, una nueva señal.
           </span>

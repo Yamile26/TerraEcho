@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { LEVEL_COLOR } from "@/lib/data";
+import { PALETTE, withAlpha } from "@/lib/theme";
 import type { CellVoice, GeoCollection } from "@/lib/types";
 import type { GlobeLayers } from "./globe";
 
@@ -139,22 +140,22 @@ export function CompatibleGlobe({
             j = (ty * texture.width + tx) * 4;
           pixels.data[n.i] = Math.min(
             255,
-            texture.data[j] * n.light * 0.84 + 3,
+            texture.data[j] * n.light * 0.78 + 3,
           );
           pixels.data[n.i + 1] = Math.min(
             255,
-            texture.data[j + 1] * n.light + 7,
+            texture.data[j + 1] * n.light * 0.94 + 6,
           );
           pixels.data[n.i + 2] = Math.min(
             255,
-            texture.data[j + 2] * n.light + 10,
+            texture.data[j + 2] * n.light * 1.15 + 14,
           );
           pixels.data[n.i + 3] = 255;
         }
         sc.putImageData(pixels, 0, 0);
         ctx.save();
-        ctx.shadowColor = "#57adbc75";
-        ctx.shadowBlur = 28;
+        ctx.shadowColor = withAlpha(PALETTE.glow, 0.7);
+        ctx.shadowBlur = 30;
         ctx.drawImage(sphere, cx - radius, cy - radius, radius * 2, radius * 2);
         ctx.restore();
       } else {
@@ -166,14 +167,14 @@ export function CompatibleGlobe({
           cy,
           radius,
         );
-        g.addColorStop(0, "#436f70");
-        g.addColorStop(1, "#051426");
+        g.addColorStop(0, PALETTE.lineStrong);
+        g.addColorStop(1, PALETTE.ocean);
         ctx.fillStyle = g;
         ctx.beginPath();
         ctx.arc(cx, cy, radius, 0, Math.PI * 2);
         ctx.fill();
       }
-      ctx.strokeStyle = "#86ced43f";
+      ctx.strokeStyle = withAlpha(PALETTE.glow, 0.7);
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.arc(cx, cy, radius + 0.5, 0, Math.PI * 2);
@@ -194,7 +195,7 @@ export function CompatibleGlobe({
       };
       if (state.geo) {
         ctx.lineWidth = 0.6;
-        ctx.strokeStyle = "#d5f9ae80";
+        ctx.strokeStyle = withAlpha(PALETTE.boundaries, 0.8);
         for (const feature of state.geo.features) {
           const polys =
             feature.geometry.type === "Polygon"
@@ -229,7 +230,7 @@ export function CompatibleGlobe({
           ctx.arc(
             p.x,
             p.y,
-            1.1 + Math.min(2.3, Math.log1p(cell.count) * 0.33),
+            0.8 + Math.min(1.5, Math.log1p(cell.count) * 0.18),
             0,
             Math.PI * 2,
           );
@@ -241,7 +242,7 @@ export function CompatibleGlobe({
         if (p.visible)
           for (let i = 0; i < 3; i++) {
             const t = (elapsed * 0.25 + i / 3) % 1;
-            ctx.strokeStyle = `rgba(202,238,168,${(1 - t) * 0.5})`;
+            ctx.strokeStyle = withAlpha(PALETTE.accent, (1 - t) * 0.5);
             ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.ellipse(p.x, p.y, 5 + t * 34, 2 + t * 14, -0.3, 0, Math.PI * 2);
@@ -257,22 +258,25 @@ export function CompatibleGlobe({
           ctx.translate(cx, cy);
           ctx.rotate(rotation);
           ctx.lineWidth = 0.7;
-          ctx.strokeStyle = j ? "#c2e9a04d" : "#8fbec650";
+          ctx.strokeStyle = withAlpha(
+            j ? PALETTE.glow : PALETTE.boundaries,
+            0.28,
+          );
           ctx.beginPath();
           ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
           ctx.stroke();
           const t = elapsed * (0.13 + j * 0.03) + j * 2.4;
           ctx.translate(Math.cos(t) * rx, Math.sin(t) * ry);
           ctx.rotate(-rotation);
-          ctx.fillStyle = "#456c82";
+          ctx.fillStyle = PALETTE.lineStrong;
           ctx.fillRect(-16, -4, 11, 8);
           ctx.fillRect(5, -4, 11, 8);
-          ctx.strokeStyle = "#a1b9b4";
+          ctx.strokeStyle = PALETTE.muted;
           ctx.strokeRect(-16, -4, 11, 8);
           ctx.strokeRect(5, -4, 11, 8);
-          ctx.fillStyle = "#d9ddcb";
+          ctx.fillStyle = PALETTE.text;
           ctx.fillRect(-3, -5, 6, 10);
-          ctx.fillStyle = "#d3f3aa";
+          ctx.fillStyle = PALETTE.accent;
           ctx.beginPath();
           ctx.arc(0, -8, 1.5, 0, Math.PI * 2);
           ctx.fill();

@@ -9,6 +9,7 @@ import {
 } from "@/lib/data";
 import type { FireScore } from "@/lib/types";
 import { Icon } from "./icon";
+import { PALETTE } from "@/lib/theme";
 export function Temporal({
   score,
   index,
@@ -65,10 +66,10 @@ export function Temporal({
                 y1={188 - t * 160}
                 x2="844"
                 y2={188 - t * 160}
-                stroke="#263336"
+                stroke={PALETTE.line}
                 strokeDasharray="3 5"
               />
-              <text x="2" y={192 - t * 160} fill="#84918e" fontSize="11">
+              <text x="2" y={192 - t * 160} fill={PALETTE.muted} fontSize="11">
                 {number(max * t)}
               </text>
             </g>
@@ -86,7 +87,9 @@ export function Temporal({
                   height={w.data_gap ? 160 : Math.max(2, h)}
                   rx="2"
                   fill={
-                    w.data_gap ? "#364044" : LEVEL_COLOR[m?.level ?? "no_data"]
+                    w.data_gap
+                      ? PALETTE.lineStrong
+                      : LEVEL_COLOR[m?.level ?? "no_data"]
                   }
                   opacity={i === index ? 1 : 0.65}
                   onClick={() => onChange(i)}
@@ -103,7 +106,7 @@ export function Temporal({
             x2={62 + index * 15.1}
             y1="12"
             y2="195"
-            stroke="#e0f9c2"
+            stroke={PALETTE.accent}
             strokeWidth="1"
             strokeDasharray="3 4"
           />
@@ -112,7 +115,7 @@ export function Temporal({
               key={i}
               x={57 + i * 15.1}
               y="218"
-              fill="#84918e"
+              fill={PALETTE.muted}
               fontSize="10"
             >
               {

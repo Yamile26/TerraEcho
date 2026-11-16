@@ -6,6 +6,7 @@ import type {
   GeoFeature,
   Level,
 } from "./types";
+import { PALETTE } from "./theme";
 
 export const LEVEL_LABEL: Record<Level, string> = {
   normal: "Dentro de lo habitual",
@@ -14,10 +15,10 @@ export const LEVEL_LABEL: Record<Level, string> = {
   no_data: "Sin datos suficientes",
 };
 export const LEVEL_COLOR: Record<Level, string> = {
-  normal: "#a8e9b1",
-  elevated: "#efc773",
-  critical: "#ff885e",
-  no_data: "#87929d",
+  normal: PALETTE.accent,
+  elevated: PALETTE.warm,
+  critical: PALETTE.danger,
+  no_data: PALETTE.subtle,
 };
 export const number = (v: number) =>
   new Intl.NumberFormat("es-PE", { maximumFractionDigits: 0 }).format(v);

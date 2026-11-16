@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
+import { THEME_CSS_VARIABLES } from "@/lib/theme";
 import "./globals.css";
 export const metadata: Metadata = {
   title: "TerraEcho · Escucha lo que la Tierra nos dice",
@@ -11,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang="es" style={THEME_CSS_VARIABLES as CSSProperties}>
       <body>{children}</body>
     </html>
   );

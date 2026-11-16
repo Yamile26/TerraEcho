@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { Sonifier } from "@/lib/audio";
+import { PALETTE } from "@/lib/theme";
 import {
   dateLabel,
   LEVEL_COLOR,
@@ -49,25 +50,30 @@ function MiniChart({ weeks, index }: { weeks: FireWeek[]; index: number }) {
     <svg className="mini-chart" viewBox="0 0 260 56" aria-hidden="true">
       <defs>
         <linearGradient id="sparkfill" x1="0" y1="0" x2="0" y2="1">
-          <stop stopColor="#bdea9d" stopOpacity=".18" />
-          <stop offset="1" stopColor="#bdea9d" stopOpacity="0" />
+          <stop stopColor={PALETTE.accent} stopOpacity=".18" />
+          <stop offset="1" stopColor={PALETTE.accent} stopOpacity="0" />
         </linearGradient>
       </defs>
       <polygon points={`0,55 ${pts} 260,55`} fill="url(#sparkfill)" />
-      <polyline points={pts} fill="none" stroke="#8da68c" strokeWidth="1.4" />
+      <polyline
+        points={pts}
+        fill="none"
+        stroke={PALETTE.boundaries}
+        strokeWidth="1.4"
+      />
       <line
         x1={(index / (weeks.length - 1)) * 260}
         x2={(index / (weeks.length - 1)) * 260}
         y1="0"
         y2="56"
-        stroke="#d2f4a8"
+        stroke={PALETTE.accent}
         strokeDasharray="2 3"
       />
       <circle
         cx={(index / (weeks.length - 1)) * 260}
         cy={49 - (weeks[index].country.count / max) * 43}
         r="3.2"
-        fill="#d2f4a8"
+        fill={PALETTE.accent}
       />
     </svg>
   );
@@ -246,6 +252,30 @@ export function TerraEcho() {
     week && (metrics || week.data_gap)
       ? `${region === "Perú" ? "Área de estudio alrededor de Perú" : region}, ${weekRange(week)} de ${year}. ${week.data_gap ? "Datos insuficientes." : `${number(metrics?.count ?? 0)} focos de calor. ${LEVEL_LABEL[metrics?.level ?? "no_data"]}. Anomalía z ${metrics?.z?.toFixed(2)}.`}`
       : "";
+  const regionField = (
+    <label className="region-field">
+      <span>Departamento</span>
+      <select
+        aria-label="Región de escucha"
+        value={region}
+        onChange={(e) => {
+          setRegion(e.target.value);
+          setInspected(null);
+        }}
+        disabled={!geo}
+      >
+        <option value="Perú">Toda el área de estudio</option>
+        {geo?.features
+          .map((f) => f.properties.shapeName)
+          .sort((a, b) => a.localeCompare(b, "es"))
+          .map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+      </select>
+    </label>
+  );
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main">
@@ -262,8 +292,8 @@ export function TerraEcho() {
             <span />
           </span>
           <span>
-            terra<span className="brand-light">echo</span>
-            <small>LISTEN TO OUR PLANET</small>
+            Terra<span className="brand-light">Echo</span>
+            <small>SATÉLITES · CIENCIA · SONIDO</small>
           </span>
         </button>
         <nav className="top-nav" aria-label="Navegación principal">
@@ -278,6 +308,13 @@ export function TerraEcho() {
               {view === n.id && <span />}
             </button>
           ))}
+          <button
+            className="sources-nav"
+            onClick={() => setDialog("sources")}
+            aria-label="Fuentes y conexión API"
+          >
+            Fuentes y metodología
+          </button>
         </nav>
         <div className="topbar-right">
           <span className="mission-tag">
@@ -293,7 +330,7 @@ export function TerraEcho() {
           </button>
         </div>
       </header>
-      <div className="app-grid">
+      <div className={`app-grid view-${view}`}>
         <aside className="rail" aria-label="Herramientas de navegación">
           <div className="rail-top">
             <span className="rail-label">MISIÓN</span>
@@ -367,35 +404,34 @@ export function TerraEcho() {
                 </span>
               </div>
               <div className="hero-copy">
-                <span className="outline-tag">
-                  EL SONIDO DE UN PLANETA VIVO
-                </span>
+                <span className="outline-tag">PERÚ / 2025–2026</span>
                 <h1>
-                  La Tierra tiene
+                  Escucha los
                   <br />
-                  algo que decir.
-                  <br />
-                  <em>Escúchala.</em>
+                  <em>bosques de Perú.</em>
                 </h1>
                 <p>
-                  El fuego deja una señal.
-                  <br />
-                  Transformamos datos satelitales
-                  <br />
-                  en una experiencia que puedes sentir.
+                  Explora la huella de los incendios forestales a través de
+                  satélites y sonido.
                 </p>
-                <button
-                  className={`primary-button ${sound ? "listening" : ""}`}
-                  onClick={toggleSound}
-                  disabled={!week}
-                  aria-pressed={sound}
-                >
-                  <Icon name={sound ? "pause" : "headphones"} size={18} />
-                  {sound ? "Pausar escucha" : "Escuchar la Tierra"}
-                  <Icon name="arrow" size={16} />
-                </button>
+                <div className="geography-card">
+                  <span className="micro">EXPLORACIÓN GEOGRÁFICA</span>
+                  <div className="country-field">
+                    <span>País</span>
+                    <div className="country-value">
+                      <Icon name="globe" size={14} />
+                      Perú
+                    </div>
+                  </div>
+                  {regionField}
+                  <small>
+                    {region === "Perú"
+                      ? "Ámbito: Perú y entorno."
+                      : `Departamento: ${region}.`}
+                  </small>
+                </div>
                 <span className="hero-footnote">
-                  NASA FIRMS + EARTH INFORMATION CENTER
+                  MONITOREO PARA EXPLORAR, NO PARA ALERTAR
                 </span>
               </div>
               <div className="globe-location">
@@ -535,50 +571,6 @@ export function TerraEcho() {
                 </span>
                 <small>Arrastra para orbitar · toca un foco</small>
               </div>
-              <div className="sound-dock">
-                <div
-                  className={`sound-symbol ${sound ? "active" : ""}`}
-                  aria-hidden="true"
-                >
-                  {Array.from({ length: 15 }, (_, i) => (
-                    <i
-                      key={i}
-                      style={{
-                        height: `${(6 + Math.abs(Math.sin(i * 0.9)) * 23).toFixed(2)}px`,
-                        animationDelay: `${(i * 0.07).toFixed(2)}s`,
-                      }}
-                    />
-                  ))}
-                </div>
-                <div className="sound-dock-copy">
-                  <span className="micro">
-                    {sound
-                      ? "SONIFICACIÓN ACTIVA"
-                      : "DALE VOLUMEN A LA CIENCIA"}
-                  </span>
-                  <span>
-                    {week?.data_gap
-                      ? "Sin datos suficientes · silencio"
-                      : sound
-                        ? `${region} · ${metrics ? LEVEL_LABEL[metrics.level] : "sin datos"}`
-                        : "Hay historias que los ojos no alcanzan a contar."}
-                  </span>
-                </div>
-                <button
-                  className="voice-button"
-                  aria-label={
-                    speaking
-                      ? "Detener lectura de la selección"
-                      : "Leer selección en voz alta"
-                  }
-                  onClick={readSelection}
-                  disabled={!week || (!metrics && !week.data_gap)}
-                  aria-pressed={speaking}
-                >
-                  <Icon name={speaking ? "pause" : "volume"} size={17} />
-                  <span>{speaking ? "Detener voz" : "Leer selección"}</span>
-                </button>
-              </div>
             </section>
           ) : view === "history" ? (
             score ? (
@@ -671,28 +663,7 @@ export function TerraEcho() {
             </div>
           ) : (
             <>
-              <label className="region-field">
-                <span>REGIÓN DE ESCUCHA</span>
-                <select
-                  aria-label="Región de escucha"
-                  value={region}
-                  onChange={(e) => {
-                    setRegion(e.target.value);
-                    setInspected(null);
-                  }}
-                  disabled={!geo}
-                >
-                  <option value="Perú">Área de estudio · Perú (bbox)</option>
-                  {geo?.features
-                    .map((f) => f.properties.shapeName)
-                    .sort((a, b) => a.localeCompare(b, "es"))
-                    .map((name) => (
-                      <option key={name} value={name}>
-                        {name}
-                      </option>
-                    ))}
-                </select>
-              </label>
+              {view === "history" && regionField}
               <div className="observation-date">
                 <span>{week ? weekRange(week) : "—"}</span>
                 <small>
@@ -858,6 +829,118 @@ export function TerraEcho() {
               </button>
             </div>
           )}
+          {view !== "eic" && (
+            <section
+              className={`sound-dock ${week?.data_gap ? "no-signal" : ""}`}
+              aria-label="Estudio de sonificación"
+            >
+              <div className="sound-dock-heading">
+                <span className="micro">
+                  <Icon name="wave" size={15} />
+                  ESTUDIO DE SONIFICACIÓN
+                </span>
+                <span>
+                  Escucha patrones de detección a lo largo del tiempo.
+                </span>
+                <button
+                  className="text-button"
+                  onClick={() => setDialog("method")}
+                >
+                  ¿Cómo se convierte en sonido?
+                  <Icon name="info" size={14} />
+                </button>
+              </div>
+              <div className="sound-dock-body">
+                <button
+                  className={`play-button ${sound ? "is-playing" : ""}`}
+                  onClick={toggleSound}
+                  disabled={!week}
+                  aria-label={sound ? "Pausar escucha" : "Escuchar la Tierra"}
+                  aria-pressed={sound}
+                >
+                  <Icon name={sound ? "pause" : "play"} size={21} />
+                </button>
+                <div className="sound-dock-copy">
+                  <strong>
+                    {region === "Perú"
+                      ? "Incendios forestales · Perú"
+                      : `Señales de ${region}`}
+                  </strong>
+                  <span>
+                    {week
+                      ? `${weekRange(week)} · ${year}`
+                      : "Preparando la selección…"}
+                  </span>
+                  <small>
+                    {week?.data_gap
+                      ? "DATOS INSUFICIENTES · SILENCIO"
+                      : sound
+                        ? "SONIFICACIÓN ACTIVA"
+                        : "LISTO PARA ESCUCHAR"}
+                  </small>
+                </div>
+                <div
+                  className={`sound-symbol ${sound ? "active" : ""}`}
+                  aria-hidden="true"
+                >
+                  {Array.from({ length: 76 }, (_, i) => {
+                    const gain = cells.length
+                      ? cells[i % cells.length].gain
+                      : 0;
+                    return (
+                      <i
+                        key={i}
+                        style={{
+                          height: `${(week?.data_gap ? 3 : 4 + gain * 25 + Math.abs(Math.sin(i * 0.76)) * 9).toFixed(2)}px`,
+                          animationDelay: `${(i * 0.027).toFixed(2)}s`,
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+                <label className="dock-volume">
+                  <span>
+                    Volumen <b>{Math.round(volume * 100)} %</b>
+                  </span>
+                  <span>
+                    <Icon name="volume" size={14} />
+                    <input
+                      aria-label="Volumen de la sonificación"
+                      type="range"
+                      min="0"
+                      max="1"
+                      step=".01"
+                      value={volume}
+                      onChange={(e) => setVolume(+e.target.value)}
+                    />
+                  </span>
+                </label>
+                <button
+                  className="voice-button"
+                  aria-label={
+                    speaking
+                      ? "Detener lectura de la selección"
+                      : "Leer selección en voz alta"
+                  }
+                  onClick={readSelection}
+                  disabled={!week || (!metrics && !week.data_gap)}
+                  aria-pressed={speaking}
+                >
+                  <Icon name={speaking ? "pause" : "headphones"} size={16} />
+                  <span>{speaking ? "Detener voz" : "Leer selección"}</span>
+                </button>
+              </div>
+              <div className="sound-dock-footer">
+                <span>DEL DATO AL SONIDO</span>
+                <span>Detecciones → ritmo</span>
+                <span>Anomalía → disonancia</span>
+                <span>
+                  <Icon name="headphones" size={12} />
+                  Mejor con audífonos
+                </span>
+              </div>
+            </section>
+          )}
         </div>
       </div>
       <footer className="footer">
@@ -881,23 +964,7 @@ export function TerraEcho() {
           </a>
         </div>
       </footer>
-      {view !== "eic" && sound && (
-        <div className="volume-float">
-          <button onClick={toggleSound} aria-label="Silenciar sonificación">
-            <Icon name="volume" size={17} />
-          </button>
-          <input
-            aria-label="Volumen de la sonificación"
-            type="range"
-            min="0"
-            max="1"
-            step=".01"
-            value={volume}
-            onChange={(e) => setVolume(+e.target.value)}
-          />
-          <span>{Math.round(volume * 100)}%</span>
-        </div>
-      )}
+
       {audioError && (
         <div className="toast" role="alert">
           {audioError}

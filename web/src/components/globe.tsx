@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { LEVEL_COLOR, number } from "@/lib/data";
+import { PALETTE } from "@/lib/theme";
 import type { CellVoice, GeoCollection } from "@/lib/types";
 import { CompatibleGlobe } from "./compatible-globe";
 
@@ -106,9 +107,9 @@ export function Globe({
     const earth = new THREE.Group();
     scene.add(earth);
     const material = new THREE.MeshPhongMaterial({
-      color: 0x8aabb0,
+      color: PALETTE.secondary,
       shininess: 13,
-      specular: 0x42646a,
+      specular: PALETTE.lineStrong,
     });
     const loader = new THREE.TextureLoader();
     let mounted = true;
@@ -130,11 +131,11 @@ export function Globe({
       },
     );
     earth.add(new THREE.Mesh(new THREE.SphereGeometry(1.65, 80, 56), material));
-    scene.add(new THREE.AmbientLight(0xb1d4dd, 1.45));
-    const sun = new THREE.DirectionalLight(0xd5efff, 2.4);
+    scene.add(new THREE.AmbientLight(PALETTE.secondary, 1.45));
+    const sun = new THREE.DirectionalLight(PALETTE.text, 2.4);
     sun.position.set(-3, 3, 5);
     scene.add(sun);
-    const rim = new THREE.DirectionalLight(0x2bbfc2, 1.4);
+    const rim = new THREE.DirectionalLight(PALETTE.glow, 1.4);
     rim.position.set(4, -1, -3);
     scene.add(rim);
     const atmosphere = new THREE.Mesh(
@@ -143,7 +144,7 @@ export function Globe({
         vertexShader:
           "varying vec3 vNormal; varying vec3 vPosition; void main(){vNormal=normalize(normalMatrix*normal);vPosition=(modelViewMatrix*vec4(position,1.0)).xyz;gl_Position=projectionMatrix*vec4(vPosition,1.0);}",
         fragmentShader:
-          "varying vec3 vNormal;varying vec3 vPosition;void main(){float a=pow(1.0-abs(dot(normalize(vNormal),normalize(-vPosition))),3.5);gl_FragColor=vec4(0.16,0.67,0.77,a*0.6);}",
+          "varying vec3 vNormal;varying vec3 vPosition;void main(){float a=pow(1.0-abs(dot(normalize(vNormal),normalize(-vPosition))),3.5);gl_FragColor=vec4(0.10,0.57,1.0,a*0.85);}",
         transparent: true,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
@@ -162,7 +163,7 @@ export function Globe({
         new THREE.Line(
           new THREE.BufferGeometry().setFromPoints(ps),
           new THREE.LineBasicMaterial({
-            color: 0x9bc4c1,
+            color: PALETTE.boundaries,
             transparent: true,
             opacity: 0.09,
           }),
@@ -177,7 +178,7 @@ export function Globe({
       const m = new THREE.Mesh(
         new THREE.RingGeometry(0.025, 0.029, 64),
         new THREE.MeshBasicMaterial({
-          color: 0xd0efa6,
+          color: PALETTE.accent,
           transparent: true,
           opacity: 0.45,
           side: THREE.DoubleSide,
@@ -211,7 +212,7 @@ export function Globe({
         new THREE.Line(
           new THREE.BufferGeometry().setFromPoints(points),
           new THREE.LineBasicMaterial({
-            color: j === 0 ? 0x8abac3 : 0xbee990,
+            color: j === 0 ? PALETTE.boundaries : PALETTE.glow,
             transparent: true,
             opacity: 0.22,
           }),
@@ -221,20 +222,23 @@ export function Globe({
       satellite.add(
         new THREE.Mesh(
           new THREE.BoxGeometry(0.07, 0.07, 0.09),
-          new THREE.MeshPhongMaterial({ color: 0xe8e9d5 }),
+          new THREE.MeshPhongMaterial({ color: PALETTE.text }),
         ),
       );
       for (const side of [-1, 1]) {
         const panel = new THREE.Mesh(
           new THREE.BoxGeometry(0.12, 0.005, 0.08),
-          new THREE.MeshPhongMaterial({ color: 0x437b9c, emissive: 0x153448 }),
+          new THREE.MeshPhongMaterial({
+            color: PALETTE.lineStrong,
+            emissive: PALETTE.ocean,
+          }),
         );
         panel.position.x = side * 0.102;
         satellite.add(panel);
       }
       const beacon = new THREE.Mesh(
         new THREE.SphereGeometry(0.017, 8, 8),
-        new THREE.MeshBasicMaterial({ color: 0xc9f797 }),
+        new THREE.MeshBasicMaterial({ color: PALETTE.accent }),
       );
       beacon.position.y = 0.06;
       satellite.add(beacon);
@@ -259,7 +263,7 @@ export function Globe({
         new THREE.Float32BufferAttribute(starPositions, 3),
       ),
       new THREE.PointsMaterial({
-        color: 0x8fa9aa,
+        color: PALETTE.muted,
         size: 0.016,
         transparent: true,
         opacity: 0.5,
@@ -354,7 +358,7 @@ export function Globe({
       disposeNode(n);
     });
     for (const c of cells) {
-      const size = 0.008 + Math.min(0.021, Math.log1p(c.count) * 0.003);
+      const size = 0.005 + Math.min(0.011, Math.log1p(c.count) * 0.0015);
       const m = new THREE.Mesh(
         new THREE.SphereGeometry(size, 6, 6),
         new THREE.MeshBasicMaterial({ color: LEVEL_COLOR[c.level] }),
@@ -380,7 +384,7 @@ export function Globe({
               ring.map(([lon, lat]) => point(lat, lon, 1.668)),
             ),
             new THREE.LineBasicMaterial({
-              color: 0xdcf5b6,
+              color: PALETTE.boundaries,
               transparent: true,
               opacity: 0.55,
             }),
@@ -455,8 +459,8 @@ export function PeruMap({
       >
         <defs>
           <radialGradient id="mapglow">
-            <stop stopColor="#253c35" />
-            <stop offset="1" stopColor="#0c191c" />
+            <stop stopColor={PALETTE.panelRaised} />
+            <stop offset="1" stopColor={PALETTE.panel} />
           </radialGradient>
         </defs>
         <rect width="430" height="520" fill="none" />
@@ -483,7 +487,7 @@ export function PeruMap({
                 )
                 .join(" ")}
               fill="url(#mapglow)"
-              stroke="#6c8b79"
+              stroke={PALETTE.boundaries}
               strokeWidth=".65"
               fillRule="evenodd"
             />
@@ -510,7 +514,7 @@ export function PeruMap({
         <text
           x="14"
           y="245"
-          fill="#8caaa7"
+          fill={PALETTE.muted}
           fontSize="10"
           letterSpacing="3"
           transform="rotate(-75 14 245)"
