@@ -37,23 +37,12 @@ await collect(path.join(root, "dist"));
 const geo = JSON.parse(await readFile(path.join(root, "web/public/data/peru_departments.geojson"), "utf8"));
 await writeFile(path.join(stage, "assets.mjs"), `export const assets=${JSON.stringify(assets)};\nexport const geo=${JSON.stringify(geo)};\n`);
 const handlerPath = path.join(root, "web/src/lib/edge-runtime.ts");
+const assetPath = path.join(root, "web/src/lib/edge-assets.ts");
 await writeFile(path.join(stage, "entry.mjs"), `
 import { createEdgeApp } from ${JSON.stringify(handlerPath)};
+import { createAssetHandler } from ${JSON.stringify(assetPath)};
 import { assets, geo } from './assets.mjs';
-const decoded = new Map(); let decodedBytes = 0;
-async function asset(path, request) {
-  const key = path === '/' ? '/index.html' : assets[path] ? path : path.replace(/\\/$/, '') + '/index.html';
-  const a = assets[key]; if (!a) return null;
-  const headers = { 'Content-Type': a.type, 'ETag': '"' + a.hash + '"', 'Cache-Control': key.startsWith('/_next/') ? 'public, max-age=31536000, immutable' : 'public, max-age=300', 'X-Content-Type-Options': 'nosniff' };
-  if (request.headers.get('If-None-Match') === headers.ETag) return new Response(null, {status:304, headers});
-  let bytes = decoded.get(key);
-  if (!bytes) {
-    bytes = Uint8Array.from(atob(a.body), c => c.charCodeAt(0));
-    if (decodedBytes + bytes.length <= 12000000) { decoded.set(key, bytes); decodedBytes += bytes.length; }
-  }
-  if (a.zipped) headers['Content-Encoding'] = 'gzip';
-  return new Response(request.method === 'HEAD' ? null : bytes, {headers});
-}
+const asset = createAssetHandler(assets);
 export default createEdgeApp({geo, asset});
 `);
 await rm(path.join(root, "dist"), { recursive: true, force: true });

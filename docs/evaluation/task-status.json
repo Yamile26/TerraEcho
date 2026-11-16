@@ -143,8 +143,8 @@
       "id": "F02",
       "status": "parcial",
       "title": "Datos recientes al mapa y audio",
-      "evidence": "Modo explícito con consulta, departamento, mapa, tabla y gramática descriptiva; proveedor probado con fixtures y error 503 en navegador.",
-      "remaining": "Verificar el recorrido con respuesta NASA real del nuevo producto y la clave local, incluso si devuelve cero."
+      "evidence": "API pública NOAA-20 real comprobada con 174 detecciones. La recarga del navegador detectó activos comprimidos ilegibles; el adaptador sirve ahora bytes originales y delega la compresión de transporte al host. Tres regresiones HTML/JSON/binario/cache añadidas; 37 pruebas y tipos pasan. Recorrido público pendiente de publicar la corrección.",
+      "remaining": "Publicar la corrección de transporte y verificar con NASA real el recorrido de departamento, mapa, tabla y audio."
     },
     {
       "id": "F03",
