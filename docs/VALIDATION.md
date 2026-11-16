@@ -1,47 +1,38 @@
-# Implementation validation · November 15, 2026
+# Evidencia de validación de la entrega
 
-## Navy/cyan design review · November 16, 2026
+Revisión 16-nov-2026 UTC. Ver el historial Git y [registro de53 tareas](ESTADO_53_TAREAS.md) para distinguir funciones y validaciones pendientes. Las capturas anteriores a `terraecho-release-*` corresponden a estados previos.
 
-The interface now follows the team's supplied design screenshot. Colors are shared through `web/src/lib/theme.ts`; the explorer, 2D map, observatory, EIC controls and dialogs use the same tokens. See `THEME.md` for the palette and the distinction between interface colors and the original EIC aerosol encoding.
-
-The review checked the study-area and Ucayali filters (9,058 and 1,049 detections for week 40 of 2026), 3D/2D switching, fire playback start/stop, the observatory, EIC view and source dialog. The mobile audio volume responded to keyboard input. At a 390-pixel iframe viewport, the body measured 380 pixels wide including the browser's reserved scrollbar space, with an equal scroll width. No horizontal overflow was present. Desktop computed styles confirmed background `rgb(4, 8, 16)` and accent `#53e7de`.
-
-The timeline and sound studio are separate cards. The observatory retains its regional selector; EIC and observatory content grow with the page rather than being clipped inside a fixed-height stage. Existing contracts, counts and synthesis parameters are unchanged. The 12 existing web tests, TypeScript check and production build pass after the visual update. The WebGL and listening-test limits below still apply.
-
-## Completed checks
-
-| Check | Result |
+| Comprobación | Resultado real |
 | --- | --- |
-| `npm run test:web` | 12 tests pass: exported contracts, gap silence, regional agreement, bounded audio inputs, CSV unknowns, FIRMS parsing, UTC times, query validation, API snapshots, explicit missing-key errors and final-bin calendar labels |
-| `npm run typecheck` | Pass |
-| `npm run build` | Pass; Next.js generates the page and dynamic `/api/fires` and `/api/health` routes |
-| `python tests/test_pipeline.py` | Original Python tests pass; scientific modules are unchanged |
-| Desktop browser | Explorer, compatible globe, regional filter, keyboard week selection, observation metrics and 2D map verified |
-| Observational table | All 44 rows of the 2026 export rendered; regional values and gap labels checked |
-| Audio controls | Fire playback activates and stops; selecting the last 2026 week shows insufficient data and silence |
-| EIC studio | Actual NASA frame loaded; transport advanced from 0.0 to 7.5 seconds and paused; all four layer controls rendered |
-| Source dialog | Remains open in React strict mode; missing FIRMS key produces a clear configuration message; Escape closes it |
-| Mobile iframe | 390 CSS-pixel viewport checked; body scroll width equals viewport width, no horizontal overflow |
-| Screenshots | Desktop, mobile and EIC views saved in `docs/screenshots/` |
+| `python -m unittest discover -s tests -p 'test_science.py' -v` | 8 pruebas pasan: puntos/fronteras/huecos, FRP desconocida, leyenda/crop y reconciliación/huellas de los14 snapshots |
+| `python tests/test_pipeline.py` | Pruebas originales pasan, con avisos previstos de fixtures; no convierten el pipeline heredado en generador nuevo |
+| `npm run test:web` | 21 pruebas pasan: contratos, errores API, selección, geografía, cobertura, EIC, reloj y WAV |
+| `npm run typecheck` | Pasa |
+| `npm run build` | Build Next.js de producción pasa, con `/api/fires` y `/api/health` dinámicos |
+| `node web/scripts/build-archive-demo.mjs` | Build estático EIC/archivo pasa; excluye deliberadamente API y tests de servidor en copia temporal |
+| `python scripts/evaluate_release.py` | Ejecutado sobre fuentes reales:9 configuraciones nacionales,3 resoluciones con anomalía por celda, representación de18 voces y caso peruano |
+| `node --import tsx web/scripts/export-reference.mts` | 3 WAV originales, 22,050 Hz estéreo,25.998 s, cero muestras saturadas; fichas con hash |
+| WAV descargado desde la interfaz | Sudamérica: hash `0de986f71ca57eaa98ad59bd14e4e76cef8ecc7134c2aab2c76908b656901869`, mismo archivo que CLI, fuente/configuración RIFF incluidas |
+| `summarize_pilot.py` con plantilla vacía | Rechaza explícitamente resultados inexistentes; no hay participantes simulados |
 
-The API tests invoke the actual Next.js route handlers in process. Managed preview runs in a separate network namespace, so a shell localhost HTTP probe could not reach it; this is not presented as a successful network smoke test. The browser did load the historical API and check the missing-key API through the real interface.
+## Navegador real de revisión
 
-## Verification limits
+Se comprobaron: entrada EIC, tres lecturas, aislamiento/máscaras, transporte por reloj de audio, pausa, A/B, exportación WAV, compartir y recargar pieza/segmento/mono; archivo2012/2025; gap inicial2012; tabla de todas las celdas, apertura/escucha/parada con Enter; cierre de diálogo con Escape y retorno real de foco. El modo reciente mostró el error de clave ausente sin bloquear EIC/archivo. No había MAP_KEY del equipo en este entorno.
 
-- The review browser disables WebGL. The compatible spherical projection was exercised; accelerated Three.js rendering was compiled and typechecked, but still needs a visual check on a WebGL-capable device.
-- No actual FIRMS MAP_KEY was supplied, so a successful live NASA API fetch was not verified. Parser and validation tests use explicit test CSV fixtures, not fabricated product observations.
-- No Python HTTP service exists in this change. Only the provider adapter and stable contract are ready.
-- Audio control state, scan progress and silence handling were verified. Human listening quality and accessible interpretation still require headphone and participant testing.
-- This is a responsive-layout check at a mobile viewport, not a test on a physical iOS/Android device or a formal WCAG audit.
-- The existing exported figures were not reprocessed from original NASA downloads. National clipping and source manifests remain upstream data work; see `WEB_ARCHITECTURE.md`.
-- Production hosting and GitHub Actions execution are separate from these local checks. No live hosting URL is asserted here.
+Axe-core4.14.0, reglas WCAG2A/AA,2.1A/AA y2.2AA: cero infracciones detectadas en EIC, explorador y reciente en iframe390 CSS px. Se guardaron informes; algunos items requieren revisión manual (`incomplete`: contraste sobre imagen, atributos o tamaño de objetivo según vista). En explorador y EIC el documento midió380px de viewport y380px de contenido, reservándose el scrollbar del iframe. Esto prueba esa anchura, no todos los zoom/dispositivos ni conformidad WCAG integral.
 
-## Review captures
+La paleta final usa acento `#C5ECA3` y superficies oscuras verdosas. Las capturas finales se guardan en `docs/screenshots/terraecho-release-*.jpg`. El navegador no ofrece WebGL acelerado: se ejercitó la esfera compatible. La corrección de raycast/oclusión necesita comprobación GPU real; no se atribuye una prueba acelerada a esas capturas.
 
-![Desktop explorer with navy/cyan palette](screenshots/terraecho-palette-desktop.jpg)
+## Hallazgos científicos que limitan la interpretación
 
-![Mobile explorer with navy/cyan palette](screenshots/terraecho-palette-mobile.jpg)
+Los713 bins nacionales finitos pasan de2 a28 clasificados críticos según combinación probada; el valor de entrega produce15. Variar resolución cambia las etiquetas críticas asignadas a los mismos registros. No se calibró para maximizar coincidencia con un caso conocido y no se estima precisión de eventos.
 
-![Mobile timeline and sound studio](screenshots/terraecho-palette-mobile-controls.jpg)
+En713 bins no vacíos, la mezcla de18 voces representa una mediana del48.6% del conteo y62.3% de FRP conocida. Omite celdas con z≥2.5 y conteo≥5 en341 bins; por eso se muestra la pérdida y se ofrece cada celda. El audio resumido no es un detector completo.
 
-![EIC studio with navy/cyan controls](screenshots/terraecho-palette-eic.jpg)
+Caso16–22sep2024: Amazonas83 detecciones/z2.53, San Martín512/z1.53, Ucayali2361/z3.02. [INDECI,18sep2024](https://www.gob.pe/institucion/indeci/noticias/1024642-jefe-del-indeci-destaca-declaratoria-de-estado-de-emergencia-en-zonas-mas-afectadas-por-incendios-forestales) incluye esas regiones en la emergencia. La ventana satelital también contiene días posteriores al comunicado. Es contexto retrospectivo y ámbitos administrativos compatibles, no equivalencia entre detecciones e incendios ni validación de exactitud.
+
+Se verificaron fuentes públicas FIRMS y hashes reales. El frame EIC heredado está identificado por hash, pero un nuevo intento de obtener sus bytes oficiales devolvió503; el intento está registrado. La fecha original de descarga permanece desconocida.
+
+## Evidencia aún necesaria
+
+Participantes reales ciegos/baja visión, comprensión y confort, lectores/voz/zoom/tacto en equipos reales, evaluación independiente de máscaras, sincronización GPU+audio, nueva consulta NASA con la clave del equipo, hosting completo con secreto, licencia aprobada y envío oficial. El [protocolo](evaluation/PROTOCOL.md) y los comprobadores están preparados. No se presentan fixtures ni ausencia de resultados como evidencia positiva.

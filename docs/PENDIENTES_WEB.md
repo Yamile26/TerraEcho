@@ -1,5 +1,7 @@
 # TerraEcho: auditoría del desafío y trabajo pendiente
 
+> Auditoría inicial conservada como referencia. Los cambios y estados actuales de cada una de las 53 tareas están en [ESTADO_53_TAREAS.md](ESTADO_53_TAREAS.md). Las afirmaciones de «hoy» y «pendiente» siguientes describen el commit previo a la implementación de esta entrega.
+
 Revisión del 16 de noviembre de 2026 sobre `1cfb677`, rama `feat/terraecho-web-experience`. Se distinguen código presente, evidencia pendiente y propuestas. Las prioridades son del proyecto, no una evaluación oficial ni una garantía de premio.
 
 ## 1. La decisión principal

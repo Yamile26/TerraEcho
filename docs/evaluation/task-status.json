@@ -1,0 +1,381 @@
+{
+  "reviewDate": "2026-11-16",
+  "counts": {
+    "cerrada": 30,
+    "parcial": 19,
+    "externa": 4
+  },
+  "tasks": [
+    {
+      "id": "E01",
+      "status": "cerrada",
+      "title": "Acceso EIC protagonista",
+      "evidence": "CTA directo y estudio EIC con fuente/guía; recorrido en navegador.",
+      "remaining": ""
+    },
+    {
+      "id": "E02",
+      "status": "parcial",
+      "title": "Ficha/manifiesto por pieza",
+      "evidence": "Fuente, fechas del frame/publicación, hash y algoritmo; descarga original explícitamente desconocida.",
+      "remaining": "No se puede recuperar una fecha histórica inexistente; registrar una adquisición nueva verificable si se obtiene."
+    },
+    {
+      "id": "E03",
+      "status": "parcial",
+      "title": "Máscaras HSV",
+      "evidence": "Máscaras visibles, umbrales por capa y cuatro muestras oficiales de leyenda; ejemplo de confusión corregido.",
+      "remaining": "Etiquetar muestra independiente; matriz de confusión y revisión de superposición/terreno."
+    },
+    {
+      "id": "E04",
+      "status": "cerrada",
+      "title": "Imagen a rasgo y sonido",
+      "evidence": "Tabla de presencia/altura/nota/ganancia y voz textual por segmento; parámetros del mismo score.",
+      "remaining": ""
+    },
+    {
+      "id": "E05",
+      "status": "cerrada",
+      "title": "Relato EIC/Perú",
+      "evidence": "Fechas y escalas separadas; no causalidad ni concentración inventada; 2026 legado explícito.",
+      "remaining": ""
+    },
+    {
+      "id": "E06",
+      "status": "cerrada",
+      "title": "Lecturas curadas",
+      "evidence": "Global, voz de humo y encuadre sudamericano, cada una con pregunta y rasgos propios; misma imagen declarada.",
+      "remaining": ""
+    },
+    {
+      "id": "E07",
+      "status": "cerrada",
+      "title": "Encuadre y capa",
+      "evidence": "El crop regenera rasgos; aislamiento, seek y repetición por controles; no se llama Perú exacto.",
+      "remaining": ""
+    },
+    {
+      "id": "E08",
+      "status": "cerrada",
+      "title": "Validación JSON EIC",
+      "evidence": "Parser de esquema/rangos/timbres/coordenadas/orden y correspondencia de imagen; errores y reintento; tests.",
+      "remaining": ""
+    },
+    {
+      "id": "D01",
+      "status": "cerrada",
+      "title": "Totales territoriales",
+      "evidence": "1,047,074 filas originales; 960,333 retenidas; puntos ADM1 antes de agregar; reconciliación de todos los bins.",
+      "remaining": ""
+    },
+    {
+      "id": "D02",
+      "status": "cerrada",
+      "title": "Alcance forestal",
+      "evidence": "Promesa delimitada a actividad térmica de vegetación: no clasifica bosque, daño ni incendios individuales.",
+      "remaining": ""
+    },
+    {
+      "id": "D03",
+      "status": "cerrada",
+      "title": "Procedencia reproducible",
+      "evidence": "14 archivos públicos SP con fecha, URL, hash y QA; fuentes verificadas y reconstrucción real; gzip versionado.",
+      "remaining": ""
+    },
+    {
+      "id": "D04",
+      "status": "cerrada",
+      "title": "Huecos y cobertura",
+      "evidence": "Gaps SP reportados por NASA antes de suavizar; días vacíos no crean outages; nubes/pasadas quedan desconocidas.",
+      "remaining": ""
+    },
+    {
+      "id": "D05",
+      "status": "cerrada",
+      "title": "FRP desconocida",
+      "evidence": "Null/NaN y conteo desconocido conservados; no pasa a cero observado; pruebas de contrato.",
+      "remaining": ""
+    },
+    {
+      "id": "D06",
+      "status": "cerrada",
+      "title": "SP/NRT y duplicados",
+      "evidence": "Cohorte SP sin mezcla NRT; duplicados idénticos eliminados; colisiones no idénticas conservadas; cobertura declarada.",
+      "remaining": ""
+    },
+    {
+      "id": "D07",
+      "status": "cerrada",
+      "title": "Baseline fijo",
+      "evidence": "Referencia 2012–2024, objetivo excluido; máscara previa; retrospectivo, nunca predicción; sin legado 2026.",
+      "remaining": ""
+    },
+    {
+      "id": "D08",
+      "status": "cerrada",
+      "title": "Sensibilidad",
+      "evidence": "9 combinaciones nacionales de suavizado/escala; 3 resoluciones espaciales con anomalías por celda/departamento y comparación de etiquetas sobre 945,872 registros comparables.",
+      "remaining": "La sensibilidad cuantificada no demuestra precisión frente a incendios etiquetados ni que 0.5 grados sea óptimo."
+    },
+    {
+      "id": "D09",
+      "status": "cerrada",
+      "title": "Catálogo y años",
+      "evidence": "2012–2025 navegables desde catálogo con corte/calidad; 2026 legado señalado aparte, sin prometer reconstrucción.",
+      "remaining": ""
+    },
+    {
+      "id": "D10",
+      "status": "cerrada",
+      "title": "Caso peruano y unidades",
+      "evidence": "Bin 16–22 sep 2024 y declaración INDECI del 18-sep en tres regiones; comparación contextual, no exactitud; bin final 8/9 días.",
+      "remaining": ""
+    },
+    {
+      "id": "F01",
+      "status": "parcial",
+      "title": "Clave local real",
+      "evidence": "Captura del equipo: HTTP aceptado/0 en producto anterior. Nuevo default NOAA-20; comprobador sin secretos preparado.",
+      "remaining": "Ejecutar check-live.mjs en el servidor del equipo con su clave; registrar producto/ventana/HTTP/conteo reales."
+    },
+    {
+      "id": "F02",
+      "status": "parcial",
+      "title": "Datos recientes al mapa y audio",
+      "evidence": "Modo explícito con consulta, departamento, mapa, tabla y gramática descriptiva; proveedor probado con fixtures y error 503 en navegador.",
+      "remaining": "Verificar el recorrido con respuesta NASA real del nuevo producto y la clave local, incluso si devuelve cero."
+    },
+    {
+      "id": "F03",
+      "status": "cerrada",
+      "title": "Comparabilidad reciente",
+      "evidence": "Alcance delimitado: reciente no calcula anomalía ni usa baseline SNPP para NOAA; frontera por punto con política compartida.",
+      "remaining": ""
+    },
+    {
+      "id": "F04",
+      "status": "cerrada",
+      "title": "Disponibilidad/producto",
+      "evidence": "NOAA-20/21 explícitos, disponibilidad consultada y rango visible; SNPP termina 2-nov-2026 y ventana fuera rechazada; tests.",
+      "remaining": ""
+    },
+    {
+      "id": "F05",
+      "status": "cerrada",
+      "title": "Lotes y publicación íntegra",
+      "evidence": "Descarga con checksum antes de construir; validación de todos los inputs antes de preparar; CI y artefacto completo por versión; rollback documentado.",
+      "remaining": "No hay cron activo. La atomicidad es del despliegue completo, no de escribir todo el directorio de investigación."
+    },
+    {
+      "id": "F06",
+      "status": "parcial",
+      "title": "Clave y presupuestos en host",
+      "evidence": "Proxy privado, errores saneados, timeout/tamaño/caché/deduplicación/cuota por proceso y test de ausencia de clave en respuesta.",
+      "remaining": "Configurar secreto y comprobar host Node real; cuota compartida si se despliega en varias instancias."
+    },
+    {
+      "id": "S01",
+      "status": "cerrada",
+      "title": "Gramáticas sonoras",
+      "evidence": "Guías separadas para EIC, archivo FIRMS y reciente; tabla explica variables, unidades y normalización relativa.",
+      "remaining": ""
+    },
+    {
+      "id": "S02",
+      "status": "parcial",
+      "title": "Picos/transiciones/confort",
+      "evidence": "Tres WAV medidos sin clipping, fundidos y parada suavizada en web; exportación real de navegador verificada.",
+      "remaining": "Medir salida Web Audio y cambios en dispositivos; evaluar confort con personas."
+    },
+    {
+      "id": "S03",
+      "status": "parcial",
+      "title": "Reloj de audio",
+      "evidence": "EIC usa AudioContext y anticipación; simulación de reloj detecta saltos y omite notas expiradas.",
+      "remaining": "Medir deriva/respuesta real durante órbita GPU y carga en equipo objetivo."
+    },
+    {
+      "id": "S04",
+      "status": "cerrada",
+      "title": "Reducción de voces",
+      "evidence": "Conteo/FRP representados visibles, tabla de todas las celdas y escucha individual; análisis de 713 bins y anomalías omitidas.",
+      "remaining": "La mezcla pierde información: no es un detector completo ni un límite perceptual óptimo demostrado."
+    },
+    {
+      "id": "S05",
+      "status": "externa",
+      "title": "Comprensión del mapeo",
+      "evidence": "Protocolo, tareas EIC/FIRMS, A/B contrabalanceado, registro y análisis listos; sin respuestas inventadas.",
+      "remaining": "Ejecutar piloto real y analizar aciertos/errores por modo."
+    },
+    {
+      "id": "S06",
+      "status": "cerrada",
+      "title": "Silencios y estados",
+      "evidence": "Carga, pausa, capas apagadas, cero detecciones y datos insuficientes diferenciados; probado 2012 y consulta sin clave.",
+      "remaining": ""
+    },
+    {
+      "id": "S07",
+      "status": "parcial",
+      "title": "WAV y síntesis web",
+      "evidence": "WAV del Worker coincide byte a byte con CLI para Sudamérica; notas/rasgos compartidos; diferencias del motor directo documentadas.",
+      "remaining": "Comparación perceptual de timbre/balance con Web Audio directo; no se afirma identidad acústica."
+    },
+    {
+      "id": "S08",
+      "status": "cerrada",
+      "title": "A/B y exportación",
+      "evidence": "Guardar/cargar pieza/segmento/voces en sesión; WAV original y ficha JSON con fuente/configuración; probado navegador.",
+      "remaining": ""
+    },
+    {
+      "id": "A01",
+      "status": "cerrada",
+      "title": "Inicio sin vista",
+      "evidence": "Guía no visual, controles etiquetados, tabla, voz opcional, pausa/volumen y mono; sin autoplay.",
+      "remaining": ""
+    },
+    {
+      "id": "A02",
+      "status": "parcial",
+      "title": "Teclado y lector",
+      "evidence": "Apertura/escucha de celda con Enter, slider, Escape y retorno de foco comprobados; tablas desplazables enfocables.",
+      "remaining": "Recorrido completo con lector de pantalla real y documentación de barreras."
+    },
+    {
+      "id": "A03",
+      "status": "externa",
+      "title": "Personas ciegas/baja visión",
+      "evidence": "Consentimiento y protocolo preparados; ninguna sesión ni dato personal recogido.",
+      "remaining": "Reclutar con consentimiento, observar tareas, corregir y volver a comprobar."
+    },
+    {
+      "id": "A04",
+      "status": "externa",
+      "title": "Impacto medido",
+      "evidence": "Plantilla vacía y script que rechaza resultados inexistentes; separación EIC/FIRMS.",
+      "remaining": "Publicar n real, tareas, aciertos, tiempos y confort anonimizados; no generalizar piloto pequeño."
+    },
+    {
+      "id": "A05",
+      "status": "parcial",
+      "title": "Contraste y reflujo",
+      "evidence": "Axe 4.14: cero infracciones detectadas en tres vistas móviles; 380px contenido=viewport en iframe390; textos mayores y etiquetas corregidas.",
+      "remaining": "Revisar items incomplete, zoom 200/400%, anchura320, tamaños táctiles y dispositivos; no certificación WCAG completa."
+    },
+    {
+      "id": "A06",
+      "status": "parcial",
+      "title": "Voz/mono/preferencias",
+      "evidence": "Mono/volumen controlables, preferencias locales, cancelación de voz al iniciar audio y movimiento reducido.",
+      "remaining": "Probar voces/lectores y coexistencia de audio en equipos reales."
+    },
+    {
+      "id": "U01",
+      "status": "parcial",
+      "title": "WebGL y oclusión",
+      "evidence": "Raycast compara superficie, drag no dispara selección; contexto perdido libera recursos y pasa a compatible.",
+      "remaining": "Comprobar textura, marcador posterior, reset y tacto en GPU real; el navegador de revisión no tiene WebGL."
+    },
+    {
+      "id": "U02",
+      "status": "cerrada",
+      "title": "Errores/contexto",
+      "evidence": "Liberación Three.js, fallback compatible, geografía/EIC con errores y reintento; archivo sigue disponible sin clave.",
+      "remaining": ""
+    },
+    {
+      "id": "U03",
+      "status": "parcial",
+      "title": "Cursor/clic/teclado/tacto",
+      "evidence": "Inspección por puntero y tabla paginada con todos los datos/escucha; teclado comprobado.",
+      "remaining": "Verificar tacto y lectores con usuarios/dispositivos reales."
+    },
+    {
+      "id": "U04",
+      "status": "cerrada",
+      "title": "Selección coherente",
+      "evidence": "Archivo usa misma región/bin en mapas, métricas, CSV, tabla y audio; años2012/2025 y región comprobados; EIC independiente.",
+      "remaining": ""
+    },
+    {
+      "id": "U05",
+      "status": "cerrada",
+      "title": "Compartir y repetir",
+      "evidence": "URL con campos permitidos, sin clave; recarga restituye pieza Sudamérica, segmento2 y mono; tests y navegador.",
+      "remaining": ""
+    },
+    {
+      "id": "U06",
+      "status": "parcial",
+      "title": "Rendimiento/visual",
+      "evidence": "Paleta verde de referencia, alternativas y pausa; límite de voces/pixel ratio/hover; exportación en Worker.",
+      "remaining": "Medir CPU/GPU/carga y audio simultáneo en equipo objetivo; medición móvil física pendiente."
+    },
+    {
+      "id": "R01",
+      "status": "parcial",
+      "title": "HTTPS exterior",
+      "evidence": "Build de demo EIC/archivo y hosting preparados; app Next completa conserva API.",
+      "remaining": "Registrar publicación comprobada; la demo estática no incluye API reciente. Falta host Node con clave para cerrar alcance completo."
+    },
+    {
+      "id": "R02",
+      "status": "parcial",
+      "title": "Versión/CI",
+      "evidence": "Tests científicos/web, preparación con huellas, workflow ampliado, builds y evidencia del navegador.",
+      "remaining": "Registrar commits y CI remoto exitosos de esta entrega."
+    },
+    {
+      "id": "R03",
+      "status": "cerrada",
+      "title": "README y relato",
+      "evidence": "README/contratos/arquitectura reemplazan promesas de bosque sano, silencio=sin fuego, NRT comparable y rango no exportado.",
+      "remaining": ""
+    },
+    {
+      "id": "R04",
+      "status": "cerrada",
+      "title": "Demo con EIC primero",
+      "evidence": "Experiencia EIC ejecutable y probada, tres WAV originales y guion de2min: problema, rasgo audible, acceso, caso peruano y límites.",
+      "remaining": "El formato/idioma oficial y su grabación final se verifican en R06; el guion interno no es una regla de la sede."
+    },
+    {
+      "id": "R05",
+      "status": "parcial",
+      "title": "Licencia/atribución/IA",
+      "evidence": "Fuentes, autores/antecedente, audio propio, declaración de herramientas y propuesta MIT documentadas.",
+      "remaining": "Aprobación real de autores, licencia del código y condiciones específicas de geometría/textura antes de entrega."
+    },
+    {
+      "id": "R06",
+      "status": "externa",
+      "title": "Reglas y envío",
+      "evidence": "Calendario oficial consultado; borradores de resumen/método/impacto y comprobaciones preparados.",
+      "remaining": "Confirmar sede, guía vigente, idioma/formato/plazo, aceptar términos por la persona responsable y guardar envío confirmado."
+    },
+    {
+      "id": "R07",
+      "status": "parcial",
+      "title": "Integración/alternativa",
+      "evidence": "main/develop existentes, PR a develop y build/WAV de respaldo; cambios en rama de implementación.",
+      "remaining": "Integrar con checks verdes y comprobar promoción a main según flujo del equipo."
+    },
+    {
+      "id": "R08",
+      "status": "parcial",
+      "title": "Decisiones/carriles",
+      "evidence": "Arquitectura y ADR justifican cada tecnología, contrato y cierre por función; no depende de un futuro servidor Python.",
+      "remaining": "Asignar personas responsables reales de ciencia, EIC, señales, acceso, web y entrega."
+    },
+    {
+      "id": "R09",
+      "status": "cerrada",
+      "title": "Escalado por necesidad",
+      "evidence": "Decisiones explícitas: sin BD/Redis/colas/ML/servicio extra o Docker obligatorio sin problema medido; triggers definidos.",
+      "remaining": ""
+    }
+  ]
+}

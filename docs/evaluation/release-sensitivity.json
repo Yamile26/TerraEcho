@@ -1,0 +1,222 @@
+{
+  "method": "Full retained 2012–2025 cohort; national anomaly parameter sensitivity; cell occupancy sensitivity",
+  "input_manifest_sha256": "04d85a38dc0807c33f1d1deee5d2b4e3c8fcbdd586b3cded2c0278a99e4b1bc2",
+  "anomaly_sensitivity": [
+    {
+      "half_window": 0,
+      "scale_floor": 0.25,
+      "critical_bins": 21,
+      "critical_changes_vs_shipped": 24,
+      "finite_bins": 713,
+      "threshold_bins": {
+        "1": 124,
+        "2.5": 21,
+        "4": 3
+      }
+    },
+    {
+      "half_window": 0,
+      "scale_floor": 0.35,
+      "critical_bins": 16,
+      "critical_changes_vs_shipped": 19,
+      "finite_bins": 713,
+      "threshold_bins": {
+        "1": 121,
+        "2.5": 16,
+        "4": 0
+      }
+    },
+    {
+      "half_window": 0,
+      "scale_floor": 0.5,
+      "critical_bins": 7,
+      "critical_changes_vs_shipped": 12,
+      "finite_bins": 713,
+      "threshold_bins": {
+        "1": 110,
+        "2.5": 7,
+        "4": 0
+      }
+    },
+    {
+      "half_window": 1,
+      "scale_floor": 0.25,
+      "critical_bins": 25,
+      "critical_changes_vs_shipped": 10,
+      "finite_bins": 713,
+      "threshold_bins": {
+        "1": 136,
+        "2.5": 25,
+        "4": 7
+      }
+    },
+    {
+      "half_window": 1,
+      "scale_floor": 0.35,
+      "critical_bins": 15,
+      "critical_changes_vs_shipped": 0,
+      "finite_bins": 713,
+      "threshold_bins": {
+        "1": 113,
+        "2.5": 15,
+        "4": 0
+      }
+    },
+    {
+      "half_window": 1,
+      "scale_floor": 0.5,
+      "critical_bins": 4,
+      "critical_changes_vs_shipped": 11,
+      "finite_bins": 713,
+      "threshold_bins": {
+        "1": 76,
+        "2.5": 4,
+        "4": 0
+      }
+    },
+    {
+      "half_window": 2,
+      "scale_floor": 0.25,
+      "critical_bins": 28,
+      "critical_changes_vs_shipped": 17,
+      "finite_bins": 713,
+      "threshold_bins": {
+        "1": 140,
+        "2.5": 28,
+        "4": 6
+      }
+    },
+    {
+      "half_window": 2,
+      "scale_floor": 0.35,
+      "critical_bins": 16,
+      "critical_changes_vs_shipped": 13,
+      "finite_bins": 713,
+      "threshold_bins": {
+        "1": 110,
+        "2.5": 16,
+        "4": 0
+      }
+    },
+    {
+      "half_window": 2,
+      "scale_floor": 0.5,
+      "critical_bins": 2,
+      "critical_changes_vs_shipped": 15,
+      "finite_bins": 713,
+      "threshold_bins": {
+        "1": 61,
+        "2.5": 2,
+        "4": 0
+      }
+    }
+  ],
+  "spatial_sensitivity": [
+    {
+      "cell_degrees": 0.25,
+      "occupied_cell_bins": 170032,
+      "retained_detections": 960333,
+      "median_detections_per_occupied_cell_bin": 2.0,
+      "department_cell_units": 1982,
+      "critical_department_cell_bins": 6029,
+      "detection_weighted_critical_fraction": 0.09469568821151277,
+      "comparable_detection_records": 945872,
+      "changed_detection_labels_vs_half_degree": 67121,
+      "interpretation": "Sensitivity of cell anomaly on the same retained source records, not accuracy against fire-event truth"
+    },
+    {
+      "cell_degrees": 0.5,
+      "occupied_cell_bins": 93682,
+      "retained_detections": 960333,
+      "median_detections_per_occupied_cell_bin": 3.0,
+      "department_cell_units": 679,
+      "critical_department_cell_bins": 3645,
+      "detection_weighted_critical_fraction": 0.07690364023884838,
+      "comparable_detection_records": 945872,
+      "changed_detection_labels_vs_half_degree": 0,
+      "interpretation": "Sensitivity of cell anomaly on the same retained source records, not accuracy against fire-event truth"
+    },
+    {
+      "cell_degrees": 1,
+      "occupied_cell_bins": 45737,
+      "retained_detections": 960333,
+      "median_detections_per_occupied_cell_bin": 5.0,
+      "department_cell_units": 255,
+      "critical_department_cell_bins": 1964,
+      "detection_weighted_critical_fraction": 0.06285945667067003,
+      "comparable_detection_records": 945872,
+      "changed_detection_labels_vs_half_degree": 53494,
+      "interpretation": "Sensitivity of cell anomaly on the same retained source records, not accuracy against fire-event truth"
+    }
+  ],
+  "voice_selection": {
+    "valid_nonempty_bins": 713,
+    "selection": "18 highest known summed FRP cells, stable source-order ties",
+    "count_share_percentiles_10_50_90": [
+      0.33841664398418575,
+      0.4864351131847244,
+      0.7232612193813697
+    ],
+    "known_frp_share_percentiles_10_50_90": [
+      0.4371002026309184,
+      0.6225437717995649,
+      0.8551044884703264
+    ],
+    "bins_with_omitted_critical_cells": 341,
+    "omitted_critical_cell_bins": 2591,
+    "example_2025_week40": {
+      "year": 2025,
+      "week": 39,
+      "count_share": 0.5409924487594391,
+      "known_frp_share": 0.6375888816335015,
+      "omitted_critical_cells": 3
+    },
+    "interpretation": "The mix is a lossy subset, not a complete anomaly detector. All cells remain inspectable and individually playable. No perceptual optimality claim."
+  },
+  "peru_case": {
+    "source_url": "https://www.gob.pe/institucion/indeci/noticias/1024642-jefe-del-indeci-destaca-declaratoria-de-estado-de-emergencia-en-zonas-mas-afectadas-por-incendios-forestales",
+    "source_date": "2024-09-18",
+    "statement": "Emergency declaration includes Amazonas, San Martín and Ucayali",
+    "bin_start": "2024-09-16",
+    "bin_end": "2024-09-22",
+    "data_gap": false,
+    "regions": [
+      {
+        "count": 83,
+        "frp": 578.3,
+        "frp_unknown_count": 0,
+        "z": 2.53,
+        "level": "critical",
+        "dissonance": 0.511,
+        "name": "Amazonas",
+        "alert": true
+      },
+      {
+        "count": 512,
+        "frp": 4110.0,
+        "frp_unknown_count": 0,
+        "z": 1.53,
+        "level": "elevated",
+        "dissonance": 0.177,
+        "name": "San Martín",
+        "alert": false
+      },
+      {
+        "count": 2361,
+        "frp": 22619.3,
+        "frp_unknown_count": 0,
+        "z": 3.02,
+        "level": "critical",
+        "dissonance": 0.675,
+        "name": "Ucayali",
+        "alert": true
+      }
+    ],
+    "interpretation": "Contextual comparison only. Administrative emergency areas and satellite detections have different definitions. No event-level labels or accuracy estimate."
+  },
+  "limits": [
+    "No parameter selected to maximize agreement with the contextual report",
+    "Spatial test compares occupancy and cell anomaly labels on the same source records, not independently labeled fire events",
+    "Human interpretation and comfort unmeasured"
+  ]
+}
