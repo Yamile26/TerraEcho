@@ -27,7 +27,7 @@ test("calendar labels include every day in the final Python bin", () => {
 test("all shipped scores satisfy the frontend contract", () => {
   assert.equal(score.weeks.length, 44);
   const other = parseScore(
-    JSON.parse(readFileSync("../data/scores/terraecho_2025.json", "utf8")),
+    JSON.parse(readFileSync("public/data/terraecho_2025.json", "utf8")),
   );
   assert.equal(other.weeks.length, 52);
   assert.equal(score.weeks[39].country.count, 9058);

@@ -5,7 +5,14 @@ export interface FireObservation {
   acquiredAt: string;
   confidence: string;
   satellite: string;
+  region?: string;
 }
+export const FIRMS_SOURCES = {
+  VIIRS_NOAA20_NRT: "VIIRS · NOAA-20 · reciente",
+  VIIRS_NOAA21_NRT: "VIIRS · NOAA-21 · reciente",
+  VIIRS_SNPP_NRT: "VIIRS · Suomi NPP · hasta 2 nov 2026",
+} as const;
+export type FirmsSource = keyof typeof FIRMS_SOURCES;
 /** Handles CSV quoting; rejects malformed rows rather than turning missing values into zero. */
 export function parseCsv(text: string): string[][] {
   const rows: string[][] = [];
@@ -69,6 +76,8 @@ export function parseFirmsCsv(csv: string): FireObservation[] {
       longitude < -180 ||
       longitude > 180 ||
       !/^\d{4}-\d{2}-\d{2}$/.test(date) ||
+      !Number.isFinite(Date.parse(`${date}T00:00:00Z`)) ||
+      new Date(`${date}T00:00:00Z`).toISOString().slice(0, 10) !== date ||
       !/^\d{4}$/.test(time) ||
       +time.slice(0, 2) > 23 ||
       +time.slice(2) > 59 ||
@@ -99,5 +108,7 @@ export function liveQuery(params: URLSearchParams) {
     )
       throw new Error("INVALID_DATE");
   }
-  return { days: Number(raw), date };
+  const source = params.get("source") ?? "VIIRS_NOAA20_NRT";
+  if (!(source in FIRMS_SOURCES)) throw new Error("INVALID_SOURCE");
+  return { days: Number(raw), date, source: source as FirmsSource };
 }

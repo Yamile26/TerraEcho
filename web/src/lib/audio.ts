@@ -4,7 +4,14 @@ import type { CellVoice, EicScore, FireWeek } from "./types";
 export class Sonifier {
   private context: AudioContext | null = null;
   private master: GainNode | null = null;
-  private active = new Set<OscillatorNode>();
+  private active = new Map<OscillatorNode, GainNode>();
+  private mono = false;
+  get currentTime() {
+    return this.context?.currentTime ?? 0;
+  }
+  setMono(value: boolean) {
+    this.mono = value;
+  }
   async enable() {
     if (!this.context) {
       this.context = new AudioContext();
@@ -27,9 +34,12 @@ export class Sonifier {
       );
   }
   stop() {
-    for (const voice of this.active) {
+    const now = this.context?.currentTime ?? 0;
+    for (const [voice, envelope] of this.active) {
       try {
-        voice.stop();
+        envelope.gain.cancelScheduledValues(now);
+        envelope.gain.setTargetAtTime(0, now, 0.005);
+        voice.stop(now + 0.025);
       } catch {}
     }
     this.active.clear();
@@ -66,11 +76,11 @@ export class Sonifier {
     envelope.gain.setValueAtTime(0, now);
     envelope.gain.linearRampToValueAtTime(gain, now + 0.035);
     envelope.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-    stereo.pan.value = Math.max(-1, Math.min(1, pan));
+    stereo.pan.value = this.mono ? 0 : Math.max(-1, Math.min(1, pan));
     osc.connect(envelope);
     envelope.connect(stereo);
     stereo.connect(this.master);
-    this.active.add(osc);
+    this.active.set(osc, envelope);
     osc.onended = () => {
       this.active.delete(osc);
       osc.disconnect();
@@ -85,7 +95,9 @@ export class Sonifier {
       this.stop();
       return;
     }
-    const voices = [...cells].sort((a, b) => b.frp - a.frp).slice(0, 18);
+    const voices = [...cells]
+      .sort((a, b) => (b.frp ?? 0) - (a.frp ?? 0))
+      .slice(0, 18);
     if (!voices.length) return;
     const norm = 0.15 / Math.sqrt(voices.length);
     if (useCountryChord)
@@ -104,7 +116,14 @@ export class Sonifier {
       }
     });
   }
-  eic(score: EicScore, index: number, enabled: Set<string>) {
+  recent(cells: CellVoice[]) {
+    const voices = [...cells].sort((a, b) => b.count - a.count).slice(0, 18),
+      norm = 0.15 / Math.sqrt(Math.max(1, voices.length));
+    for (const c of voices)
+      for (let p = 0; p < c.density; p++)
+        this.tone(c.midi, c.gain * norm, c.pan, (p * 1.2) / c.density, 0.35);
+  }
+  eic(score: EicScore, index: number, enabled: ReadonlySet<string>, delay = 0) {
     const step = score.steps[index];
     if (!step) return;
     for (const [name, layer] of Object.entries(step.layers))
@@ -113,7 +132,7 @@ export class Sonifier {
           layer.midi,
           layer.gain * 0.12,
           step.pan,
-          0,
+          delay,
           0.24,
           0,
           score.meta.layers[name]?.harmonics,

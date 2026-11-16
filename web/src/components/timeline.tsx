@@ -8,7 +8,9 @@ import {
 } from "@/lib/data";
 import type { FireScore } from "@/lib/types";
 import { Icon } from "./icon";
+import type { DatasetCatalog } from "@/hooks/use-dataset";
 interface Props {
+  catalog: DatasetCatalog | null;
   score: FireScore;
   index: number;
   region: string;
@@ -20,6 +22,7 @@ interface Props {
   onExport: () => void;
 }
 export function Timeline({
+  catalog,
   score,
   index,
   region,
@@ -46,16 +49,28 @@ export function Timeline({
             role="group"
             aria-label="Año del archivo"
           >
-            {[2025, 2026].map((y) => (
-              <button
-                key={y}
-                onClick={() => onYear(y)}
-                aria-pressed={year === y}
+            <label>
+              Año
+              <select
+                aria-label="Año del archivo"
+                value={year}
+                onChange={(e) => onYear(+e.target.value)}
               >
-                {y}
-                {y === 2026 && <span className="year-dot" />}
-              </button>
-            ))}
+                {(
+                  catalog?.entries ?? [
+                    { year: 2025, quality: "reprocessed-source-archive" },
+                    { year: 2026, quality: "legacy-unreproduced" },
+                  ]
+                ).map((e) => (
+                  <option key={e.year} value={e.year}>
+                    {e.year}
+                    {e.quality === "legacy-unreproduced"
+                      ? " · legado sin reproducir"
+                      : ""}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
           <button
             className="icon-button export"
@@ -80,7 +95,7 @@ export function Timeline({
           <Icon name={playing ? "pause" : "play"} size={19} />
         </button>
         <div className="timeline-track">
-          <div className="week-bars" aria-hidden="true">
+          <div className="week-bars">
             {Array.from({ length: 52 }, (_, i) => {
               const w = score.weeks[i],
                 m = w ? selectedMetrics(w, region) : null;
@@ -94,6 +109,11 @@ export function Timeline({
                 <button
                   key={i}
                   tabIndex={-1}
+                  aria-label={
+                    w
+                      ? `${dateLabel(w.start_date)}: ${number(m?.count ?? 0)} detecciones, ${m ? LEVEL_LABEL[m.level] : "sin datos"}`
+                      : "Aún sin exportación"
+                  }
                   disabled={!w}
                   className={`week-bar ${i === index ? "current" : ""} ${w?.data_gap ? "gap" : ""} ${!w ? "unavailable" : ""}`}
                   onClick={() => onChange(i)}

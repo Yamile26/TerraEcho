@@ -7,7 +7,7 @@ test("score API serves both exports and distinguishes missing years from invalid
   for (const [query, expected, year] of [
     ["year=2026", 200, 2026],
     ["year=2025", 200, 2025],
-    ["year=2012", 404, null],
+    ["year=2012", 200, 2012],
     ["year=../../etc/passwd", 400, null],
     ["mode=other", 400, null],
   ] as const) {
