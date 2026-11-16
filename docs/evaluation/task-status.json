@@ -311,7 +311,7 @@
       "id": "U06",
       "status": "parcial",
       "title": "Rendimiento/visual",
-      "evidence": "Paleta verde de referencia, alternativas y pausa; límite de voces/pixel ratio/hover; exportación en Worker.",
+      "evidence": "Paleta azul marino/turquesa de la referencia de la usuaria restaurada desde da3a282; tokens compartidos en CSS/Three.js/Canvas/SVG y controles desactivados. Alternativas y pausa; límite de voces/pixel ratio/hover; exportación en Worker. La revisión visual nueva se registra por separado.",
       "remaining": "Medir CPU/GPU/carga y audio simultáneo en equipo objetivo; medición móvil física pendiente."
     },
     {

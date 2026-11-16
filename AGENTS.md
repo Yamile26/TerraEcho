@@ -20,3 +20,9 @@ Trabajar sobre una rama de desarrollo. Preservar el historial, las ramas y el tr
 - No atribuir datos sintéticos a NASA, ni confundir pruebas automatizadas con validación humana, despliegue completo o envío oficial.
 - Actualizar `task-status.json` y regenerar `docs/ESTADO_53_TAREAS.md` con `python scripts/render_task_status.py` al cambiar el estado de una tarea.
 - Leer también `web/AGENTS.md` antes de modificar código web.
+
+## Referencia visual del proyecto
+
+- La interfaz usa la paleta azul marino y turquesa de `docs/design/terraecho-reference-navy-cyan.png`, documentada en `docs/THEME.md`. Conservarla en todas las vistas.
+- `web/src/lib/theme.ts` es la fuente compartida de tokens; CSS, Three.js, Canvas y SVG deben consumirla. Los estados desactivados también usan estos tokens.
+- La referencia no es verde claro. Una modificación del tema debe corresponder a una nueva instrucción explícita de la usuaria. Los colores de fuentes científicas conservan su significado propio.

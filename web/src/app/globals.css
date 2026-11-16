@@ -3210,7 +3210,7 @@ td {
   }
 }
 
-/* Design-reference composition: dark green surfaces, pale green controls, one page scroll. */
+/* Design-reference composition: navy surfaces, turquoise controls, one page scroll. */
 html {
   scrollbar-color: var(--line-strong) var(--bg);
   scrollbar-width: thin;
@@ -5434,9 +5434,9 @@ summary svg {
 /* Preserve readable labels in inactive controls and keyboard scrolling. */
 button:disabled {
   opacity: 1;
-  color: #a2b1a7;
-  border-color: #405448;
-  background: #15211f;
+  color: var(--muted);
+  border-color: var(--line-strong);
+  background: var(--panel-raised);
 }
 .table-scroll:focus-visible {
   outline: 2px solid var(--accent);
