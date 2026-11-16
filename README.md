@@ -4,6 +4,28 @@
 
 Team AstraCom, NASA Space Apps Challenge 2026, challenge: The Earth Information Jukebox.
 
+## Interactive web experience
+
+The Next.js / React / TypeScript / Three.js app lives in `web/`. It connects the existing scientific outputs to a rotating Earth explorer, satellite and wave illustrations, a regional 2D map, weekly timeline, temporal observatory, CSV export and real-time Web Audio synthesis. The EIC studio scans the existing GEOS Aerosols frame and synthesizes its four exported layers.
+
+```bash
+# Node.js 22+; run from this repository root
+npm ci
+npm run dev
+# Open http://localhost:3000
+
+npm run test:web
+npm run typecheck
+npm run build
+npm start
+```
+
+The app works with the existing score exports without a FIRMS key or a running Python service. The build prepares scientific assets automatically. To enable recent FIRMS detections, set the server-only `FIRMS_MAP_KEY` in `web/.env.local` (see `web/.env.example`). A future Python HTTP service can be selected through `TERRAECHO_PYTHON_API_URL`; its adapter and contract are ready, but that service is not included in this change.
+
+**Current data scope:** 2025 and 2026 are playable tracks. Earlier years beginning in 2012 are comparison inputs, not yet exported tracks. The existing general aggregate covers the pipeline's **bounding box**, which may include neighboring territory; the UI labels it as a study area. It must not be presented as a strictly national count. Regional filtering uses the existing department polygons and matches Python's cell-center assignment. A missing-data week stays silent and displays an unknown anomaly, rather than suggesting a healthy forest.
+
+See [web architecture and independent workstreams](docs/WEB_ARCHITECTURE.md), [API contract](docs/API_CONTRACT.md), [run/deployment guide](docs/DEPLOYMENT.md), [asset credits](docs/ASSETS.md) and [validation notes](docs/VALIDATION.md). No production deployment has been created.
+
 ## Data core (this folder)
 
 The data core turns NASA fire hotspots into musical parameters. It does not depend on the web app.
