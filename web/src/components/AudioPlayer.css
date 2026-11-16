@@ -1,0 +1,359 @@
+
+/* TERRAECHO AUDIO PLAYER */
+
+.audio-section {
+  padding: 100px 8%;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(0, 130, 210, 0.12), transparent 65%),
+    #050e1b;
+  border-top: 1px solid rgba(90, 170, 220, 0.15);
+}
+
+.audio-heading {
+  max-width: 700px;
+  margin-bottom: 38px;
+}
+
+.audio-heading h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(32px, 4vw, 46px);
+  margin-bottom: 12px;
+}
+
+.audio-heading > p:last-child {
+  color: #91a9c0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.audio-player {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px;
+  background: linear-gradient(145deg, #0b2035, #071526);
+  border: 1px solid rgba(0, 207, 255, 0.25);
+  border-radius: 14px;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.25);
+}
+
+.audio-player-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.audio-track-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.audio-status-dot {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #00cfff;
+  box-shadow: 0 0 15px rgba(0, 207, 255, 0.8);
+}
+
+.audio-label {
+  color: #7896b2;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.audio-track-info h3 {
+  margin-top: 7px;
+  color: #f4f8ff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 19px;
+}
+
+.audio-year-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.audio-year-selector span {
+  color: #7896b2;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.audio-year-selector select {
+  padding: 10px 14px;
+  color: #f4f8ff;
+  background: #10253d;
+  border: 1px solid #23415b;
+  border-radius: 6px;
+  font-family: inherit;
+  outline: none;
+}
+
+.audio-year-selector select:focus {
+  border-color: #00cfff;
+}
+
+.audio-visual {
+  position: relative;
+  height: 175px;
+  margin: 30px 0 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at center, rgba(0, 207, 255, 0.1), transparent 70%),
+    #061323;
+  border: 1px solid rgba(0, 207, 255, 0.12);
+  border-radius: 9px;
+}
+
+.audio-wave {
+  height: 95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.audio-wave span {
+  width: 5px;
+  height: var(--bar-height);
+  min-height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(to top, #0875b8, #00cfff);
+  opacity: 0.75;
+  transform: scaleY(0.55);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.audio-wave.is-playing span {
+  animation: terraecho-wave 0.9s ease-in-out infinite alternate;
+  animation-delay: var(--bar-delay);
+  opacity: 1;
+}
+
+@keyframes terraecho-wave {
+  from {
+    transform: scaleY(0.35);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.wave-caption {
+  color: #587d9b;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.audio-progress {
+  margin-top: 20px;
+}
+
+.progress-slider,
+.volume-control input {
+  width: 100%;
+  accent-color: #00cfff;
+  cursor: pointer;
+}
+
+.progress-slider {
+  height: 5px;
+  appearance: none;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    #00cfff var(--progress),
+    #294158 var(--progress)
+  );
+}
+
+.progress-slider::-webkit-slider-thumb,
+.volume-control input::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #00cfff;
+  box-shadow: 0 0 10px rgba(0, 207, 255, 0.6);
+}
+
+.progress-slider::-moz-range-thumb,
+.volume-control input::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  background: #00cfff;
+}
+
+.audio-time {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9px;
+  color: #7896b2;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-top: 25px;
+}
+
+.play-button {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: #00cfff;
+  color: #02101b;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.play-button:hover {
+  background: #70e4ff;
+  transform: scale(1.06);
+}
+
+.playback-label {
+  color: #91a9c0;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.volume-control {
+  width: 145px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.volume-control span {
+  color: #7896b2;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.volume-control input {
+  min-width: 0;
+  accent-color: #00cfff;
+}
+
+.audio-error {
+  margin-top: 18px;
+  color: #ff8b91;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.audio-note {
+  max-width: 900px;
+  margin: 20px auto 0;
+  color: #7896b2;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+@media (max-width: 650px) {
+  .audio-section {
+    padding: 70px 6%;
+  }
+
+  .audio-player {
+    padding: 20px 16px;
+  }
+
+  .audio-player-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .audio-visual {
+    height: 145px;
+    padding: 12px;
+  }
+
+  .audio-wave {
+    gap: 3px;
+  }
+
+  .audio-wave span {
+    width: 4px;
+  }
+
+  .volume-control {
+    width: 115px;
+  }
+
+  .playback-label {
+    font-size: 8px;
+  }
+}
+
+/* Selector entre sonificación anual y semanal */
+.audio-mode-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.audio-mode-selector button {
+  padding: 10px 16px;
+  border: 1px solid rgba(0, 207, 255, 0.25);
+  border-radius: 6px;
+  background: transparent;
+  color: #a9c0d4;
+  cursor: pointer;
+  font: inherit;
+  transition: 0.2s ease;
+}
+
+.audio-mode-selector button:hover,
+.audio-mode-selector button.active {
+  background: rgba(0, 207, 255, 0.12);
+  border-color: #00cfff;
+  color: #00cfff;
+}
+
+.weekly-audio-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+  color: #a9c0d4;
+}
+
+.weekly-audio-info p {
+  margin: 0;
+}
+
+.weekly-audio-info span {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #7896b2;
+}
+
+.play-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
