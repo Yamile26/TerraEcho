@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-11-16T03:55:48.519Z",
+  "site": "https://terraecho-earth-jukebox.dotingchime4.chatgpt.site",
+  "deployedSourceCommit": "5345207e44e9e6a0f664b7d6ad94255ba5120c28",
+  "versionNumber": 5,
+  "deploymentStatus": "succeeded",
+  "health": {
+    "status": "ok",
+    "service": "terraecho-web",
+    "runtime": "cloudflare-worker",
+    "firmsConfigured": true,
+    "sharedBudgetConfigured": true,
+    "scoreProvider": "repository-snapshot"
+  },
+  "assets": [
+    {
+      "path": "/",
+      "http": 200,
+      "mime": "text/html; charset=utf-8",
+      "bytes": 27621,
+      "sha256": "b2fbc6b68ae45becfa019f6d1929b724571ed62b84e77e12b00571dbde07e437",
+      "matchesSourceBytes": true
+    },
+    {
+      "path": "/eic/aerosols.png",
+      "http": 200,
+      "mime": "image/png",
+      "bytes": 2768951,
+      "sha256": "0c6a8f6c46fb52a2f9a636bbd804fc6e5e23454dcb2f0d3fe04c653c772e8a7a",
+      "matchesSourceBytes": true
+    },
+    {
+      "path": "/eic/pieces/catalog.json",
+      "http": 200,
+      "mime": "application/json",
+      "bytes": 2769,
+      "sha256": "74e0eaff680e25d5e3fee4cffe8459c037daeaade5efb4f9828ce87341a757ec",
+      "matchesSourceBytes": true
+    },
+    {
+      "path": "/api/fires?mode=snapshot&year=2025",
+      "http": 200,
+      "mime": "application/json",
+      "bytes": 1965737,
+      "sha256": "fbbff8dfaec00ba2d5a4b4354ed8d7c9ec8c7c3c376b18c0d619398a048d8fdc",
+      "matchesSourceBytes": true
+    },
+    {
+      "path": "/api/fires?mode=snapshot&year=2012",
+      "http": 200,
+      "mime": "application/json",
+      "bytes": 1960913,
+      "sha256": "6095b086332af460f958a1252e08921a994cad57946f0a228bc80580c6fcf15d",
+      "matchesSourceBytes": true
+    }
+  ],
+  "recentBrowserEvidence": "recent-browser-check.json",
+  "ci": {
+    "commit": "5345207e44e9e6a0f664b7d6ad94255ba5120c28",
+    "workflowRun": 43800558568,
+    "status": "completed",
+    "conclusion": "success"
+  }
+}

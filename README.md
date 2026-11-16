@@ -2,7 +2,7 @@
 
 **Turn an Earth image into an explorable soundscape.** TerraEcho pairs a real NASA GEOS Aerosols frame with original interactive sonification and a separate thermal-activity archive for Peru. Team AstraCom · NASA Space Apps 2026 · [The Earth Information Jukebox](https://www.spaceappschallenge.org/2026/challenges/the-earth-information-jukebox/).
 
-[Open the public EIC/archive demo](https://terraecho-earth-jukebox.dotingchime4.chatgpt.site). Recent NASA queries are available in the complete server app, not this static edition.
+[Open the complete public TerraEcho app](https://terraecho-earth-jukebox.dotingchime4.chatgpt.site): EIC, archive and recent NASA queries. The server keeps the FIRMS key private and enforces a shared request budget. [Published verification](docs/evaluation/public-https-check.json) · [Real recent-data browser check](docs/evaluation/recent-browser-check.json).
 
 ## Run
 
@@ -23,7 +23,7 @@ Use `npm`, not `npm.cmd`, in Ubuntu. For recent observations, copy `web/.env.exa
 | Jukebox EIC | Three readings of one genuine NASA frame: global, smoke voice, South America crop; layer isolation, 104 segments, feature table, A/B, mono, WAV with source metadata | Model frame **2025-08-19 20:00 UTC**, published 2026-08-10. Visual color/height features are not atmospheric concentrations. Crop is image space, not an exact Peru boundary. |
 | Rebuilt archive | Navigable **2012–2025**; 1,047,074 genuine Suomi NPP SP records, 960,333 retained after filters and raw-point ADM1 assignment | Simplified boundaries; vegetation-fire category, no forest mask. Cloud/overpass coverage unknown. Retrospective anomaly, not prediction. |
 | Legacy 2026 | Original team export, 44 bins, explicitly labeled | Raw source unavailable here. Bbox totals and heuristic gaps unreproduced. Excluded from the rebuilt baseline. |
-| Recent FIRMS | Node app: NOAA-20 default, NOAA-21 and historical SNPP explicit; department clipping, map, descriptive audio and observations | Key required. No historical anomaly or forest classification. SNPP ceased new data **2026-11-02**. Zero returned detections never prove absence of fire. |
+| Recent FIRMS | Hosted Worker / Node option: NOAA-20 default, NOAA-21 and historical SNPP explicit; department clipping, map, descriptive audio and observations | Key required. No historical anomaly or forest classification. SNPP ceased new data **2026-11-02**. Zero returned detections never prove absence of fire. |
 
 EIC is the challenge response; FIRMS adds regional exploration. Different dates and instruments do not establish a smoke–fire causal link. “Habitual” is statistically typical recorded activity, never a healthy forest. Pause, no selected detections and insufficient data are distinct labeled states.
 
@@ -73,4 +73,4 @@ The last command writes original WAVs into ignored `out/reference/` and measured
 
 [Recovered session and verified commits](docs/RECUPERACION_2026-11-15.md) · [Incremental development rules](AGENTS.md).
 
-Participant sessions, independent mask labels, real GPU/screen-reader checks, a new live-product query using the team's local key, final license approval and official submission remain evidence gates. Automated checks do not establish comfort, comprehension or universal accessibility. No participant results or award guarantee is fabricated.
+Participant sessions, independent mask labels, real GPU/screen-reader checks, final license approval and official submission remain evidence gates. Local and public NOAA-20 queries are recorded separately; their success does not establish full observation coverage. Automated checks do not establish comfort, comprehension or universal accessibility. No participant results or award guarantee is fabricated.

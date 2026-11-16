@@ -2,7 +2,7 @@
 
 Corte: 2026-11-16 UTC. **No se declaran 53 tareas terminadas.** Cada fila distingue implementación de evidencia externa. “Cerrada” puede incluir una promesa delimitada explícitamente en vez de una función científica no validada. “Parcial” tiene trabajo implementado y una comprobación pendiente. “Externa” necesita participantes, cuenta/sede o decisiones de personas reales; el paquete para ejecutarla está preparado.
 
-**34 cerradas · 15 parciales · 4 externas pendientes.** No es un porcentaje de calidad ni una probabilidad de ganar.
+**35 cerradas · 14 parciales · 4 externas pendientes.** No es un porcentaje de calidad ni una probabilidad de ganar.
 
 | ID | Estado | Tarea y evidencia | Cierre pendiente / límite |
 | --- | --- | --- | --- |
@@ -50,7 +50,7 @@ Corte: 2026-11-16 UTC. **No se declaran 53 tareas terminadas.** Cada fila distin
 | U04 | cerrada | **Selección coherente.** Archivo usa misma región/bin en mapas, métricas, CSV, tabla y audio; años2012/2025 y región comprobados; EIC independiente. | — |
 | U05 | cerrada | **Compartir y repetir.** URL con campos permitidos, sin clave; recarga restituye pieza Sudamérica, segmento2 y mono; tests y navegador. | — |
 | U06 | parcial | **Rendimiento/visual.** Paleta verde de referencia, alternativas y pausa; límite de voces/pixel ratio/hover; exportación en Worker. | Medir CPU/GPU/carga y audio simultáneo en equipo objetivo; medición móvil física pendiente. |
-| R01 | parcial | **HTTPS exterior.** Demo pública HTTPS desplegada y probada en navegador: archivo, imagen EIC, reproducción completa y WAV descargado. URL y commit en public-demo-check.json. Versión 1 con fuente 9955e9e4 y despliegue succeeded confirmados por el servicio de publicación. | La demo estática excluye la API reciente. Falta host Next/Node con clave privada y consulta real para cerrar el alcance completo. |
+| R01 | cerrada | **HTTPS exterior.** Versión 5 HTTPS completa, fuente 5345207: Worker con secreto y cuota compartida, consulta NOAA real y recorrido de mapa/tabla/audio comprobados. HTML, imagen NASA, catálogo EIC y snapshots 2012/2025 coinciden byte a byte con la fuente; CI 43800558568 aprobado. Evidencia en public-https-check.json y recent-browser-check.json. | La disponibilidad observada no constituye garantía de uptime; continúan las verificaciones humanas y de dispositivos en sus tareas. |
 | R02 | cerrada | **Versión/CI.** Commits 97870deb/033f30f3/9955e9e4 comprobados en GitHub contra árboles locales idénticos; 8 tests científicos, pipeline original, 21 web, tipos y build pasan. CI remoto 43793695690 y 43793652362: completed/success sobre 9955e9e4. Informe de recuperación y reglas incrementales versionados. Recuperación defc9b8: CI remoto 43794624377 aprobado. | Las comprobaciones humanas y de GPU siguen abiertas en sus tareas; no se presentan como validaciones de CI. |
 | R03 | cerrada | **README y relato.** README/contratos/arquitectura reemplazan promesas de bosque sano, silencio=sin fuego, NRT comparable y rango no exportado. | — |
 | R04 | cerrada | **Demo con EIC primero.** Experiencia EIC ejecutable y probada, tres WAV originales y guion de2min: problema, rasgo audible, acceso, caso peruano y límites. | El formato/idioma oficial y su grabación final se verifican en R06; el guion interno no es una regla de la sede. |
