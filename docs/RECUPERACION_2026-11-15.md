@@ -80,3 +80,23 @@ El servicio de publicación confirmó además la **versión 3**, basada exactame
 Se repitieron las 34 pruebas web, la generación/comprobación de tipos, los ocho contratos científicos y los tests del pipeline original: todos pasan. El build completo Worker también pasa. El escaneo de archivos versionados no encontró archivos de entorno privados ni contenido con los patrones de credenciales comprobados. No se leyó ni copió una clave para esta recuperación.
 
 Continúan sin recuperarse la transcripción íntegra de los chats interrumpidos, el CSV bruto del legado 2026 y una fecha de adquisición original del frame EIC. Las respuestas de participantes, anotaciones independientes, pruebas en dispositivos físicos, aprobación de licencia y envío oficial no existen en la evidencia recuperada. No se convierten en tareas terminadas por inferencia. La continuación empieza por verificar la publicación FIRMS ya implementada, antes de construir otra integración.
+
+## Cierre de esta reanudación
+
+La sesión continuó de forma incremental en `feat/terraecho-recovery`. Cada árbol se comparó con el commit equivalente de GitHub antes de continuar; las actualizaciones remotas fueron normales, con SHA esperado y `force=false`. El único intento de `git push` directo falló por falta de autenticación de terminal. Se usó la conexión GitHub ya autorizada para publicar, se descargó cada commit y se confirmó su árbol exacto. El checkpoint local de ese intento quedó conservado en una rama separada. No se afirma que el push directo haya funcionado.
+
+| Entrega de esta sesión | Commit confirmado | Resultado |
+| --- | --- | --- |
+| Inventario y protección de la segunda reanudación | `191ec31f12104daa3c7f2f5d5e3a940885208d13` | Entornos, cinco ramas y doce árboles equivalentes verificados |
+| F06: host FIRMS y presupuesto compartido | `8e642635d3dd9b18d818b8e84a5156f0aef6e3bd` | API pública real, contrato y límites comprobados |
+| Transporte de activos | `12d645cac324c901a6b62cc485573b4dfce4b84c` | Corrige la recarga que exponía bytes gzip; tres regresiones |
+| Audio y anuncios de la consulta regional | `5345207e44e9e6a0f664b7d6ad94255ba5120c28` | Pausa al cambiar región y elimina anomalía heredada del archivo |
+| F02: recorrido real de navegador | `7250d46469dc0b07551b3b9fdad32bb1d17b0d95` | 174 detecciones nacionales, 18 en Madre de Dios, mapa/tabla/audio y cero regional |
+| R01: HTTPS completo | `d90eaa7537f270b93a06dfb9fa59ca3676004ed3` | EIC, archivo y consulta reciente publicados y comprobados |
+| E02: adquisición del frame EIC | `e5a3e637642e727f9e17898b88040c0017c60618` | Nueva descarga oficial idéntica al frame, separada de la fecha original desconocida |
+
+La publicación final es la **versión 6**, basada en `e5a3e637642e727f9e17898b88040c0017c60618`, con despliegue `succeeded`. Se volvieron a comprobar por HTTPS HTML, catálogo e imagen NASA contra los bytes de la fuente; la consulta NOAA-20 devolvió HTTP 200 y 174 registros válidos. El CI [43801644680](https://github.com/Yamile26/TerraEcho/actions/runs/43801644680) está `completed/success`. Pasan 38 pruebas web, 8 contratos científicos, tipos y build; los tests originales del pipeline también pasaron al recuperar. [Comprobación final](evaluation/recovery-final-check.json) y [captura reciente](screenshots/terraecho-recent-live.jpg).
+
+El registro pasó de **32 a 36 cerradas**; quedan **13 parciales y 4 externas**. No quedan modificaciones únicas recuperadas pendientes de publicar. Permanecen abiertas las muestras/etiquetas independientes, confort y comprensión con personas, lector y dispositivos físicos, rendimiento GPU/móvil, licencia y responsables reales, integración de PR #4 → PR #3 y entrega oficial. El detalle y la evidencia pendiente de cada tarea están en [ESTADO_53_TAREAS.md](ESTADO_53_TAREAS.md).
+
+La nueva adquisición no recupera la fecha de descarga original. La leyenda y la variante de impresión respondieron HTTP 503 en esa comprobación y siguen sin nueva igualdad certificada. Tampoco se recuperaron la transcripción íntegra del chat ni el CSV bruto del legado 2026. Esas limitaciones se conservan expresamente.

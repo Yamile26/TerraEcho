@@ -360,8 +360,8 @@
       "id": "R07",
       "status": "parcial",
       "title": "Integración/alternativa",
-      "evidence": "PR anterior #1 integrado por el equipo; entrega posterior en PR #3 hacia develop, limpio y con CI; tres WAV y build local de respaldo.",
-      "remaining": "Revisión e integración del PR #3 y promoción a main según el flujo del equipo; no se reabrió el PR anterior."
+      "evidence": "PR #1 integrado; PR #3 hacia develop y PR #4 de recuperación hacia feat/terraecho-web-experience conservados, sin duplicación. PR #4 abierto y mergeable; último código e5a3e63 con CI 43801644680 aprobado y versión pública 6 comprobada. WAV y build local de respaldo.",
+      "remaining": "Revisar e integrar PR #4 en la rama de experiencia, después PR #3 en develop, y promover a main según el flujo del equipo. No se aplicó un merge ni se reescribió ninguna rama."
     },
     {
       "id": "R08",

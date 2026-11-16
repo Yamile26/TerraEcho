@@ -5,8 +5,8 @@
 ```bash
 cd ~/projects/TerraEcho
 git fetch origin
-git switch feat/terraecho-web-experience
-git pull --ff-only origin feat/terraecho-web-experience
+git switch feat/terraecho-recovery
+git pull --ff-only origin feat/terraecho-recovery
 npm ci
 [ -f web/.env.local ] || cp web/.env.example web/.env.local
 nano web/.env.local
@@ -21,7 +21,7 @@ La publicación principal usa ahora un Worker con la misma interfaz Next exporta
 
 Configurar `FIRMS_MAP_KEY` como secreto de ejecución del servicio de publicación. No se incorpora al build, los activos, la cuota ni las respuestas. Verificar `/api/health` y ejecutar el comprobador contra el origen HTTPS publicado. La API conserva las diferencias entre NOAA-20/21 y el archivo histórico, sin anomalías recientes inventadas.
 
-La [publicación completa HTTPS](https://terraecho-earth-jukebox.dotingchime4.chatgpt.site) está comprobada en la versión 5, fuente `5345207e44e9e6a0f664b7d6ad94255ba5120c28`. `public-https-check.json` registra bytes originales de HTML, imagen NASA, catálogo EIC y snapshots 2012/2025; `firms-host-check.json` registra la API y `recent-browser-check.json` el recorrido real de mapa, tabla y audio. Los activos quedan comprimidos dentro del bundle; el handler los decodifica antes de responder para que la pasarela controle la compresión de transporte. Esto corrige la recarga que mostraba bytes gzip en la versión 3.
+La [publicación completa HTTPS](https://terraecho-earth-jukebox.dotingchime4.chatgpt.site) está comprobada hasta la versión 6, fuente `e5a3e637642e727f9e17898b88040c0017c60618`; `recovery-final-check.json` registra la comprobación final y la adquisición EIC nueva. La versión 5 conserva la comprobación detallada del recorrido reciente. `public-https-check.json` registra bytes originales de HTML, imagen NASA, catálogo EIC y snapshots 2012/2025; `firms-host-check.json` registra la API y `recent-browser-check.json` el recorrido real de mapa, tabla y audio. Los activos quedan comprimidos dentro del bundle; el handler los decodifica antes de responder para que la pasarela controle la compresión de transporte. Esto corrige la recarga que mostraba bytes gzip en la versión 3.
 
 La alternativa Node/Next existente se construye con `npm run build:node` y se ejecuta con `npm start`:
 
