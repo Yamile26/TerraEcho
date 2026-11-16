@@ -129,6 +129,9 @@ export function TerraEcho() {
   );
   const mix = representation(cells);
   useEffect(() => {
+    if (score && index >= score.weeks.length) setIndex(score.weeks.length - 1);
+  }, [score, index]);
+  useEffect(() => {
     const s = readUrlSelection(location.search);
     setView(s.view);
     setYear(s.year);
@@ -760,9 +763,11 @@ export function TerraEcho() {
             <>
               {view === "history" && regionField}
               <p className="archive-quality">
-                {datasetEntry?.quality === "legacy-unreproduced"
-                  ? "2026 · Exportación heredada: CSV de origen y cobertura sin reproducir. No comparar sus cifras con el archivo nacional regenerado."
-                  : "Archivo NASA SP regenerado · actividad térmica de vegetación. Sin clasificación forestal; cobertura de nubes no certificada."}
+                {!score
+                  ? "Cargando procedencia del archivo…"
+                  : datasetEntry?.quality === "legacy-unreproduced"
+                    ? "2026 · Exportación heredada: CSV de origen y cobertura sin reproducir. No comparar sus cifras con el archivo nacional regenerado."
+                    : "Archivo NASA SP regenerado · actividad térmica de vegetación. Sin clasificación forestal; cobertura de nubes no certificada."}
               </p>
               <div className="observation-date">
                 <span>{week ? weekRange(week) : "—"}</span>
@@ -796,13 +801,15 @@ export function TerraEcho() {
                   <span>↗</span>
                 </strong>
                 <p>
-                  {week?.data_gap
-                    ? "Conteo parcial · no interpretable"
-                    : region === "Perú"
-                      ? isNational
-                        ? "Perú: registros asignados por punto a límites ADM1 simplificados."
-                        : "Legado: caja geográfica; puede incluir territorio vecino."
-                      : "Detecciones satelitales, no incendios individuales."}
+                  {!week
+                    ? "Cargando el ámbito de la selección…"
+                    : week.data_gap
+                      ? "Conteo parcial · no interpretable"
+                      : region === "Perú"
+                        ? isNational
+                          ? "Perú: registros asignados por punto a límites ADM1 simplificados."
+                          : "Legado: caja geográfica; puede incluir territorio vecino."
+                        : "Detecciones satelitales, no incendios individuales."}
                 </p>
               </div>
               <div className="paired-metrics">

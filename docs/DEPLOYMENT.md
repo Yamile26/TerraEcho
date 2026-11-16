@@ -28,6 +28,8 @@ Necesita Node 22+, dependencias, `.next` y `web/public`. No es un sitio purament
 
 ## Demo EIC/archivo independiente
 
+[Demo pública HTTPS](https://terraecho-earth-jukebox.dotingchime4.chatgpt.site), desplegada y probada desde el navegador. Ver `docs/evaluation/public-demo-check.json` para la versión y comprobación de exportación.
+
 ```bash
 node web/scripts/build-archive-demo.mjs
 ```

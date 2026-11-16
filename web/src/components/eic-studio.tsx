@@ -311,7 +311,11 @@ export function EicStudio() {
   }, [score, playing, pieceId, step, enabled, mono]);
   const active = score?.steps[step];
   return (
-    <section className="eic-view jukebox-view" aria-labelledby="jukebox-title">
+    <section
+      className="eic-view jukebox-view"
+      aria-labelledby="jukebox-title"
+      aria-busy={!score && !error}
+    >
       <div className="section-kicker">
         <span className="small-orb" />
         EARTH INFORMATION JUKEBOX · IMAGEN → SONIDO
@@ -487,11 +491,15 @@ export function EicStudio() {
         ))}
       </div>
       <p role="status" className="playback-status">
-        {enabled.size === 0
-          ? "Todas las voces están desactivadas. Activa una para escuchar."
-          : playing
-            ? "Sonificación en curso; el reloj del audio guía el barrido."
-            : "Audio pausado. El deslizador permite inspeccionar cada segmento."}{" "}
+        {!score
+          ? error
+            ? "Pieza no disponible. Revisa el aviso y reintenta."
+            : "Preparando los rasgos y la partitura de la imagen…"
+          : enabled.size === 0
+            ? "Todas las voces están desactivadas. Activa una para escuchar."
+            : playing
+              ? "Sonificación en curso; el reloj del audio guía el barrido."
+              : "Audio pausado. El deslizador permite inspeccionar cada segmento."}{" "}
         {message}
       </p>
       <div className="eic-actions">

@@ -1,8 +1,8 @@
 {
   "reviewDate": "2026-11-16",
   "counts": {
-    "cerrada": 30,
-    "parcial": 19,
+    "cerrada": 31,
+    "parcial": 18,
     "externa": 4
   },
   "tasks": [
@@ -318,15 +318,15 @@
       "id": "R01",
       "status": "parcial",
       "title": "HTTPS exterior",
-      "evidence": "Build de demo EIC/archivo y hosting preparados; app Next completa conserva API.",
-      "remaining": "Registrar publicación comprobada; la demo estática no incluye API reciente. Falta host Node con clave para cerrar alcance completo."
+      "evidence": "Demo pública HTTPS desplegada y probada en navegador: archivo, imagen EIC, reproducción completa y WAV descargado. URL y commit en public-demo-check.json.",
+      "remaining": "La demo estática excluye la API reciente. Falta host Next/Node con clave privada y consulta real para cerrar el alcance completo."
     },
     {
       "id": "R02",
-      "status": "parcial",
+      "status": "cerrada",
       "title": "Versión/CI",
-      "evidence": "Tests científicos/web, preparación con huellas, workflow ampliado, builds y evidencia del navegador.",
-      "remaining": "Registrar commits y CI remoto exitosos de esta entrega."
+      "evidence": "Commits separados de ciencia, web y evidencia; CI remoto 43793695690 exitoso, 21 tests web, 8 científicos, Python original, tipos y build limpios.",
+      "remaining": "Las comprobaciones humanas y de GPU siguen abiertas en sus tareas; no se presentan como validaciones de CI."
     },
     {
       "id": "R03",
@@ -360,8 +360,8 @@
       "id": "R07",
       "status": "parcial",
       "title": "Integración/alternativa",
-      "evidence": "main/develop existentes, PR a develop y build/WAV de respaldo; cambios en rama de implementación.",
-      "remaining": "Integrar con checks verdes y comprobar promoción a main según flujo del equipo."
+      "evidence": "PR anterior #1 integrado por el equipo; entrega posterior en PR #3 hacia develop, limpio y con CI; tres WAV y build local de respaldo.",
+      "remaining": "Revisión e integración del PR #3 y promoción a main según el flujo del equipo; no se reabrió el PR anterior."
     },
     {
       "id": "R08",
