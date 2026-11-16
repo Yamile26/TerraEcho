@@ -63,11 +63,11 @@ El frontend no vuelve a ejecutar Python al cambiar de región o semana. Para act
 
 **Recomendación actual: usa Node.js y npm para desarrollar la interfaz.** Hay una aplicación Next.js; todavía no hay un servicio Python HTTP ni una base de datos que deban arrancar juntos. Docker no es un requisito para que funcione la web ni para desplegarla en un proveedor compatible con Next.js.
 
-| Opción | Cuándo conviene | Estado actual |
-| --- | --- | --- |
-| Node.js + npm | Trabajar en React, Three.js, estilos y sonido con cambios rápidos | Disponible y verificada |
-| Docker para la web | Estandarizar un entorno o desplegar en un host de contenedores | No se añadió Dockerfile ni Compose |
-| Docker Compose para web + procesador | Ejecutar juntos Next.js y un servicio Python cuando este exista | Arquitectura futura; no hay un procesador HTTP que arrancar todavía |
+| Opción                               | Cuándo conviene                                                   | Estado actual                                                       |
+| ------------------------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Node.js + npm                        | Trabajar en React, Three.js, estilos y sonido con cambios rápidos | Disponible y verificada                                             |
+| Docker para la web                   | Estandarizar un entorno o desplegar en un host de contenedores    | No se añadió Dockerfile ni Compose                                  |
+| Docker Compose para web + procesador | Ejecutar juntos Next.js y un servicio Python cuando este exista   | Arquitectura futura; no hay un procesador HTTP que arrancar todavía |
 
 No ejecutes `docker compose up` en este estado: el repositorio no tiene una configuración Compose. Tampoco hace falta añadir PostgreSQL, Redis o autenticación para abrir esta versión. La [guía oficial de Next.js con Docker](https://docs.docker.com/guides/nextjs/) sirve de referencia cuando se decida containerizar.
 
@@ -75,14 +75,14 @@ Docker ejecutaría el servidor; Three.js y Web Audio seguirían ejecutándose en
 
 ## Ramas remotas creadas
 
-| Rama | Contenido en este punto | Uso |
-| --- | --- | --- |
-| `main` | Base científica original, desde `979b6ed` | Base estable para futuras entregas |
-| `develop` | La misma base, hasta integrar la PR de la web | Integración del equipo |
-| `feat/terraecho-web-experience` | Aplicación web, ciencia existente, documentación y pruebas | Rama para probar la web ahora |
-| `data-pipeline` | Rama original conservada | Trabajo científico existente |
+| Rama                            | Contenido en este punto                                    | Uso                                |
+| ------------------------------- | ---------------------------------------------------------- | ---------------------------------- |
+| `main`                          | Base científica original, desde `979b6ed`                  | Base estable para futuras entregas |
+| `develop`                       | La misma base, hasta integrar la PR de la web              | Integración del equipo             |
+| `feat/terraecho-web-experience` | Aplicación web, ciencia existente, documentación y pruebas | Rama para probar la web ahora      |
+| `data-pipeline`                 | Rama original conservada                                   | Trabajo científico existente       |
 
-La [PR #1](https://github.com/Yamile26/TerraEcho/pull/1) propone integrar `feat/terraecho-web-experience` en `develop`. Continúa como borrador. Crear `main` y `develop` no integra automáticamente los cambios de esa PR; por eso el comando de clonación selecciona explícitamente la rama de la web.
+La [PR #1](https://github.com/Yamile26/TerraEcho/pull/1) propone integrar `feat/terraecho-web-experience` en `develop`. Mientras siga abierta, crear `main` y `develop` no integra automáticamente sus cambios; por eso el comando de clonación selecciona explícitamente la rama de la web.
 
 Flujo propuesto: cada cambio se desarrolla en una rama de funcionalidad, se integra mediante PR a `develop`, y una entrega revisada pasa mediante otra PR de `develop` a `main`. Mientras la PR inicial siga abierta, una funcionalidad que dependa de la web puede partir de la rama de la web; después de su integración, debe partir de `develop`.
 
@@ -103,6 +103,15 @@ git branch --track develop origin/develop
 La rama predeterminada de GitHub sigue siendo `data-pipeline`. Cambiarla a `main` y proteger las ramas requiere permisos de administración, que la conexión usada no tiene. La propietaria puede hacerlo en **Settings → Default branch** y configurar las reglas de PR y comprobaciones. [Referencia de GitHub](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/changing-the-default-branch).
 
 ## Configurar FIRMS cuando la web ya abra
+
+En WSL/Linux, desde la raíz del repositorio:
+
+```bash
+[ -f web/.env.local ] || cp web/.env.example web/.env.local
+nano web/.env.local
+```
+
+Guardar con `Ctrl+O`, `Enter`, salir con `Ctrl+X` y reiniciar `npm run dev` después de editar la clave. Para la comprobación completa, resultados esperados y límites del modo reciente, consulta [la auditoría del desafío](PENDIENTES_WEB.md#3-activar-la-firms_map_key-en-wsl).
 
 Desde la raíz del repositorio, crea el archivo local solo si no existe:
 
@@ -134,12 +143,12 @@ La [API oficial de área de FIRMS](https://firms.modaps.eosdis.nasa.gov/api/area
 
 ## Cómo se conecta cada fuente
 
-| Fuente | Flujo implementado | Qué falta |
-| --- | --- | --- |
-| FIRMS histórico | CSV descargado → Python por lotes → JSON del repositorio → API Next.js → visualización y sonido | Corregir recorte nacional, trazabilidad y exportar todos los años del alcance |
-| FIRMS reciente | Navegador → endpoint Next.js → NASA con clave privada → detecciones JSON | Validar la conexión con una clave real, integrar estas observaciones en la interfaz y calcular métricas coherentes |
-| EIC | Imagen NASA incluida → partitura Python incluida → barrido de la imagen y síntesis en el navegador | Una selección ampliada de frames y un relato conectado espacial/temporalmente con Perú |
-| Servicio Python futuro | Next.js tiene un adaptador para `GET /v1/scores/{year}` | Crear, ejecutar, probar y desplegar el servicio |
+| Fuente                 | Flujo implementado                                                                                 | Qué falta                                                                                                          |
+| ---------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| FIRMS histórico        | CSV descargado → Python por lotes → JSON del repositorio → API Next.js → visualización y sonido    | Corregir recorte nacional, trazabilidad y exportar todos los años del alcance                                      |
+| FIRMS reciente         | Navegador → endpoint Next.js → NASA con clave privada → detecciones JSON                           | Validar la conexión con una clave real, integrar estas observaciones en la interfaz y calcular métricas coherentes |
+| EIC                    | Imagen NASA incluida → partitura Python incluida → barrido de la imagen y síntesis en el navegador | Una selección ampliada de frames y un relato conectado espacial/temporalmente con Perú                             |
+| Servicio Python futuro | Next.js tiene un adaptador para `GET /v1/scores/{year}`                                            | Crear, ejecutar, probar y desplegar el servicio                                                                    |
 
 La clave se usa entre el servidor Next.js y NASA. El navegador no necesita conocerla. Para el servicio Python futuro, Next.js hará la petición HTTP desde el servidor; no es una llamada directa del navegador al procesador.
 
