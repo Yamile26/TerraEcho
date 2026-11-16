@@ -33,6 +33,10 @@ Caso16–22sep2024: Amazonas83 detecciones/z2.53, San Martín512/z1.53, Ucayali2
 
 Se verificaron fuentes públicas FIRMS y hashes reales. El frame EIC heredado está identificado por hash, pero un nuevo intento de obtener sus bytes oficiales devolvió503; el intento está registrado. La fecha original de descarga permanece desconocida.
 
+## Verificación pública
+
+La demo HTTPS fue abierta sin login, cargó el archivo2025 y los activos EIC, completó una reproducción y descargó un WAV idéntico a la referencia CLI. La sección reciente indica correctamente que esa edición no tiene API. Evidencia: `public-demo-check.json`; CI remoto43793695690 exitoso. Captura adicional: `terraecho-public-eic.jpg`.
+
 ## Evidencia aún necesaria
 
 Participantes reales ciegos/baja visión, comprensión y confort, lectores/voz/zoom/tacto en equipos reales, evaluación independiente de máscaras, sincronización GPU+audio, nueva consulta NASA con la clave del equipo, hosting completo con secreto, licencia aprobada y envío oficial. El [protocolo](evaluation/PROTOCOL.md) y los comprobadores están preparados. No se presentan fixtures ni ausencia de resultados como evidencia positiva.

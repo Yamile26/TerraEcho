@@ -2,6 +2,8 @@
 
 **Turn an Earth image into an explorable soundscape.** TerraEcho pairs a real NASA GEOS Aerosols frame with original interactive sonification and a separate thermal-activity archive for Peru. Team AstraCom · NASA Space Apps 2026 · [The Earth Information Jukebox](https://www.spaceappschallenge.org/2026/challenges/the-earth-information-jukebox/).
 
+[Open the public EIC/archive demo](https://terraecho-earth-jukebox.dotingchime4.chatgpt.site). Recent NASA queries are available in the complete server app, not this static edition.
+
 ## Run
 
 Node.js 22+ and npm in Linux/WSL. Docker and Python are unnecessary to explore the shipped data.

@@ -54,3 +54,7 @@ Antes de esta recuperación el registro indicaba **30 cerradas, 19 parciales y 4
 Una tarea → implementación → pruebas → commit → publicación en la rama → comprobación en GitHub → siguiente tarea. Las reglas están guardadas en [AGENTS.md](../AGENTS.md).
 
 La terminal de este entorno no tiene autenticación GitHub: el intento de `git push` falló por falta de credenciales. La conexión de GitHub permite commits y avance normal de referencias; se documenta esa vía sin simular un push exitoso ni pedir una clave por chat. Nunca se utiliza `force` para publicar.
+
+## Último avance publicado durante la recuperación
+
+Después del corte inicial se encontró también `aabab9ffe505001ab32167caa7643749a2a4b71d` (`fix(web): preserve loading context and record the published demo`), ya en GitHub. Conserva el contexto de carga EIC/archivo y acota la semana al cambiar de año; añade el informe/captura de la demo pública y registra el PR #3 existente hacia `develop`. Se integra mediante un merge normal con ambos padres, conservando el informe de recuperación y la evidencia de las dos ramas. No se crea otro PR de entrega que duplique el #3.

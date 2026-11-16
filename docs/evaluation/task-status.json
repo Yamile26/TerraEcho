@@ -318,15 +318,15 @@
       "id": "R01",
       "status": "parcial",
       "title": "HTTPS exterior",
-      "evidence": "Demo EIC/archivo HTTPS publicada y despliegue succeeded comprobado: versión 1, fuente 9955e9e4. App Next completa conserva API.",
-      "remaining": "Falta host Node con clave y consulta real para cerrar alcance completo; la demo estática publicada no incluye API reciente."
+      "evidence": "Demo pública HTTPS desplegada y probada en navegador: archivo, imagen EIC, reproducción completa y WAV descargado. URL y commit en public-demo-check.json. Versión 1 con fuente 9955e9e4 y despliegue succeeded confirmados por el servicio de publicación.",
+      "remaining": "La demo estática excluye la API reciente. Falta host Next/Node con clave privada y consulta real para cerrar el alcance completo."
     },
     {
       "id": "R02",
       "status": "cerrada",
       "title": "Versión/CI",
-      "evidence": "Commits 97870deb/033f30f3/9955e9e4 comprobados en GitHub contra árboles locales idénticos; 8 tests científicos, pipeline original, 21 web, tipos y build pasan. CI remoto 43793695690 y 43793652362: completed/success sobre 9955e9e4. Informe de recuperación y reglas incrementales versionados.",
-      "remaining": ""
+      "evidence": "Commits 97870deb/033f30f3/9955e9e4 comprobados en GitHub contra árboles locales idénticos; 8 tests científicos, pipeline original, 21 web, tipos y build pasan. CI remoto 43793695690 y 43793652362: completed/success sobre 9955e9e4. Informe de recuperación y reglas incrementales versionados. Recuperación defc9b8: CI remoto 43794624377 aprobado.",
+      "remaining": "Las comprobaciones humanas y de GPU siguen abiertas en sus tareas; no se presentan como validaciones de CI."
     },
     {
       "id": "R03",
@@ -360,8 +360,8 @@
       "id": "R07",
       "status": "parcial",
       "title": "Integración/alternativa",
-      "evidence": "main/develop existentes, PR a develop y build/WAV de respaldo; cambios en rama de implementación.",
-      "remaining": "Integrar con checks verdes y comprobar promoción a main según flujo del equipo."
+      "evidence": "PR anterior #1 integrado por el equipo; entrega posterior en PR #3 hacia develop, limpio y con CI; tres WAV y build local de respaldo.",
+      "remaining": "Revisión e integración del PR #3 y promoción a main según el flujo del equipo; no se reabrió el PR anterior."
     },
     {
       "id": "R08",
