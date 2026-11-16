@@ -58,3 +58,25 @@ La terminal de este entorno no tiene autenticación GitHub: el intento de `git p
 ## Último avance publicado durante la recuperación
 
 Después del corte inicial se encontró también `aabab9ffe505001ab32167caa7643749a2a4b71d` (`fix(web): preserve loading context and record the published demo`), ya en GitHub. Conserva el contexto de carga EIC/archivo y acota la semana al cambiar de año; añade el informe/captura de la demo pública y registra el PR #3 existente hacia `develop`. Se integra mediante un merge normal con ambos padres, conservando el informe de recuperación y la evidencia de las dos ramas. No se crea otro PR de entrega que duplique el #3.
+
+## Segunda reanudación comprobada — 15 de noviembre, America/Lima
+
+La siguiente sesión encontró los tres worktrees anteriores: experiencia web, recuperación y comprobación científica. Los tres estaban limpios; no había stash ni commits de rama pendientes de publicar. Se crearon y verificaron nuevos respaldos Git, incluido el reflog, antes de modificar archivos. Los doce commits sin referencia de rama tienen árboles idénticos a commits ya publicados: no contienen implementaciones adicionales que deban duplicarse.
+
+Un `git fetch origin` y `git ls-remote --heads origin` confirmaron las cinco ramas remotas:
+
+| Rama | SHA confirmado |
+| --- | --- |
+| `data-pipeline` | `0ba27b89f41c09fe829849dc976e1679a9bda586` |
+| `develop` | `4560674882c452c3a48d08eaa9dea85c88d9c4af` |
+| `feat/terraecho-recovery` | `a2153c817ffaf6f7d46ec03d431bd64e6d74efda` |
+| `feat/terraecho-web-experience` | `aabab9ffe505001ab32167caa7643749a2a4b71d` |
+| `main` | `979b6ed6dd0a7fa4d57a4e8998ef09c590e97f22` |
+
+La rama de recuperación contiene también `e584f25` (comprobador FIRMS estricto), `acca91b` (consulta NASA real a través del servidor local) y `a2153c8` (adaptador de publicación completo con presupuesto SQL compartido). La lectura del último commit mediante la conexión GitHub confirmó su SHA, mensaje y cambios. El registro vigente al reanudar es **32 cerradas, 17 parciales y 4 externas**; el listado de tareas vive en el repositorio, no en issues GitHub independientes. Los PR #3 y #4 existentes se conservan.
+
+El servicio de publicación confirmó además la **versión 3**, basada exactamente en `a2153c817ffaf6f7d46ec03d431bd64e6d74efda`, con despliegue `succeeded` y la misma URL pública. Esto recupera un avance posterior al recuerdo del chat. El éxito del despliegue por sí solo no prueba la consulta pública: F06, F02 y R01 continúan abiertos hasta sus respectivas verificaciones.
+
+Se repitieron las 34 pruebas web, la generación/comprobación de tipos, los ocho contratos científicos y los tests del pipeline original: todos pasan. El build completo Worker también pasa. El escaneo de archivos versionados no encontró archivos de entorno privados ni contenido con los patrones de credenciales comprobados. No se leyó ni copió una clave para esta recuperación.
+
+Continúan sin recuperarse la transcripción íntegra de los chats interrumpidos, el CSV bruto del legado 2026 y una fecha de adquisición original del frame EIC. Las respuestas de participantes, anotaciones independientes, pruebas en dispositivos físicos, aprobación de licencia y envío oficial no existen en la evidencia recuperada. No se convierten en tareas terminadas por inferencia. La continuación empieza por verificar la publicación FIRMS ya implementada, antes de construir otra integración.
